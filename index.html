@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chile Home - Casas prefabricadas de diseño premium. Arquitectura moderna y sustentable.">
+    <title>Chile Home | Arquitectura Prefabricada Premium</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles-improved.css">
+</head>
+<body>
+
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <span class="loader-text">Chile Home</span>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <span class="stars">★★★★★</span>
+            <span class="review-text">5 estrellas en Google Reviews</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <img src="Logotipo/Logo-minimalista-v2.png" alt="Chile Home" class="logo-img">
+            </a>
+
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#proyectos" class="nav-link">Modelos</a></li>
+                    <li><a href="#nosotros" class="nav-link">Sobre Nosotros</a></li>
+                    <li><a href="#proceso" class="nav-link">Proceso</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#proyectos" class="btn-header-outline">Ver Catálogo</a>
+                <a href="#contacto" class="btn-header-filled">Cotizar Ahora</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <video class="hero-video" id="heroVideo" autoplay muted playsinline>
+                <source src="video/Video_banner.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Casas<br>Prefabricadas<br>Premium</h1>
+                <a href="#contacto" class="btn-hero"><span>Solicitar Cotización</span></a>
+            </div>
+            <!-- Floating House Preview - Top Right -->
+            <div class="hero-preview">
+                <div class="preview-image">
+                    <img src="Imagenes/Modelos/36m2 2A/54 2A/freepik__img1manten-la-casa-pero-cambia-la-pierta-a-madera__52840.png" alt="Modelo 54m² 2A">
+                </div>
+                <div class="preview-label">
+                    <span class="preview-size">54m²</span>
+                    <span class="preview-style">Dos Aguas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Text -->
+    <section class="intro-section">
+        <div class="intro-content">
+            <h2 class="intro-title">Una Forma Inteligente de Construir.</h2>
+            <p class="intro-text">
+                Más de 20 años de experiencia en casas prefabricadas de alta gama.<br>
+                Nuestro proceso garantiza diseños premium y entrega a tiempo, sin costo extra.
+            </p>
+        </div>
+    </section>
+
+    <!-- Modelos - Featured -->
+    <section class="models-featured" id="proyectos">
+        <div class="featured-card">
+            <div class="featured-content">
+                <h2 class="featured-title">Cualquier Tamaño.<br>Cualquier Estilo.<br><span>Solo Para Ti.</span></h2>
+                <p class="featured-desc">
+                    Trabaja con nuestro equipo de diseño para crear la casa prefabricada perfecta, única para tu terreno y especificaciones.
+                </p>
+                <a href="#contacto" class="btn-outline">
+                    <span>Ver Modelos</span>
+                </a>
+            </div>
+            <div class="featured-slideshow">
+                <div class="slideshow-container" id="featuredSlideshow">
+                    <div class="slide active">
+                        <img src="Imagenes/Nuevos Modelos/36m2 1A.png" alt="36m² Un Agua">
+                        <div class="slide-label">
+                            <span class="slide-name">36 m²</span>
+                            <span class="slide-style">Un Agua</span>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="Imagenes/Nuevos Modelos/36m2 2A.png" alt="Terra 36m² Dos Aguas">
+                        <div class="slide-label">
+                            <span class="slide-name">Terra 36 m²</span>
+                            <span class="slide-style">Dos Aguas</span>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="Imagenes/Nuevos Modelos/54m2 1A.png" alt="54m² Un Agua">
+                        <div class="slide-label">
+                            <span class="slide-name">54 m²</span>
+                            <span class="slide-style">Un Agua</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slideshow-controls">
+                    <div class="slideshow-dots">
+                        <button class="dot active" data-slide="0"></button>
+                        <button class="dot" data-slide="1"></button>
+                        <button class="dot" data-slide="2"></button>
+                    </div>
+                    <div class="slideshow-nav">
+                        <button class="nav-btn prev" onclick="changeSlide(-1)">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button class="nav-btn next" onclick="changeSlide(1)">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modelos Grid - Línea 2026 -->
+    <section class="models-grid-section">
+        <h2 class="models-title">Línea <span>2026.</span></h2>
+        <p class="models-subtitle">Nueva colección de diseño contemporáneo</p>
+
+        <div class="models-carousel">
+            <!-- Modelo 36m² Un Agua -->
+            <div class="model-card" onclick="openModelModal('36-1a')">
+                <div class="model-image">
+                    <img src="Imagenes/Nuevos Modelos/36m2 1A.png" alt="Modelo 36m² Un Agua">
+                    <span class="model-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">36 m²</h3>
+                    <p class="model-tag">Un Agua</p>
+                </div>
+            </div>
+
+            <!-- Modelo Terra 36m² Dos Aguas -->
+            <div class="model-card" onclick="openModelModal('terra-36')">
+                <div class="model-image">
+                    <img src="Imagenes/Nuevos Modelos/36m2 2A.png" alt="Modelo Terra 36m² Dos Aguas">
+                    <span class="model-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">Terra 36 m²</h3>
+                    <p class="model-tag">Dos Aguas</p>
+                </div>
+            </div>
+
+            <!-- Modelo 54m² Un Agua -->
+            <div class="model-card" onclick="openModelModal('54-1a')">
+                <div class="model-image">
+                    <img src="Imagenes/Nuevos Modelos/54m2 1A.png" alt="Modelo 54m² Un Agua">
+                    <span class="model-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">54 m²</h3>
+                    <p class="model-tag">Un Agua</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modelos Grid - Línea Clásica -->
+    <section class="models-grid-section models-classic">
+        <h2 class="models-title">Línea <span>Clásica.</span></h2>
+        <p class="models-subtitle">Diseños tradicionales con calidad premium</p>
+
+        <div class="models-carousel">
+            <!-- Modelo 36m² - Clásico -->
+            <div class="model-card" onclick="openModelModal('clasica-36')">
+                <div class="model-image">
+                    <img src="Imagenes/Modelos/36m2 2A/36 2A/36m2 2A H.png" alt="Modelo 36m² Clásico">
+                    <span class="model-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">36 m²</h3>
+                    <p class="model-tag">Compacto</p>
+                </div>
+            </div>
+
+            <!-- Modelo 54m² - Clásico -->
+            <div class="model-card" onclick="openModelModal('clasica-54')">
+                <div class="model-image">
+                    <img src="Imagenes/Modelos/54.png" alt="Modelo 54m² Clásico">
+                    <span class="model-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">54 m²</h3>
+                    <p class="model-tag">Tradicional</p>
+                </div>
+            </div>
+
+            <!-- Modelo 72m² - Clásico -->
+            <div class="model-card" onclick="openModelModal('clasica-72')">
+                <div class="model-image">
+                    <img src="Imagenes/Modelos/72m2.png" alt="Modelo 72m² Clásico">
+                    <span class="model-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">72 m²</h3>
+                    <p class="model-tag">Espacioso</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="models-progress">
+            <div class="progress-bar"></div>
+        </div>
+    </section>
+
+    <!-- CTA Between Model Sections -->
+    <section class="models-grid-section" style="padding-top: clamp(2rem, 4vw, 3rem); padding-bottom: clamp(2rem, 4vw, 3rem);">
+        <div class="models-cta">
+            <div class="models-cta-content">
+                <h3>¿No encuentras lo que buscas?</h3>
+                <p>Diseñamos casas completamente personalizadas según tus necesidades. Nuestro equipo de arquitectos está listo para convertir tu visión en realidad.</p>
+                <a href="#contacto" class="btn-outline">
+                    <span>Diseño Personalizado</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cotización Request -->
+    <section class="brochure-section">
+        <div class="brochure-wrapper">
+            <div class="brochure-video">
+                <video autoplay muted loop playsinline>
+                    <source src="video/freepik__toma-con-un-drone-mostrando-la-casa-y-luego-el-val__83478.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="brochure-content">
+                <h2 class="brochure-title">Solicita una<br><span>Cotización Gratis</span></h2>
+                <form class="brochure-form" id="brochureForm">
+                    <input type="email" placeholder="Email" required>
+                    <div class="brochure-footer">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required>
+                            <span>Acepto la <a href="#">política de privacidad</a></span>
+                        </label>
+                        <button type="submit" class="btn-brochure">Solicitar Cotización</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="about-wrapper">
+            <div class="about-content">
+                <div class="section-header">
+                    <span class="section-num">02</span>
+                    <h2 class="section-title">Filosofía</h2>
+                </div>
+
+                <div class="about-text">
+                    <h3 class="about-heading">
+                        Creemos en la arquitectura que <em>transforma vidas</em>
+                    </h3>
+                    <p>
+                        Más de 15 años diseñando y construyendo hogares que combinan
+                        estética contemporánea con funcionalidad excepcional.
+                    </p>
+                    <p>
+                        Cada proyecto es único. Trabajamos con materiales premium y
+                        procesos sustentables para crear espacios que perduran.
+                    </p>
+                </div>
+
+                <div class="about-features">
+                    <div class="feature">
+                        <span class="feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </span>
+                        <div class="feature-text">
+                            <h4>Diseño Premium</h4>
+                            <p>Arquitectura contemporánea con acabados de alta gama</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </span>
+                        <div class="feature-text">
+                            <h4>Sustentable</h4>
+                            <p>Materiales eco-friendly y eficiencia energética</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </span>
+                        <div class="feature-text">
+                            <h4>Rápida Entrega</h4>
+                            <p>Tu hogar listo en 45-60 días</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-visual">
+                <div class="visual-main">
+                    <video class="about-video" id="aboutVideo" autoplay muted loop playsinline>
+                        <source src="Imagenes/Modelos/36m2 2A/54 2A/freepik__a-sweeping-aerial-shot-unveils-a-delightful-modern__52835.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="visual-accent">
+                    <div class="accent-box">
+                        <span class="accent-num">500+</span>
+                        <span class="accent-text">Hogares construidos en Chile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso -->
+    <section class="process" id="proceso">
+        <div class="section-header">
+            <span class="section-num">03</span>
+            <h2 class="section-title">Proceso</h2>
+        </div>
+
+        <div class="process-intro">
+            <h3>De la visión a la realidad en <em>4 etapas</em></h3>
+        </div>
+
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <h4>Consultoría</h4>
+                    <p>Analizamos tu terreno, necesidades y visión para diseñar la solución perfecta.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <h4>Diseño</h4>
+                    <p>Personalizamos cada detalle. Planos, materiales y cotización transparente.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                    <h4>Fabricación</h4>
+                    <p>Producción controlada con los más altos estándares de calidad.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">04</div>
+                <div class="step-content">
+                    <h4>Entrega</h4>
+                    <p>Instalación profesional y entrega de llaves. Tu hogar listo para vivir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact" id="contacto">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <div class="section-header">
+                    <span class="section-num">04</span>
+                    <h2 class="section-title">Contacto</h2>
+                </div>
+
+                <h3 class="contact-heading">
+                    Comencemos tu <em>proyecto</em>
+                </h3>
+
+                <div class="contact-details">
+                    <a href="mailto:contacto@chilehome.cl" class="contact-item">
+                        <span class="item-label">Email</span>
+                        <span class="item-value">contacto@chilehome.cl</span>
+                    </a>
+                    <a href="tel:+56912345678" class="contact-item">
+                        <span class="item-label">Teléfono</span>
+                        <span class="item-value">+56 9 1234 5678</span>
+                    </a>
+                    <div class="contact-item">
+                        <span class="item-label">Ubicación</span>
+                        <span class="item-value">Santiago, Chile</span>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/chilehome/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100088847798188" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/channel/UCaknrVO0x9kLiyeOALP7llA" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@chilehome.cl" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="nombre" required placeholder=" ">
+                        <label for="nombre">Nombre</label>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="email" id="email" required placeholder=" ">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="telefono" required placeholder=" ">
+                            <label for="telefono">Teléfono</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="modelo" required>
+                            <option value="" disabled selected></option>
+                            <option value="esencial">Modelo Esencial — 36m²</option>
+                            <option value="confort">Modelo Confort — 54m²</option>
+                            <option value="familia">Modelo Familia — 72m²</option>
+                            <option value="elite">Modelo Elite — 108m²</option>
+                            <option value="custom">Diseño Personalizado</option>
+                        </select>
+                        <label for="modelo">Modelo de interés</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="mensaje" rows="4" required placeholder=" "></textarea>
+                        <label for="mensaje">Cuéntanos sobre tu proyecto</label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <span>Enviar solicitud</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Decorative curved lines -->
+        <div class="footer-lines">
+            <svg class="footer-line footer-line-1" viewBox="0 0 400 400" preserveAspectRatio="none">
+                <circle cx="0" cy="200" r="180" fill="none" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <svg class="footer-line footer-line-2" viewBox="0 0 400 400" preserveAspectRatio="none">
+                <circle cx="400" cy="200" r="220" fill="none" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <div class="footer-content">
+            <!-- Main Footer Grid -->
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <div class="footer-logo-text">
+                        <span class="logo-chile">chile</span>
+                        <span class="logo-home">HOME</span>
+                    </div>
+                    <p>Más de 20 años diseñando y construyendo casas prefabricadas de alta calidad para familias chilenas. Arquitectura moderna, sustentable y a tu medida.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/chilehome/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100088847798188" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/channel/UCaknrVO0x9kLiyeOALP7llA" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@chilehome.cl" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Navigation Column -->
+                <div class="footer-column">
+                    <h4>Navegación</h4>
+                    <a href="#proyectos">Modelos</a>
+                    <a href="#nosotros">Sobre Nosotros</a>
+                    <a href="#proceso">Nuestro Proceso</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+
+                <!-- Models Column -->
+                <div class="footer-column">
+                    <h4>Nuestros Modelos</h4>
+                    <a href="#proyectos">36 m² Un Agua</a>
+                    <a href="#proyectos">Terra 36 m² Dos Aguas</a>
+                    <a href="#proyectos">54 m² Un Agua</a>
+                    <a href="#proyectos">Línea Clásica</a>
+                    <a href="#contacto">Diseño Personalizado</a>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-column">
+                    <h4>Contacto</h4>
+                    <a href="mailto:contacto@chilehome.cl"><i class="fas fa-envelope"></i> contacto@chilehome.cl</a>
+                    <a href="tel:+56912345678"><i class="fas fa-phone"></i> +56 9 1234 5678</a>
+                    <span><i class="fas fa-clock"></i> Lun - Vie: 9:00 - 18:00</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Santiago, Chile</span>
+                </div>
+            </div>
+
+            <!-- Sucursales Row -->
+            <div class="footer-sucursales">
+                <h4>Presentes en todo Chile</h4>
+                <div class="sucursales-list">
+                    <span>Copiapó</span>
+                    <span>Santiago</span>
+                    <span>Curicó</span>
+                    <span>Constitución</span>
+                    <span>Paillaco</span>
+                    <span>Puerto Varas</span>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2024 Chile Home SPA. Todos los derechos reservados.</p>
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Model Detail Modal -->
+    <div class="model-modal" id="modelModal">
+        <div class="model-modal-overlay" onclick="closeModelModal()"></div>
+        <div class="model-modal-content">
+            <button class="modal-close" onclick="closeModelModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <span class="modal-badge" id="modalBadge"></span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-style" id="modalStyle"></p>
+
+                <div class="modal-specs">
+                    <div class="modal-spec">
+                        <i class="fas fa-bed"></i>
+                        <div>
+                            <span class="spec-value" id="modalBedrooms"></span>
+                            <span class="spec-label">Dormitorios</span>
+                        </div>
+                    </div>
+                    <div class="modal-spec">
+                        <i class="fas fa-bath"></i>
+                        <div>
+                            <span class="spec-value" id="modalBathrooms"></span>
+                            <span class="spec-label">Baños</span>
+                        </div>
+                    </div>
+                    <div class="modal-spec">
+                        <i class="fas fa-ruler-combined"></i>
+                        <div>
+                            <span class="spec-value" id="modalArea"></span>
+                            <span class="spec-label">Superficie</span>
+                        </div>
+                    </div>
+                    <div class="modal-spec">
+                        <i class="fas fa-home"></i>
+                        <div>
+                            <span class="spec-value" id="modalMaterial"></span>
+                            <span class="spec-label">Estructura</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="modal-description" id="modalDescription"></p>
+
+                <a href="#contacto" class="modal-cta" onclick="closeModelModal()">
+                    <span>Solicitar Cotización</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp -->
+    <div class="whatsapp-wrapper" id="whatsappWrapper">
+        <span class="whatsapp-label">Cotiza con nosotros</span>
+        <a href="https://wa.me/56912345678" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
