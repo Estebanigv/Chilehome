@@ -1,0 +1,30 @@
+# robots.txt para Chile Home
+# https://chilehome.cl
+
+User-agent: *
+Allow: /
+
+# Archivos permitidos
+Allow: /index.html
+Allow: /styles-improved.css
+Allow: /script.js
+Allow: /Imagenes/
+Allow: /Logotipo/
+
+# Bloquear archivos de desarrollo
+Disallow: /*.md$
+Disallow: /.htaccess
+Disallow: /.claude/
+
+# Bloquear bots maliciosos conocidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap
+Sitemap: https://chilehome.cl/sitemap.xml
