@@ -307,10 +307,13 @@ try {
 
     // Contenido del correo
     $mail->isHTML(true);
-    $mail->Encoding = 'base64';
     $mail->Subject = $emailContent['subject'];
-    $mail->Body = $emailContent['body'];
-    $mail->AltBody = strip_tags(str_replace(['<br>', '</p>'], "\n", $emailContent['body']));
+    $mail->Body = trim($emailContent['body']);
+
+    // Versión texto plano simple
+    $plainText = "Nueva consulta recibida en Chile Home\n\n";
+    $plainText .= "Revisa el correo en formato HTML para ver los detalles completos.";
+    $mail->AltBody = $plainText;
 
     $mail->send();
 
