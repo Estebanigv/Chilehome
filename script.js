@@ -260,7 +260,9 @@ function initScrollEffects() {
 }
 
 // Form Handling - SMTP Backend
-const SMTP_ENDPOINT = 'send-email.php';
+const SMTP_ENDPOINT = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'send-email.php'
+    : 'https://chilehome.cl/send-email.php';
 
 function initFormHandling() {
     // Formulario de Contacto

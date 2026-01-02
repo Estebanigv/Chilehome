@@ -4,7 +4,16 @@
  */
 
 // Headers CORS
-$allowed_origins = ['https://chilehome.cl', 'https://www.chilehome.cl', 'http://chilehome.cl', 'http://www.chilehome.cl'];
+$allowed_origins = [
+    'https://chilehome.cl',
+    'https://www.chilehome.cl',
+    'http://chilehome.cl',
+    'http://www.chilehome.cl',
+    'http://localhost:5000',
+    'http://localhost:8080',
+    'http://127.0.0.1:5000',
+    'http://127.0.0.1:8080'
+];
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 if (in_array($origin, $allowed_origins)) {
     header("Access-Control-Allow-Origin: $origin");
