@@ -167,6 +167,7 @@
                     <i class="fas fa-moon"></i>
                 </button>
                 <a href="#proyectos" class="btn-header-outline">Ver Catálogo</a>
+                <!-- ASISTENTE IA DESACTIVADO TEMPORALMENTE
                 <button class="btn-header-ai" id="openAssistantHeader" aria-label="Asistente IA">
                     <svg class="ai-sparkles-header" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M9.5 2l1.5 4.5L15.5 8l-4.5 1.5L9.5 14l-1.5-4.5L3.5 8l4.5-1.5L9.5 2z"/>
@@ -174,7 +175,8 @@
                         <path d="M15 16l.75 2.25L18 19l-2.25.75L15 22l-.75-2.25L12 19l2.25-.75L15 16z"/>
                     </svg>
                 </button>
-                <a href="mailto:julieta@chilehome.cl?subject=Cotización%20Casa%20Prefabricada" class="btn-header-filled">Cotizar Ahora</a>
+                -->
+                <button class="btn-header-filled" id="openQuoteModal">Cotizar Ahora</button>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                     <span></span>
                     <span></span>
@@ -255,7 +257,7 @@
         </div>
     </section>
 
-    <!-- Asistente Virtual - Barra compacta flotante -->
+    <!-- ASISTENTE IA DESACTIVADO TEMPORALMENTE - Para reactivar, descomentar este bloque
     <div class="chat-float" id="chatFloat">
         <div class="chat-float-bar" id="openAssistant">
             <button class="chat-float-ai">
@@ -271,8 +273,6 @@
             </button>
         </div>
     </div>
-
-    <!-- Panel Lateral del Asistente -->
     <div class="assistant-panel" id="assistantPanel">
         <div class="assistant-panel-header">
             <div class="assistant-panel-title">
@@ -304,6 +304,7 @@
         </div>
     </div>
     <div class="assistant-overlay" id="assistantOverlay"></div>
+    FIN ASISTENTE IA -->
 
     <!-- Intro Text -->
     <section class="intro-section" id="main-content">
@@ -513,7 +514,7 @@
             <div class="brochure-content">
                 <h2 class="brochure-title">Solicita una<br><span>Cotización Gratis</span></h2>
                 <p class="brochure-desc">Recibe información detallada sobre precios, plazos y especificaciones técnicas.</p>
-                <form class="brochure-form" id="brochureForm" action="mailto:contacto@chilehome.cl" method="post" enctype="text/plain">
+                <form class="brochure-form" id="brochureForm">
                     <div class="brochure-form-row">
                         <input type="text" name="nombre" placeholder="Nombre" required>
                         <input type="email" name="email" placeholder="Email" required>
@@ -949,7 +950,7 @@
                 </div>
 
                 <div class="modal-actions">
-                    <a href="mailto:julieta@chilehome.cl?subject=Cotización%20Casa%20Prefabricada" class="modal-cta primary" id="modalEmail">
+                    <a href="mailto:contacto@chilehome.cl?subject=Cotización%20Casa%20Prefabricada" class="modal-cta primary" id="modalEmail">
                         <i class="fas fa-envelope"></i>
                         <span>Cotizar por Correo</span>
                     </a>
@@ -959,6 +960,62 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Quote Modal -->
+    <div class="quote-modal" id="quoteModal">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="quote-modal-header">
+                <h3>Cotiza tu Casa Prefabricada</h3>
+                <p>Completa el formulario y te contactaremos a la brevedad</p>
+            </div>
+            <form id="quoteForm" class="quote-form">
+                <div class="quote-form-row">
+                    <div class="quote-form-group">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+                </div>
+                <div class="quote-form-row two-cols">
+                    <div class="quote-form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="quote-form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" name="telefono" placeholder="+56 9 1234 5678" required>
+                    </div>
+                </div>
+                <div class="quote-form-row">
+                    <div class="quote-form-group">
+                        <label>Modelo de Interés</label>
+                        <select name="modelo" required>
+                            <option value="">Selecciona un modelo</option>
+                            <option value="Modelo Clásica 36m²">Modelo Clásica — 36m²</option>
+                            <option value="Modelo Terra 36m²">Modelo Terra — 36m²</option>
+                            <option value="Modelo Confort 54m²">Modelo Confort — 54m²</option>
+                            <option value="Modelo Confort 54m² 6 Aguas">Modelo Confort 6 Aguas — 54m²</option>
+                            <option value="Modelo Premium 72m²">Modelo Premium — 72m²</option>
+                            <option value="Otro">Otro / Personalizado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="quote-form-row">
+                    <div class="quote-form-group">
+                        <label>Mensaje (opcional)</label>
+                        <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." rows="3"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="quote-submit-btn">
+                    <span>Enviar Solicitud</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
         </div>
     </div>
 

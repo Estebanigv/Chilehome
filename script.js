@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroVideo();
     initWhatsAppScroll();
     initFeaturedSlideshow();
-    initAssistant();
+    // initAssistant(); // ASISTENTE IA DESACTIVADO TEMPORALMENTE
 });
 
 // Loader with percentage counter
@@ -259,49 +259,105 @@ function initScrollEffects() {
     }
 }
 
-// Form Handling
+// Form Handling - SMTP Backend
+const SMTP_ENDPOINT = 'send-email.php';
+
 function initFormHandling() {
-    const form = document.getElementById('contactForm');
+    // Formulario de Contacto
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-    if (!form) return;
+            const formData = {
+                form_type: 'contacto',
+                nombre: contactForm.querySelector('#nombre').value.trim(),
+                email: contactForm.querySelector('#email').value.trim(),
+                telefono: contactForm.querySelector('#telefono').value.trim(),
+                modelo: contactForm.querySelector('#modelo').value,
+                mensaje: contactForm.querySelector('#mensaje').value.trim()
+            };
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+            if (!formData.nombre || !formData.email || !formData.telefono || !formData.modelo || !formData.mensaje) {
+                showNotification('Por favor, completa todos los campos', 'error');
+                return;
+            }
 
-        const formData = {
-            nombre: form.querySelector('#nombre').value.trim(),
-            email: form.querySelector('#email').value.trim(),
-            telefono: form.querySelector('#telefono').value.trim(),
-            modelo: form.querySelector('#modelo').value,
-            mensaje: form.querySelector('#mensaje').value.trim()
-        };
+            if (!isValidEmail(formData.email)) {
+                showNotification('Por favor, ingresa un email valido', 'error');
+                return;
+            }
 
-        // Validation
-        if (!formData.nombre || !formData.email || !formData.telefono || !formData.modelo || !formData.mensaje) {
-            showNotification('Por favor, completa todos los campos', 'error');
-            return;
-        }
+            await sendFormData(contactForm, formData);
+        });
+    }
 
-        if (!isValidEmail(formData.email)) {
-            showNotification('Por favor, ingresa un email válido', 'error');
-            return;
-        }
+    // Formulario de Brochure/Cotizacion
+    const brochureForm = document.getElementById('brochureForm');
+    if (brochureForm) {
+        brochureForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        const submitBtn = form.querySelector('.btn-submit');
-        const originalHTML = submitBtn.innerHTML;
+            const modeloSelect = brochureForm.querySelector('select[name="modelo"]');
+            const formData = {
+                form_type: 'brochure',
+                nombre: brochureForm.querySelector('input[name="nombre"]').value.trim(),
+                email: brochureForm.querySelector('input[name="email"]').value.trim(),
+                telefono: brochureForm.querySelector('input[name="telefono"]').value.trim(),
+                modelo: modeloSelect ? modeloSelect.value : ''
+            };
 
+            if (!formData.nombre || !formData.email || !formData.telefono) {
+                showNotification('Por favor, completa todos los campos', 'error');
+                return;
+            }
+
+            if (!isValidEmail(formData.email)) {
+                showNotification('Por favor, ingresa un email valido', 'error');
+                return;
+            }
+
+            await sendFormData(brochureForm, formData, 'Solicitud enviada. Te contactaremos pronto con tu cotizacion.');
+        });
+    }
+}
+
+// Funcion generica para enviar formularios via SMTP
+async function sendFormData(form, data, successMessage = 'Mensaje enviado. Te contactaremos pronto.') {
+    const submitBtn = form.querySelector('button[type="submit"], .btn-submit');
+    const originalHTML = submitBtn ? submitBtn.innerHTML : '';
+
+    if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>Enviando...</span>';
+    }
 
-        // Simulate submission
-        await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+        const response = await fetch(SMTP_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-        showNotification('Mensaje enviado. Te contactaremos pronto.', 'success');
-        form.reset();
+        const result = await response.json();
 
+        if (result.success) {
+            showNotification(successMessage, 'success');
+            form.reset();
+        } else {
+            showNotification(result.message || 'Error al enviar el mensaje', 'error');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('Error de conexion. Intenta nuevamente.', 'error');
+    }
+
+    if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalHTML;
-    });
+    }
 }
 
 function isValidEmail(email) {
@@ -639,7 +695,7 @@ function openModelModal(modelId) {
         const modelName = encodeURIComponent(`${data.name} ${data.badge}`);
         const subject = encodeURIComponent(`Cotización Casa Prefabricada ${data.name} ${data.badge}`);
         const body = encodeURIComponent(`Hola,\n\nMe interesa solicitar una cotización para el modelo ${data.name} de la ${data.badge}.\n\nQuedo atento a su respuesta.\n\nSaludos.`);
-        emailEl.href = `mailto:julieta@chilehome.cl?subject=${subject}&body=${body}`;
+        emailEl.href = `mailto:contacto@chilehome.cl?subject=${subject}&body=${body}`;
     }
 
     // Show modal
@@ -758,7 +814,7 @@ function goToSlide(index) {
 // ASISTENTE - Panel Lateral (Conectado a N8N AI Agent)
 // =============================================
 
-const EXECUTIVE_EMAIL = 'julieta@chilehome.cl';
+const EXECUTIVE_EMAIL = 'contacto@chilehome.cl';
 const WHATSAPP_NUMBER = '56964169548';
 
 // N8N Webhook Configuration (producción)
@@ -838,7 +894,7 @@ function initAssistant() {
         // Welcome message and connect to N8N agent
         if (messages.children.length === 0) {
             setTimeout(() => {
-                addBotMessage('¡Hola! Soy el asistente de Chile Home.');
+                addBotMessage('¡Hola! Bienvenido a Chile Home.');
                 setTimeout(() => {
                     addBotMessage('Estoy aquí para ayudarte a encontrar tu casa prefabricada ideal. ¿En qué puedo ayudarte?');
                 }, 600);
@@ -939,7 +995,7 @@ function initAssistant() {
         if (action === 'local_modelos') {
             addBotMessage('<b>Nuestros modelos:</b><br>• 36 m² - 1 dorm, 1 baño<br>• 54 m² - 2 dorm, 1 baño<br>• 72 m² - 3 dorm, 2 baños<br>• 108 m² - 4 dorm, 2 baños');
         } else if (action === 'local_contacto') {
-            addBotMessage('Puedes contactarnos directamente:<br>• WhatsApp: +56 9 6416 9548<br>• Email: julieta@chilehome.cl');
+            addBotMessage('Puedes contactarnos directamente:<br>• WhatsApp: +56 9 6416 9548<br>• Email: contacto@chilehome.cl');
         }
     }
 
@@ -1530,15 +1586,22 @@ function initNewsletter() {
     const form = document.getElementById('newsletterForm');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = form.querySelector('input[type="email"]').value;
+        const emailInput = form.querySelector('input[type="email"]');
+        const email = emailInput ? emailInput.value.trim() : '';
 
-        if (email) {
-            // Show success notification
-            showNotification('¡Gracias por suscribirte! Te mantendremos informado.', 'success');
-            form.reset();
+        if (!email || !isValidEmail(email)) {
+            showNotification('Por favor, ingresa un email valido', 'error');
+            return;
         }
+
+        const formData = {
+            form_type: 'newsletter',
+            email: email
+        };
+
+        await sendFormData(form, formData, 'Gracias por suscribirte. Te mantendremos informado.');
     });
 }
 
@@ -1618,3 +1681,90 @@ function initVideoScrollObserver() {
 
     observer.observe(videoSection);
 }
+
+// =============================================
+// QUOTE MODAL
+// =============================================
+function initQuoteModal() {
+    const openBtn = document.getElementById('openQuoteModal');
+    const modal = document.getElementById('quoteModal');
+    const form = document.getElementById('quoteForm');
+
+    if (openBtn && modal) {
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                form_type: 'contacto',
+                nombre: form.querySelector('input[name="nombre"]').value.trim(),
+                email: form.querySelector('input[name="email"]').value.trim(),
+                telefono: form.querySelector('input[name="telefono"]').value.trim(),
+                modelo: form.querySelector('select[name="modelo"]').value,
+                mensaje: form.querySelector('textarea[name="mensaje"]').value.trim() || 'Sin mensaje adicional'
+            };
+
+            if (!formData.nombre || !formData.email || !formData.telefono || !formData.modelo) {
+                showNotification('Por favor, completa todos los campos requeridos', 'error');
+                return;
+            }
+
+            if (!isValidEmail(formData.email)) {
+                showNotification('Por favor, ingresa un email válido', 'error');
+                return;
+            }
+
+            const submitBtn = form.querySelector('.quote-submit-btn');
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Enviando...</span>';
+
+            try {
+                const response = await fetch(SMTP_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showNotification('¡Solicitud enviada! Te contactaremos pronto.', 'success');
+                    form.reset();
+                    closeQuoteModal();
+                } else {
+                    showNotification(result.message || 'Error al enviar. Intenta nuevamente.', 'error');
+                }
+            } catch (error) {
+                showNotification('Error de conexión. Intenta nuevamente.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHTML;
+            }
+        });
+    }
+}
+
+function closeQuoteModal() {
+    const modal = document.getElementById('quoteModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Cerrar modal con Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeQuoteModal();
+    }
+});
+
+// Inicializar Quote Modal
+document.addEventListener('DOMContentLoaded', initQuoteModal);

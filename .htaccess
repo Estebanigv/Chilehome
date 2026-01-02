@@ -34,7 +34,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # Bloquear archivos sensibles
-<FilesMatch "(\.htaccess|\.md|\.log)$">
+<FilesMatch "(\.htaccess|\.env\.php|\.md|\.log)$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
