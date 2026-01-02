@@ -42,6 +42,7 @@ $email = isset($input['email']) ? sanitize($input['email']) : '';
 $telefono = isset($input['telefono']) ? sanitize($input['telefono']) : '';
 $modelo = isset($input['modelo']) ? sanitize($input['modelo']) : '';
 $ubicacion = isset($input['ubicacion']) ? sanitize($input['ubicacion']) : '';
+$coordenadas = isset($input['coordenadas']) ? sanitize($input['coordenadas']) : '';
 $mensaje = isset($input['mensaje']) ? sanitize($input['mensaje']) : 'Sin mensaje';
 
 if (empty($nombre) || empty($email) || !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
@@ -52,8 +53,12 @@ if (empty($nombre) || empty($email) || !filter_var($input['email'], FILTER_VALID
 $fecha = date('d/m/Y');
 $hora = date('H:i') . ' hrs';
 
-// Link a Google Maps
-$mapsUrl = 'https://www.google.com/maps/search/' . urlencode($ubicacion);
+// Link a Google Maps (con coordenadas exactas si están disponibles)
+if (!empty($coordenadas)) {
+    $mapsUrl = 'https://www.google.com/maps?q=' . $coordenadas;
+} else {
+    $mapsUrl = 'https://www.google.com/maps/search/' . urlencode($ubicacion);
+}
 
 $subject = "Nueva consulta de {$nombre} - Chile Home";
 

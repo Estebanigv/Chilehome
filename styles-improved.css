@@ -6717,6 +6717,56 @@ textarea:focus-visible {
     cursor: not-allowed;
 }
 
+/* Location Input with Geolocation Button */
+.location-input-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.location-input-wrapper input {
+    flex: 1;
+}
+
+.btn-geolocation {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border-medium);
+    border-radius: 10px;
+    background: var(--bg-canvas);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.btn-geolocation:hover {
+    background: var(--brand-gold);
+    color: white;
+    border-color: var(--brand-gold);
+}
+
+.btn-geolocation.loading {
+    pointer-events: none;
+}
+
+.btn-geolocation.loading i {
+    animation: spin 1s linear infinite;
+}
+
+.btn-geolocation.success {
+    background: #2d8659;
+    color: white;
+    border-color: #2d8659;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 @media (max-width: 576px) {
     .quote-modal-content {
         padding: 30px 20px;

@@ -1021,7 +1021,13 @@
                 <div class="quote-form-row">
                     <div class="quote-form-group">
                         <label>Ubicación del Terreno</label>
-                        <input type="text" name="ubicacion" placeholder="Ej: Km 37.5 Panamericana Sur, Buin" required>
+                        <div class="location-input-wrapper">
+                            <input type="text" name="ubicacion" id="ubicacionInput" placeholder="Ej: Km 37.5 Panamericana Sur, Buin" required>
+                            <button type="button" class="btn-geolocation" id="getLocationBtn" title="Usar mi ubicación actual">
+                                <i class="fas fa-location-crosshairs"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" name="coordenadas" id="coordenadasInput">
                     </div>
                 </div>
                 <div class="quote-form-row">

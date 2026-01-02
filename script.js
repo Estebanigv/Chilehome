@@ -1708,6 +1708,7 @@ function initQuoteModal() {
                 telefono: form.querySelector('input[name="telefono"]').value.trim(),
                 modelo: form.querySelector('select[name="modelo"]').value,
                 ubicacion: form.querySelector('input[name="ubicacion"]').value.trim(),
+                coordenadas: form.querySelector('input[name="coordenadas"]').value.trim(),
                 mensaje: form.querySelector('textarea[name="mensaje"]').value.trim() || 'Sin mensaje adicional'
             };
 
@@ -1769,3 +1770,89 @@ document.addEventListener('keydown', (e) => {
 
 // Inicializar Quote Modal
 document.addEventListener('DOMContentLoaded', initQuoteModal);
+
+// =============================================
+// GEOLOCATION
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const geoBtn = document.getElementById('getLocationBtn');
+    const ubicacionInput = document.getElementById('ubicacionInput');
+    const coordenadasInput = document.getElementById('coordenadasInput');
+
+    if (geoBtn && ubicacionInput) {
+        geoBtn.addEventListener('click', () => {
+            if (!navigator.geolocation) {
+                showNotification('Tu navegador no soporta geolocalización', 'error');
+                return;
+            }
+
+            // Loading state
+            geoBtn.classList.add('loading');
+            geoBtn.innerHTML = '<i class="fas fa-spinner"></i>';
+
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+
+                    // Guardar coordenadas
+                    coordenadasInput.value = `${lat},${lng}`;
+
+                    try {
+                        // Reverse geocoding con Nominatim (OpenStreetMap)
+                        const response = await fetch(
+                            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
+                            { headers: { 'Accept-Language': 'es' } }
+                        );
+                        const data = await response.json();
+
+                        if (data && data.display_name) {
+                            // Formatear dirección
+                            const addr = data.address;
+                            let direccion = '';
+
+                            if (addr.road) direccion += addr.road;
+                            if (addr.house_number) direccion += ' ' + addr.house_number;
+                            if (addr.suburb) direccion += ', ' + addr.suburb;
+                            if (addr.city || addr.town || addr.village) {
+                                direccion += ', ' + (addr.city || addr.town || addr.village);
+                            }
+                            if (addr.state) direccion += ', ' + addr.state;
+
+                            ubicacionInput.value = direccion || data.display_name;
+                        } else {
+                            ubicacionInput.value = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
+                        }
+
+                        geoBtn.classList.remove('loading');
+                        geoBtn.classList.add('success');
+                        geoBtn.innerHTML = '<i class="fas fa-check"></i>';
+
+                        setTimeout(() => {
+                            geoBtn.classList.remove('success');
+                            geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+                        }, 2000);
+
+                    } catch (error) {
+                        // Si falla el geocoding, mostrar coordenadas
+                        ubicacionInput.value = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
+                        geoBtn.classList.remove('loading');
+                        geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+                    }
+                },
+                (error) => {
+                    geoBtn.classList.remove('loading');
+                    geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+
+                    let mensaje = 'No se pudo obtener la ubicación';
+                    if (error.code === 1) mensaje = 'Permiso de ubicación denegado';
+                    if (error.code === 2) mensaje = 'Ubicación no disponible';
+                    if (error.code === 3) mensaje = 'Tiempo de espera agotado';
+
+                    showNotification(mensaje, 'error');
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        });
+    }
+});
