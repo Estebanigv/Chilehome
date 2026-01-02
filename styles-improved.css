@@ -5576,20 +5576,17 @@ textarea:focus-visible {
     color: var(--text-primary);
 }
 
-/* Hero Preview Dark Mode */
+/* Hero Preview Dark Mode - Mantener fondo blanco y texto negro */
 [data-theme="dark"] .hero-preview {
-    background: var(--dark-800);
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 10px 30px rgba(0, 0, 0, 0.4);
+    background: #ffffff;
 }
 
 [data-theme="dark"] .preview-label {
-    background: var(--dark-800);
+    background: #ffffff;
 }
 
 [data-theme="dark"] .preview-size {
-    color: #ffffff;
+    color: #1a1a1a;
 }
 
 [data-theme="dark"] .preview-style {
