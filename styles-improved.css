@@ -5576,6 +5576,26 @@ textarea:focus-visible {
     color: var(--text-primary);
 }
 
+/* Hero Preview Dark Mode */
+[data-theme="dark"] .hero-preview {
+    background: var(--dark-800);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .preview-label {
+    background: var(--dark-800);
+}
+
+[data-theme="dark"] .preview-size {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .preview-style {
+    color: var(--brand-gold);
+}
+
 [data-theme="dark"] .model-modal-content {
     background: var(--bg-surface);
 }
