@@ -33,8 +33,6 @@ $destinatarios = ['contacto@chilehome.cl', 'julieta@chilehome.cl', 'luis@agencia
 $input = json_decode(file_get_contents('php://input'), true);
 if (!$input) { $input = $_POST; }
 
-$formType = isset($input['form_type']) ? $input['form_type'] : 'contacto';
-
 // Sanitize
 function sanitize($value) { return htmlspecialchars(strip_tags(trim($value)), ENT_QUOTES, 'UTF-8'); }
 
@@ -43,28 +41,82 @@ $nombre = isset($input['nombre']) ? sanitize($input['nombre']) : '';
 $email = isset($input['email']) ? sanitize($input['email']) : '';
 $telefono = isset($input['telefono']) ? sanitize($input['telefono']) : '';
 $modelo = isset($input['modelo']) ? sanitize($input['modelo']) : '';
-$mensaje = isset($input['mensaje']) ? sanitize($input['mensaje']) : '';
+$ubicacion = isset($input['ubicacion']) ? sanitize($input['ubicacion']) : '';
+$mensaje = isset($input['mensaje']) ? sanitize($input['mensaje']) : 'Sin mensaje';
 
 if (empty($nombre) || empty($email) || !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
     echo json_encode(['success' => false, 'message' => 'Datos incompletos']); exit;
 }
 
-$fecha = date('d/m/Y H:i');
+// Fecha y hora separados
+$fecha = date('d/m/Y');
+$hora = date('H:i') . ' hrs';
+
+// Link a Google Maps
+$mapsUrl = 'https://www.google.com/maps/search/' . urlencode($ubicacion);
+
 $subject = "Nueva consulta de {$nombre} - Chile Home";
 
-// HTML simple sin espacios
-$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="font-family:Arial,sans-serif;margin:0;padding:20px;background:#f5f5f5;">';
-$body .= '<div style="max-width:600px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;">';
-$body .= '<div style="background:#c9a86c;color:#000;padding:20px;text-align:center;"><h2 style="margin:0;">Nueva Consulta - Chile Home</h2></div>';
-$body .= '<div style="padding:20px;">';
-$body .= '<p><strong>Fecha:</strong> '.$fecha.'</p>';
-$body .= '<p><strong>Nombre:</strong> '.$nombre.'</p>';
-$body .= '<p><strong>Email:</strong> '.$email.'</p>';
-$body .= '<p><strong>Teléfono:</strong> '.$telefono.'</p>';
-$body .= '<p><strong>Modelo:</strong> '.$modelo.'</p>';
-$body .= '<p><strong>Mensaje:</strong><br>'.nl2br($mensaje).'</p>';
+// HTML con mejor diseño
+$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head>';
+$body .= '<body style="font-family:Arial,sans-serif;margin:0;padding:0;background:#f0f0f0;">';
+$body .= '<div style="max-width:600px;margin:20px auto;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">';
+
+// Header
+$body .= '<div style="background:linear-gradient(135deg,#c9a86c 0%,#b8956a 100%);padding:30px;text-align:center;">';
+$body .= '<h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:600;">Nueva Consulta</h1>';
+$body .= '<p style="margin:8px 0 0;color:rgba(255,255,255,0.9);font-size:14px;">Chile Home - Casas Prefabricadas</p>';
 $body .= '</div>';
-$body .= '<div style="background:#1a1a1a;color:#fff;padding:15px;text-align:center;font-size:12px;">Chile Home - www.chilehome.cl</div>';
+
+// Fecha y Hora
+$body .= '<div style="background:#f8f8f8;padding:15px 25px;border-bottom:1px solid #eee;display:flex;">';
+$body .= '<table width="100%" cellpadding="0" cellspacing="0"><tr>';
+$body .= '<td style="text-align:left;"><span style="color:#888;font-size:12px;">FECHA</span><br><strong style="color:#333;font-size:14px;">'.$fecha.'</strong></td>';
+$body .= '<td style="text-align:right;"><span style="color:#888;font-size:12px;">HORA</span><br><strong style="color:#333;font-size:14px;">'.$hora.'</strong></td>';
+$body .= '</tr></table></div>';
+
+// Contenido
+$body .= '<div style="padding:25px;">';
+
+// Info del cliente
+$body .= '<div style="margin-bottom:20px;">';
+$body .= '<p style="margin:0 0 5px;color:#888;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Datos del Cliente</p>';
+$body .= '<div style="background:#f9f9f9;border-radius:8px;padding:15px;border-left:4px solid #c9a86c;">';
+$body .= '<p style="margin:0 0 10px;"><strong style="color:#333;">Nombre:</strong> <span style="color:#555;">'.$nombre.'</span></p>';
+$body .= '<p style="margin:0 0 10px;"><strong style="color:#333;">Email:</strong> <a href="mailto:'.$email.'" style="color:#c9a86c;">'.$email.'</a></p>';
+$body .= '<p style="margin:0;"><strong style="color:#333;">Teléfono:</strong> <a href="tel:'.$telefono.'" style="color:#c9a86c;">'.$telefono.'</a></p>';
+$body .= '</div></div>';
+
+// Modelo
+$body .= '<div style="margin-bottom:20px;">';
+$body .= '<p style="margin:0 0 5px;color:#888;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Modelo de Interés</p>';
+$body .= '<div style="background:#fff3e0;border-radius:8px;padding:15px;border-left:4px solid #ff9800;">';
+$body .= '<p style="margin:0;font-size:16px;font-weight:600;color:#333;">'.$modelo.'</p>';
+$body .= '</div></div>';
+
+// Ubicación con mapa
+$body .= '<div style="margin-bottom:20px;">';
+$body .= '<p style="margin:0 0 5px;color:#888;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Ubicación del Terreno</p>';
+$body .= '<div style="background:#e3f2fd;border-radius:8px;padding:15px;border-left:4px solid #2196f3;">';
+$body .= '<p style="margin:0 0 10px;font-size:14px;color:#333;">'.$ubicacion.'</p>';
+$body .= '<a href="'.$mapsUrl.'" target="_blank" style="display:inline-block;background:#2196f3;color:#fff;padding:8px 16px;border-radius:5px;text-decoration:none;font-size:13px;font-weight:500;">📍 Ver en Google Maps</a>';
+$body .= '</div></div>';
+
+// Mensaje
+$body .= '<div style="margin-bottom:10px;">';
+$body .= '<p style="margin:0 0 5px;color:#888;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Mensaje</p>';
+$body .= '<div style="background:#f5f5f5;border-radius:8px;padding:15px;">';
+$body .= '<p style="margin:0;color:#555;line-height:1.6;">'.nl2br($mensaje).'</p>';
+$body .= '</div></div>';
+
+$body .= '</div>';
+
+// Footer
+$body .= '<div style="background:#1a1a1a;padding:20px;text-align:center;">';
+$body .= '<p style="margin:0;color:#888;font-size:12px;">Chile Home - Casas Prefabricadas Premium</p>';
+$body .= '<p style="margin:5px 0 0;"><a href="https://www.chilehome.cl" style="color:#c9a86c;text-decoration:none;font-size:12px;">www.chilehome.cl</a></p>';
+$body .= '</div>';
+
 $body .= '</div></body></html>';
 
 try {

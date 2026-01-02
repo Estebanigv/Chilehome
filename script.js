@@ -1707,10 +1707,11 @@ function initQuoteModal() {
                 email: form.querySelector('input[name="email"]').value.trim(),
                 telefono: form.querySelector('input[name="telefono"]').value.trim(),
                 modelo: form.querySelector('select[name="modelo"]').value,
+                ubicacion: form.querySelector('input[name="ubicacion"]').value.trim(),
                 mensaje: form.querySelector('textarea[name="mensaje"]').value.trim() || 'Sin mensaje adicional'
             };
 
-            if (!formData.nombre || !formData.email || !formData.telefono || !formData.modelo) {
+            if (!formData.nombre || !formData.email || !formData.telefono || !formData.modelo || !formData.ubicacion) {
                 showNotification('Por favor, completa todos los campos requeridos', 'error');
                 return;
             }
