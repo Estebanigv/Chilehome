@@ -541,6 +541,13 @@
                         <option value="108m2">Casa 108 m²</option>
                         <option value="otro">Otro modelo</option>
                     </select>
+                    <div class="brochure-location-wrapper">
+                        <input type="text" name="ubicacion" id="ubicacionBrochure" placeholder="Ubicación del terreno" required>
+                        <button type="button" class="btn-geolocation-brochure" id="getLocationBtnBrochure" title="Usar mi ubicación actual">
+                            <i class="fas fa-location-crosshairs"></i>
+                        </button>
+                        <input type="hidden" name="coordenadas" id="coordenadasBrochure">
+                    </div>
                     <div class="brochure-footer">
                         <label class="checkbox-label">
                             <input type="checkbox" required>
@@ -779,6 +786,17 @@
                             <option value="custom">Diseño Personalizado</option>
                         </select>
                         <label for="modelo">Modelo de interés</label>
+                    </div>
+
+                    <div class="form-group form-group-location">
+                        <div class="location-input-wrapper">
+                            <input type="text" id="ubicacion" required placeholder=" ">
+                            <button type="button" class="btn-geolocation" id="getLocationBtnContact" title="Usar mi ubicación actual">
+                                <i class="fas fa-location-crosshairs"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" id="coordenadasContact">
+                        <label for="ubicacion">Ubicación del terreno</label>
                     </div>
 
                     <div class="form-group">

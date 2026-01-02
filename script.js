@@ -277,10 +277,12 @@ function initFormHandling() {
                 email: contactForm.querySelector('#email').value.trim(),
                 telefono: contactForm.querySelector('#telefono').value.trim(),
                 modelo: contactForm.querySelector('#modelo').value,
+                ubicacion: contactForm.querySelector('#ubicacion').value.trim(),
+                coordenadas: contactForm.querySelector('#coordenadasContact').value.trim(),
                 mensaje: contactForm.querySelector('#mensaje').value.trim()
             };
 
-            if (!formData.nombre || !formData.email || !formData.telefono || !formData.modelo || !formData.mensaje) {
+            if (!formData.nombre || !formData.email || !formData.telefono || !formData.modelo || !formData.ubicacion || !formData.mensaje) {
                 showNotification('Por favor, completa todos los campos', 'error');
                 return;
             }
@@ -306,10 +308,12 @@ function initFormHandling() {
                 nombre: brochureForm.querySelector('input[name="nombre"]').value.trim(),
                 email: brochureForm.querySelector('input[name="email"]').value.trim(),
                 telefono: brochureForm.querySelector('input[name="telefono"]').value.trim(),
-                modelo: modeloSelect ? modeloSelect.value : ''
+                modelo: modeloSelect ? modeloSelect.value : '',
+                ubicacion: brochureForm.querySelector('#ubicacionBrochure').value.trim(),
+                coordenadas: brochureForm.querySelector('#coordenadasBrochure').value.trim()
             };
 
-            if (!formData.nombre || !formData.email || !formData.telefono) {
+            if (!formData.nombre || !formData.email || !formData.telefono || !formData.ubicacion) {
                 showNotification('Por favor, completa todos los campos', 'error');
                 return;
             }
@@ -1774,12 +1778,12 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', initQuoteModal);
 
 // =============================================
-// GEOLOCATION
+// GEOLOCATION - Universal function for all forms
 // =============================================
-document.addEventListener('DOMContentLoaded', () => {
-    const geoBtn = document.getElementById('getLocationBtn');
-    const ubicacionInput = document.getElementById('ubicacionInput');
-    const coordenadasInput = document.getElementById('coordenadasInput');
+function setupGeolocation(btnId, inputId, coordsId) {
+    const geoBtn = document.getElementById(btnId);
+    const ubicacionInput = document.getElementById(inputId);
+    const coordenadasInput = document.getElementById(coordsId);
 
     if (geoBtn && ubicacionInput) {
         geoBtn.addEventListener('click', () => {
@@ -1798,7 +1802,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lng = position.coords.longitude;
 
                     // Guardar coordenadas
-                    coordenadasInput.value = `${lat},${lng}`;
+                    if (coordenadasInput) {
+                        coordenadasInput.value = `${lat},${lng}`;
+                    }
 
                     try {
                         // Reverse geocoding con Nominatim (OpenStreetMap)
@@ -1857,4 +1863,14 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
     }
+}
+
+// Initialize geolocation for all forms
+document.addEventListener('DOMContentLoaded', () => {
+    // Quote Modal form
+    setupGeolocation('getLocationBtn', 'ubicacionInput', 'coordenadasInput');
+    // Contact form (Comencemos tu proyecto)
+    setupGeolocation('getLocationBtnContact', 'ubicacion', 'coordenadasContact');
+    // Brochure form (Cotización Gratis)
+    setupGeolocation('getLocationBtnBrochure', 'ubicacionBrochure', 'coordenadasBrochure');
 });

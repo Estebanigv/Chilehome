@@ -5552,6 +5552,16 @@ textarea:focus-visible {
     border-bottom-color: var(--border-medium);
 }
 
+[data-theme="dark"] .form-group select {
+    background: var(--bg-overlay);
+    color: #ffffff;
+}
+
+[data-theme="dark"] .form-group select option {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
 [data-theme="dark"] .chat-message.bot .message-content {
     background: var(--bg-overlay);
     color: var(--text-primary);
@@ -6765,6 +6775,87 @@ textarea:focus-visible {
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+/* Contact Form Location Styles */
+.form-group-location {
+    position: relative;
+}
+
+.form-group-location .location-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.form-group-location .location-input-wrapper input {
+    flex: 1;
+}
+
+.form-group-location .btn-geolocation {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+/* Brochure Form Location Styles */
+.brochure-location-wrapper {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.brochure-location-wrapper input {
+    flex: 1;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.brochure-location-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.brochure-location-wrapper input:focus {
+    outline: none;
+    border-color: var(--brand-gold);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-geolocation-brochure {
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.btn-geolocation-brochure:hover {
+    background: var(--brand-gold);
+    color: white;
+    border-color: var(--brand-gold);
+}
+
+.btn-geolocation-brochure.loading i {
+    animation: spin 1s linear infinite;
+}
+
+.btn-geolocation-brochure.success {
+    background: #2d8659;
+    color: white;
+    border-color: #2d8659;
 }
 
 @media (max-width: 576px) {
