@@ -2314,6 +2314,81 @@ textarea:focus-visible {
     border-color: var(--accent-primary);
 }
 
+.contact-item-location {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.location-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.location-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-location-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    min-height: 44px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.btn-google-maps {
+    background: #4285F4;
+    color: white;
+    border-color: #4285F4;
+}
+
+.btn-google-maps:hover {
+    background: #357ae8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+.btn-waze {
+    background: #33CCFF;
+    color: white;
+    border-color: #33CCFF;
+}
+
+.btn-waze:hover {
+    background: #1fb5e6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(51, 204, 255, 0.3);
+}
+
+.btn-location-action i {
+    font-size: 1rem;
+}
+
+.contact-item-location .item-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--brand-gold);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.contact-item-location:hover .item-action {
+    text-decoration: underline;
+}
+
 .item-label {
     display: block;
     font-size: 0.7rem;
@@ -3494,10 +3569,18 @@ textarea:focus-visible {
     .contact-wrapper {
         grid-template-columns: 1fr;
         gap: var(--space-xl);
+        display: flex;
+        flex-direction: column;
     }
 
+    /* Formulario primero en móvil */
     .contact-form-wrapper {
         padding: var(--space-xl);
+        order: 1;
+    }
+
+    .contact-info {
+        order: 2;
     }
 
     /* WhatsApp */
@@ -3770,11 +3853,21 @@ textarea:focus-visible {
         margin-bottom: var(--space-lg);
     }
 
+    /* Touch Targets: Inputs más grandes */
     .brochure-form input[type="text"],
     .brochure-form input[type="email"],
     .brochure-form input[type="tel"] {
-        padding: 0.875rem 1rem;
-        font-size: 1rem;
+        padding: 16px 14px;
+        font-size: 16px;
+        min-height: 52px;
+        border-radius: 10px;
+    }
+
+    .brochure-form select {
+        padding: 16px 14px;
+        font-size: 16px;
+        min-height: 52px;
+        border-radius: 10px;
     }
 
     .brochure-footer {
@@ -3783,14 +3876,38 @@ textarea:focus-visible {
         gap: var(--space-md);
     }
 
+    /* Touch Target: Checkbox con área aumentada */
     .checkbox-label {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
+        padding: 12px 8px;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
+    .checkbox-label input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        min-height: 24px;
+    }
+
+    /* Touch Target: Submit button */
     .btn-brochure {
         width: 100%;
         justify-content: center;
-        padding: 0.875rem 1.5rem;
+        padding: 16px 1.5rem;
+        min-height: 52px;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    /* Touch Target: Botón geolocalización en brochure */
+    .btn-geolocation-brochure {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 12px;
+        font-size: 1.1rem;
     }
 
     /* About Mobile */
@@ -3883,49 +4000,107 @@ textarea:focus-visible {
         padding: var(--space-xl) var(--space-md);
     }
 
+    /* CRITICAL UX: Formulario primero en móvil */
+    .contact-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: var(--space-xl);
+    }
+
+    .contact-info {
+        order: 2;
+    }
+
+    .contact-form-wrapper {
+        order: 1;
+    }
+
     .contact-heading {
         font-size: clamp(1.4rem, 5vw, 1.8rem);
         margin-bottom: var(--space-lg);
     }
 
     .contact-item {
-        padding: var(--space-sm) 0;
+        padding: var(--space-md) 0;
+        min-height: 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .item-value {
         font-size: 1rem;
     }
 
+    /* Touch Targets: Botones de navegación */
+    .location-actions {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .btn-location-action {
+        width: 100%;
+        min-height: 48px;
+        padding: 14px 20px;
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+
     .social-links {
-        gap: var(--space-sm);
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
     }
 
     .social-links a {
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
     }
 
     .contact-form-wrapper {
         padding: var(--space-lg);
+        background: var(--bg-elevated);
+        border-radius: 12px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
+        gap: var(--space-md);
     }
 
+    /* Touch Targets: Inputs más grandes */
     .form-group {
-        margin-bottom: var(--space-md);
+        margin-bottom: 24px;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
-        padding: 0.875rem 0.5rem;
-        font-size: 1rem;
+        padding: 16px 14px;
+        font-size: 16px;
+        min-height: 52px;
+        border-radius: 10px;
     }
 
+    .form-group textarea {
+        min-height: 120px;
+    }
+
+    /* Touch Target: Botón geolocalización */
+    .btn-geolocation {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    /* Touch Target: Botón submit */
     .btn-submit {
-        padding: 0.875rem var(--space-lg);
+        padding: 16px var(--space-lg);
+        min-height: 52px;
+        font-size: 1rem;
+        font-weight: 600;
     }
 
     /* Footer Mobile */
@@ -6777,6 +6952,150 @@ textarea:focus-visible {
     to { transform: rotate(360deg); }
 }
 
+/* Location Map Container */
+.location-map-container {
+    margin-top: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease;
+}
+
+.location-map-container iframe,
+.location-map-container > div:first-child {
+    display: block;
+}
+
+.map-hint {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.map-hint i {
+    color: var(--brand-gold);
+}
+
+.map-hint-light {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.map-hint-light i {
+    color: var(--brand-gold);
+}
+
+/* Google Places Autocomplete Dropdown */
+.pac-container {
+    z-index: 100000 !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-light);
+    font-family: inherit;
+    margin-top: 4px;
+}
+
+.pac-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 14px;
+}
+
+.pac-item:hover {
+    background: var(--bg-canvas);
+}
+
+.pac-item-query {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.pac-matched {
+    color: var(--brand-gold);
+    font-weight: 600;
+}
+
+.pac-icon {
+    margin-right: 8px;
+}
+
+/* Responsive para mapas y geolocalización */
+@media (max-width: 768px) {
+    .location-map-container {
+        margin-top: 10px;
+    }
+
+    .location-map-container > div:first-child {
+        height: 180px !important;
+    }
+
+    .map-hint {
+        font-size: 11px;
+    }
+
+    .btn-geolocation {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+
+    .location-input-wrapper {
+        gap: 6px;
+    }
+
+    .location-input-wrapper input {
+        font-size: 16px; /* Evita zoom en iOS */
+    }
+
+    /* Autocompletado en móvil - Mejorado */
+    .pac-container {
+        max-width: calc(100vw - 40px);
+        z-index: 10001 !important;
+        font-family: inherit;
+        margin-top: 4px;
+    }
+
+    .pac-item {
+        padding: 14px 12px;
+        font-size: 15px;
+        line-height: 1.5;
+        min-height: 48px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .pac-item:last-child {
+        border-bottom: none;
+    }
+
+    .pac-item-query {
+        font-size: 15px;
+    }
+
+    /* Prevenir zoom automático en iOS */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px !important; /* Mínimo 16px previene zoom en iOS */
+    }
+
+    /* Mejorar scroll cuando teclado virtual aparece */
+    .mobile-input:focus {
+        scroll-margin-top: 100px;
+        scroll-margin-bottom: 100px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* Contact Form Location Styles */
 .form-group-location {
     position: relative;
@@ -6859,16 +7178,64 @@ textarea:focus-visible {
 }
 
 @media (max-width: 576px) {
+    /* Quote Modal Mobile - Bottom Sheet Style */
     .quote-modal-content {
-        padding: 30px 20px;
-        width: 95%;
+        padding: 24px 20px 32px;
+        width: 100%;
+        max-width: 100%;
+        max-height: 95vh;
+        border-radius: 24px 24px 0 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .quote-modal-close {
+        min-width: 48px;
+        min-height: 48px;
+        top: 16px;
+        right: 16px;
+        font-size: 1.2rem;
+    }
+
+    .quote-form-row {
+        margin-bottom: 20px;
     }
 
     .quote-form-row.two-cols {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .quote-modal-header h3 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+    }
+
+    .quote-modal-header p {
+        font-size: 0.9rem;
+    }
+
+    /* Touch Targets: Inputs en Quote Modal */
+    .quote-form-group input,
+    .quote-form-group select,
+    .quote-form-group textarea {
+        padding: 16px 14px;
+        font-size: 16px;
+        min-height: 52px;
+        border-radius: 10px;
+    }
+
+    .quote-form-group textarea {
+        min-height: 100px;
+    }
+
+    /* Touch Target: Submit button */
+    .quote-submit-btn {
+        padding: 18px 24px;
+        min-height: 56px;
+        font-size: 1rem;
+        margin-top: 16px;
     }
 }

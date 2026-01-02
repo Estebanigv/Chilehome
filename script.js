@@ -692,7 +692,7 @@ function openModelModal(modelId) {
     const whatsappEl = document.getElementById('modalWhatsApp');
     if (whatsappEl) {
         const modelName = encodeURIComponent(`${data.name} ${data.badge}`);
-        whatsappEl.href = `https://wa.me/56964169548?text=Hola%2C%20me%20interesa%20el%20modelo%20${modelName}`;
+        whatsappEl.href = `https://wa.me/56954164667?text=Hola%2C%20me%20interesa%20el%20modelo%20${modelName}`;
     }
 
     // Email link with model name
@@ -821,7 +821,7 @@ function goToSlide(index) {
 // =============================================
 
 const EXECUTIVE_EMAIL = 'contacto@chilehome.cl';
-const WHATSAPP_NUMBER = '56964169548';
+const WHATSAPP_NUMBER = '56954164667';
 
 // N8N Webhook Configuration (producción)
 const N8N_AGENT_URL = 'https://agenciados.app.n8n.cloud/webhook/chilehome/lead-agent';
@@ -1001,7 +1001,7 @@ function initAssistant() {
         if (action === 'local_modelos') {
             addBotMessage('<b>Nuestros modelos:</b><br>• 36 m² - 1 dorm, 1 baño<br>• 54 m² - 2 dorm, 1 baño<br>• 72 m² - 3 dorm, 2 baños<br>• 108 m² - 4 dorm, 2 baños');
         } else if (action === 'local_contacto') {
-            addBotMessage('Puedes contactarnos directamente:<br>• WhatsApp: +56 9 6416 9548<br>• Email: contacto@chilehome.cl');
+            addBotMessage('Puedes contactarnos directamente:<br>• WhatsApp: +56 9 5416 4667<br>• Email: contacto@chilehome.cl');
         }
     }
 
@@ -1778,99 +1778,350 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', initQuoteModal);
 
 // =============================================
-// GEOLOCATION - Universal function for all forms
+// GEOLOCATION - Interactive Maps with Draggable Markers
 // =============================================
-function setupGeolocation(btnId, inputId, coordsId) {
+
+// Store map instances and autocomplete instances
+const mapInstances = {};
+const autocompleteInstances = {};
+
+// Check if Google Maps API is loaded
+function isGoogleMapsLoaded() {
+    return typeof google !== 'undefined' && typeof google.maps !== 'undefined';
+}
+
+// Reverse Geocoding: Coordenadas → Dirección (con fallback a Nominatim)
+async function reverseGeocode(lat, lng) {
+    // Intentar con Google Maps si está disponible
+    if (isGoogleMapsLoaded()) {
+        try {
+            const geocoder = new google.maps.Geocoder();
+            return new Promise((resolve) => {
+                geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+                    if (status === 'OK' && results[0]) {
+                        resolve(results[0].formatted_address);
+                    } else {
+                        resolve(null);
+                    }
+                });
+            });
+        } catch (e) {
+            console.log('Google Geocoder error:', e);
+        }
+    }
+
+    // Fallback a Nominatim (OpenStreetMap)
+    try {
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
+            { headers: { 'Accept-Language': 'es' } }
+        );
+        const data = await response.json();
+        if (data && data.display_name) {
+            return data.display_name;
+        }
+    } catch (e) {
+        console.log('Nominatim error:', e);
+    }
+
+    return null;
+}
+
+// Geocoding: Dirección → Coordenadas
+async function geocodeAddress(address) {
+    if (!isGoogleMapsLoaded()) return null;
+
+    try {
+        const geocoder = new google.maps.Geocoder();
+        return new Promise((resolve) => {
+            geocoder.geocode({ address: address, region: 'cl' }, (results, status) => {
+                if (status === 'OK' && results[0]) {
+                    resolve({
+                        lat: results[0].geometry.location.lat(),
+                        lng: results[0].geometry.location.lng()
+                    });
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    } catch (e) {
+        console.log('Geocode error:', e);
+        return null;
+    }
+}
+
+// Crear o actualizar mapa interactivo con marcador arrastrable
+function createOrUpdateMap(mapId, lat, lng, ubicacionInput, coordenadasInput, mapContainer) {
+    mapContainer.style.display = 'block';
+    const mapElement = document.getElementById(mapId);
+    if (!mapElement) return;
+
+    // Mostrar loading state
+    mapElement.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #f5f5f5; border-radius: 8px; padding: 20px; text-align: center;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #c9a86c; margin-bottom: 10px;"></i>
+            <p style="margin: 0; font-size: 14px; color: #666;">Cargando mapa...</p>
+        </div>
+    `;
+
+    // Si Google Maps no está disponible después de 3 segundos, mostrar fallback
+    const fallbackTimeout = setTimeout(() => {
+        if (!isGoogleMapsLoaded()) {
+            mapElement.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #e8e8e8; border-radius: 8px; padding: 20px; text-align: center;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 32px; color: #c9a86c; margin-bottom: 10px;"></i>
+                    <p style="margin: 0 0 10px; font-size: 14px; color: #666;">Ubicación guardada</p>
+                    <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="background: #c9a86c; color: white; padding: 12px 20px; min-height: 44px; border-radius: 8px; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-external-link-alt"></i> Ver en Google Maps
+                    </a>
+                </div>
+            `;
+        }
+    }, 3000);
+
+    // Si Maps está disponible, continuar
+    if (!isGoogleMapsLoaded()) {
+        return;
+    }
+
+    // Limpiar timeout si Maps cargó
+    clearTimeout(fallbackTimeout);
+
+    const position = { lat, lng };
+
+    try {
+        if (mapInstances[mapId]) {
+            // Si el mapa ya existe, solo mover el marcador
+            mapInstances[mapId].map.setCenter(position);
+            mapInstances[mapId].marker.setPosition(position);
+        } else {
+            // Crear nuevo mapa
+            const map = new google.maps.Map(mapElement, {
+                center: position,
+                zoom: 17,
+                mapTypeId: 'hybrid',
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: false,
+                zoomControl: true,
+                gestureHandling: 'greedy' // Mejor para móvil
+            });
+
+            // Crear marcador arrastrable
+            const marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                title: 'Arrastra para ajustar la ubicación'
+            });
+
+            // Evento cuando se arrastra el marcador
+            marker.addListener('dragend', async () => {
+                const newPos = marker.getPosition();
+                const newLat = newPos.lat();
+                const newLng = newPos.lng();
+
+                if (coordenadasInput) {
+                    coordenadasInput.value = `${newLat},${newLng}`;
+                }
+
+                const direccion = await reverseGeocode(newLat, newLng);
+                if (direccion && ubicacionInput) {
+                    ubicacionInput.value = direccion;
+                }
+
+                map.panTo(newPos);
+            });
+
+            // Clic en el mapa para mover el marcador
+            map.addListener('click', async (e) => {
+                const newLat = e.latLng.lat();
+                const newLng = e.latLng.lng();
+
+                marker.setPosition(e.latLng);
+
+                if (coordenadasInput) {
+                    coordenadasInput.value = `${newLat},${newLng}`;
+                }
+
+                const direccion = await reverseGeocode(newLat, newLng);
+                if (direccion && ubicacionInput) {
+                    ubicacionInput.value = direccion;
+                }
+            });
+
+            mapInstances[mapId] = { map, marker };
+        }
+    } catch (error) {
+        console.log('Error creando mapa:', error);
+        // Fallback: mostrar link a Google Maps
+        mapElement.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #e8e8e8; border-radius: 8px; padding: 20px; text-align: center;">
+                <p style="margin: 0 0 10px; font-size: 14px; color: #666;">Ubicación: ${lat.toFixed(6)}, ${lng.toFixed(6)}</p>
+                <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="background: #c9a86c; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px;">
+                    Ver en Google Maps
+                </a>
+            </div>
+        `;
+    }
+}
+
+function setupGeolocation(btnId, inputId, coordsId, mapContainerId, mapId) {
     const geoBtn = document.getElementById(btnId);
     const ubicacionInput = document.getElementById(inputId);
     const coordenadasInput = document.getElementById(coordsId);
+    const mapContainer = document.getElementById(mapContainerId);
 
-    if (geoBtn && ubicacionInput) {
-        geoBtn.addEventListener('click', () => {
-            if (!navigator.geolocation) {
-                showNotification('Tu navegador no soporta geolocalización', 'error');
-                return;
-            }
+    if (!geoBtn || !ubicacionInput) return;
 
-            // Loading state
-            geoBtn.classList.add('loading');
-            geoBtn.innerHTML = '<i class="fas fa-spinner"></i>';
+    // Configurar Autocompletado de Google Places (solo si está disponible)
+    if (isGoogleMapsLoaded() && google.maps.places) {
+        try {
+            const autocomplete = new google.maps.places.Autocomplete(ubicacionInput, {
+                types: ['geocode', 'establishment'],
+                componentRestrictions: { country: 'cl' },
+                fields: ['formatted_address', 'geometry', 'name']
+            });
 
-            navigator.geolocation.getCurrentPosition(
-                async (position) => {
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
+            autocomplete.addListener('place_changed', () => {
+                const place = autocomplete.getPlace();
 
-                    // Guardar coordenadas
+                if (place.geometry && place.geometry.location) {
+                    const lat = place.geometry.location.lat();
+                    const lng = place.geometry.location.lng();
+
                     if (coordenadasInput) {
                         coordenadasInput.value = `${lat},${lng}`;
                     }
 
-                    try {
-                        // Reverse geocoding con Nominatim (OpenStreetMap)
-                        const response = await fetch(
-                            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
-                            { headers: { 'Accept-Language': 'es' } }
-                        );
-                        const data = await response.json();
+                    createOrUpdateMap(mapId, lat, lng, ubicacionInput, coordenadasInput, mapContainer);
+                }
+            });
 
-                        if (data && data.display_name) {
-                            // Formatear dirección
-                            const addr = data.address;
-                            let direccion = '';
+            // Mejorar UX en móviles: ajustar viewport cuando se abre el teclado
+            if (/Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                ubicacionInput.addEventListener('focus', () => {
+                    setTimeout(() => {
+                        // Scroll al input cuando el teclado aparece
+                        ubicacionInput.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }, 300);
+                });
 
-                            if (addr.road) direccion += addr.road;
-                            if (addr.house_number) direccion += ' ' + addr.house_number;
-                            if (addr.suburb) direccion += ', ' + addr.suburb;
-                            if (addr.city || addr.town || addr.village) {
-                                direccion += ', ' + (addr.city || addr.town || addr.village);
-                            }
-                            if (addr.state) direccion += ', ' + addr.state;
+                // Agregar clase para estilos específicos móvil
+                ubicacionInput.classList.add('mobile-input');
+            }
 
-                            ubicacionInput.value = direccion || data.display_name;
-                        } else {
-                            ubicacionInput.value = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
-                        }
-
-                        geoBtn.classList.remove('loading');
-                        geoBtn.classList.add('success');
-                        geoBtn.innerHTML = '<i class="fas fa-check"></i>';
-
-                        setTimeout(() => {
-                            geoBtn.classList.remove('success');
-                            geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
-                        }, 2000);
-
-                    } catch (error) {
-                        // Si falla el geocoding, mostrar coordenadas
-                        ubicacionInput.value = `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
-                        geoBtn.classList.remove('loading');
-                        geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
-                    }
-                },
-                (error) => {
-                    geoBtn.classList.remove('loading');
-                    geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
-
-                    let mensaje = 'No se pudo obtener la ubicación';
-                    if (error.code === 1) mensaje = 'Permiso de ubicación denegado';
-                    if (error.code === 2) mensaje = 'Ubicación no disponible';
-                    if (error.code === 3) mensaje = 'Tiempo de espera agotado';
-
-                    showNotification(mensaje, 'error');
-                },
-                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-            );
-        });
+            autocompleteInstances[inputId] = autocomplete;
+        } catch (error) {
+            console.log('Autocompletado no disponible:', error);
+        }
     }
+
+    // Evento: Botón de geolocalización GPS
+    geoBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+            showNotification('Tu navegador no soporta geolocalización', 'error');
+            return;
+        }
+
+        // Loading state mejorado
+        geoBtn.classList.add('loading');
+        geoBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        geoBtn.disabled = true;
+
+        // Detectar si es móvil para timeout más largo
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // Opciones para máxima precisión GPS (importante para móviles)
+        const geoOptions = {
+            enableHighAccuracy: true,
+            timeout: isMobile ? 30000 : 15000, // 30s en móvil, 15s en desktop
+            maximumAge: 0
+        };
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                const accuracy = position.coords.accuracy;
+
+                console.log(`Ubicación GPS: ${lat}, ${lng} (precisión: ${accuracy}m)`);
+
+                // Guardar coordenadas
+                if (coordenadasInput) {
+                    coordenadasInput.value = `${lat},${lng}`;
+                }
+
+                // Crear/actualizar mapa con marcador arrastrable
+                createOrUpdateMap(mapId, lat, lng, ubicacionInput, coordenadasInput, mapContainer);
+
+                // Obtener dirección
+                const direccion = await reverseGeocode(lat, lng);
+                if (direccion) {
+                    ubicacionInput.value = direccion;
+                } else {
+                    ubicacionInput.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+                }
+
+                // Success state
+                geoBtn.classList.remove('loading');
+                geoBtn.classList.add('success');
+                geoBtn.innerHTML = '<i class="fas fa-check"></i>';
+
+                // Aviso si precisión es baja
+                if (accuracy > 100) {
+                    showNotification(`Ubicación aproximada (${Math.round(accuracy)}m). Ajusta el marcador si es necesario.`, 'warning');
+                }
+
+                setTimeout(() => {
+                    geoBtn.classList.remove('success');
+                    geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+                }, 2000);
+            },
+            (error) => {
+                geoBtn.classList.remove('loading');
+                geoBtn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+                geoBtn.disabled = false;
+
+                let mensaje = 'No se pudo obtener la ubicación';
+                if (error.code === 1) {
+                    mensaje = 'Permiso de ubicación denegado. Actívalo en configuración de tu navegador.';
+                }
+                if (error.code === 2) {
+                    mensaje = 'GPS no disponible. Verifica que esté activado en tu dispositivo.';
+                }
+                if (error.code === 3) {
+                    mensaje = isMobile
+                        ? 'Tiempo de espera agotado. Verifica tu señal GPS y vuelve a intentar.'
+                        : 'Tiempo de espera agotado. Intenta de nuevo.';
+                }
+
+                showNotification(mensaje, 'error');
+
+                // Mostrar hint para ingresar manualmente
+                setTimeout(() => {
+                    if (ubicacionInput) {
+                        ubicacionInput.placeholder = 'Ingresa tu ubicación manualmente';
+                        ubicacionInput.focus();
+                    }
+                }, 500);
+            },
+            geoOptions
+        );
+    });
 }
 
 // Initialize geolocation for all forms
 document.addEventListener('DOMContentLoaded', () => {
     // Quote Modal form
-    setupGeolocation('getLocationBtn', 'ubicacionInput', 'coordenadasInput');
+    setupGeolocation('getLocationBtn', 'ubicacionInput', 'coordenadasInput', 'mapContainerQuote', 'mapQuote');
     // Contact form (Comencemos tu proyecto)
-    setupGeolocation('getLocationBtnContact', 'ubicacion', 'coordenadasContact');
+    setupGeolocation('getLocationBtnContact', 'ubicacion', 'coordenadasContact', 'mapContainerContact', 'mapContact');
     // Brochure form (Cotización Gratis)
-    setupGeolocation('getLocationBtnBrochure', 'ubicacionBrochure', 'coordenadasBrochure');
+    setupGeolocation('getLocationBtnBrochure', 'ubicacionBrochure', 'coordenadasBrochure', 'mapContainerBrochure', 'mapBrochure');
 });

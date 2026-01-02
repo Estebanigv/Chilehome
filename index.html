@@ -76,7 +76,7 @@
         "logo": "https://chilehome.cl/Logotipo/isotipo.svg",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+56-964-169-548",
+            "telephone": "+56-954-164-667",
             "contactType": "sales",
             "areaServed": "CL",
             "availableLanguage": "Spanish"
@@ -105,7 +105,7 @@
             "addressRegion": "Los Ríos",
             "addressCountry": "CL"
         },
-        "telephone": "+56964169548",
+        "telephone": "+56954164667",
         "priceRange": "$$",
         "aggregateRating": {
             "@type": "AggregateRating",
@@ -527,12 +527,12 @@
             <div class="brochure-content">
                 <h2 class="brochure-title">Solicita una<br><span>Cotización Gratis</span></h2>
                 <p class="brochure-desc">Recibe información detallada sobre precios, plazos y especificaciones técnicas.</p>
-                <form class="brochure-form" id="brochureForm">
+                <form class="brochure-form" id="brochureForm" autocomplete="on">
                     <div class="brochure-form-row">
-                        <input type="text" name="nombre" placeholder="Nombre" required>
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="nombre" placeholder="Nombre" required autocomplete="name" autocapitalize="words" autocorrect="off">
+                        <input type="email" name="email" placeholder="Email" required autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off">
                     </div>
-                    <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp" required>
+                    <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp" required autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-()]*">
                     <select name="modelo" required>
                         <option value="" disabled selected>Selecciona un modelo</option>
                         <option value="36m2">Casa 36 m²</option>
@@ -547,6 +547,10 @@
                             <i class="fas fa-location-crosshairs"></i>
                         </button>
                         <input type="hidden" name="coordenadas" id="coordenadasBrochure">
+                    </div>
+                    <div class="location-map-container" id="mapContainerBrochure" style="display: none;">
+                        <div id="mapBrochure" style="width: 100%; height: 150px; border-radius: 8px;"></div>
+                        <p class="map-hint map-hint-light"><i class="fas fa-hand-pointer"></i> Arrastra el marcador</p>
                     </div>
                     <div class="brochure-footer">
                         <label class="checkbox-label">
@@ -736,17 +740,41 @@
                         <span class="item-label">Email</span>
                         <span class="item-value">contacto@chilehome.cl</span>
                     </a>
-                    <a href="tel:+56964169548" class="contact-item">
+                    <a href="tel:+56954164667" class="contact-item">
                         <span class="item-label">Teléfono / WhatsApp</span>
-                        <span class="item-value">+56 9 6416 9548</span>
+                        <span class="item-value">+56 9 5416 4667</span>
                     </a>
-                    <div class="contact-item">
-                        <span class="item-label">Sucursal Copiapó</span>
-                        <span class="item-value">Km 837 vereda oriente, antes de Copec</span>
+                    <div class="contact-item contact-item-location">
+                        <div class="location-header">
+                            <span class="item-label">Sucursal Copiapó</span>
+                            <span class="item-value">Km 837 vereda oriente, antes de Copec</span>
+                        </div>
+                        <div class="location-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-27.366667,-70.333333" target="_blank" class="btn-location-action btn-google-maps" aria-label="Abrir en Google Maps">
+                                <i class="fab fa-google"></i>
+                                <span>Google Maps</span>
+                            </a>
+                            <a href="https://waze.com/ul?ll=-27.366667,-70.333333&navigate=yes" target="_blank" class="btn-location-action btn-waze" aria-label="Abrir en Waze">
+                                <i class="fab fa-waze"></i>
+                                <span>Waze</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <span class="item-label">Sucursal Santiago</span>
-                        <span class="item-value">Km 37.5 Panamericana Sur, Buin-Linderos</span>
+                    <div class="contact-item contact-item-location">
+                        <div class="location-header">
+                            <span class="item-label">Sucursal Santiago</span>
+                            <span class="item-value">Km 37.5 Panamericana Sur, Buin-Linderos</span>
+                        </div>
+                        <div class="location-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-33.731,-70.695" target="_blank" class="btn-location-action btn-google-maps" aria-label="Abrir en Google Maps">
+                                <i class="fab fa-google"></i>
+                                <span>Google Maps</span>
+                            </a>
+                            <a href="https://waze.com/ul?ll=-33.731,-70.695&navigate=yes" target="_blank" class="btn-location-action btn-waze" aria-label="Abrir en Waze">
+                                <i class="fab fa-waze"></i>
+                                <span>Waze</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -759,19 +787,19 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" autocomplete="on">
                     <div class="form-group">
-                        <input type="text" id="nombre" required placeholder=" ">
+                        <input type="text" id="nombre" required placeholder=" " autocomplete="name" autocapitalize="words" autocorrect="off">
                         <label for="nombre">Nombre</label>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="email" id="email" required placeholder=" ">
+                            <input type="email" id="email" required placeholder=" " autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off">
                             <label for="email">Email</label>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="telefono" required placeholder=" ">
+                            <input type="tel" id="telefono" required placeholder=" " autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-()]*">
                             <label for="telefono">Teléfono</label>
                         </div>
                     </div>
@@ -797,6 +825,10 @@
                         </div>
                         <input type="hidden" id="coordenadasContact">
                         <label for="ubicacion">Ubicación del terreno</label>
+                        <div class="location-map-container" id="mapContainerContact" style="display: none;">
+                            <div id="mapContact" style="width: 100%; height: 180px; border-radius: 8px;"></div>
+                            <p class="map-hint"><i class="fas fa-hand-pointer"></i> Arrastra el marcador para ajustar</p>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -850,7 +882,7 @@
                     <ul class="footer-contact-list">
                         <li>
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+56964169548">+56 9 6416 9548</a>
+                            <a href="tel:+56954164667">+56 9 5416 4667</a>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
@@ -985,7 +1017,7 @@
                         <i class="fas fa-envelope"></i>
                         <span>Cotizar por Correo</span>
                     </a>
-                    <a href="https://wa.me/56964169548?text=Hola%2C%20me%20interesa%20el%20modelo%20" class="modal-cta secondary" id="modalWhatsApp" target="_blank">
+                    <a href="https://wa.me/56954164667?text=Hola%2C%20me%20interesa%20el%20modelo%20" class="modal-cta secondary" id="modalWhatsApp" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                         <span>Cotizar por WhatsApp</span>
                     </a>
@@ -1005,21 +1037,21 @@
                 <h3>Cotiza tu Casa Prefabricada</h3>
                 <p>Completa el formulario y te contactaremos a la brevedad</p>
             </div>
-            <form id="quoteForm" class="quote-form">
+            <form id="quoteForm" class="quote-form" autocomplete="on">
                 <div class="quote-form-row">
                     <div class="quote-form-group">
                         <label>Nombre</label>
-                        <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+                        <input type="text" name="nombre" placeholder="Tu nombre completo" required autocomplete="name" autocapitalize="words" autocorrect="off">
                     </div>
                 </div>
                 <div class="quote-form-row two-cols">
                     <div class="quote-form-group">
                         <label>Email</label>
-                        <input type="email" name="email" placeholder="correo@ejemplo.com" required>
+                        <input type="email" name="email" placeholder="correo@ejemplo.com" required autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off">
                     </div>
                     <div class="quote-form-group">
                         <label>Teléfono</label>
-                        <input type="tel" name="telefono" placeholder="+56 9 1234 5678" required>
+                        <input type="tel" name="telefono" placeholder="+56 9 1234 5678" required autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-()]*">
                     </div>
                 </div>
                 <div class="quote-form-row">
@@ -1046,6 +1078,10 @@
                             </button>
                         </div>
                         <input type="hidden" name="coordenadas" id="coordenadasInput">
+                        <div class="location-map-container" id="mapContainerQuote" style="display: none;">
+                            <div id="mapQuote" style="width: 100%; height: 200px; border-radius: 8px;"></div>
+                            <p class="map-hint"><i class="fas fa-hand-pointer"></i> Arrastra el marcador para ajustar la ubicación</p>
+                        </div>
                     </div>
                 </div>
                 <div class="quote-form-row">
@@ -1065,7 +1101,7 @@
     <!-- WhatsApp -->
     <div class="whatsapp-wrapper" id="whatsappWrapper">
         <span class="whatsapp-label">Cotiza con nosotros</span>
-        <a href="https://wa.me/56964169548?text=Hola%2C%20me%20interesa%20cotizar%20una%20casa%20prefabricada" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+        <a href="https://wa.me/56954164667?text=Hola%2C%20me%20interesa%20cotizar%20una%20casa%20prefabricada" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -1074,6 +1110,7 @@
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js" integrity="sha384-FPlVw8eKKvvzZTLJpWvD/YbNeLwGNiM2QmQw+z4kIvz4Aw4aWs2wFPqyLVUmxNCu" crossorigin="anonymous"></script>
 
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPRTA5cEHWOWe1S56SIkwBXtJK8pZZpWM&libraries=places&language=es&region=CL"></script>
     <script src="script.js"></script>
 </body>
 </html>
