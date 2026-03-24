@@ -1,0 +1,166 @@
+/* =============================================
+   MEJORAS MODO OSCURO - CATÁLOGO Y MODAL
+============================================= */
+
+/* Catálogo - Cards más visibles en modo oscuro */
+[data-theme="dark"] .catalog-card {
+    background: linear-gradient(145deg, #1f1f1f 0%, #171717 100%) !important;
+    border: 1px solid rgba(201, 168, 108, 0.2) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+[data-theme="dark"] .catalog-card:hover {
+    border-color: var(--brand-gold) !important;
+    box-shadow: 0 0 60px rgba(201, 168, 108, 0.25), 0 25px 60px rgba(0, 0, 0, 0.5) !important;
+    transform: translateY(-12px) scale(1.02) !important;
+}
+
+[data-theme="dark"] .catalog-card-image {
+    border-bottom: 1px solid rgba(201, 168, 108, 0.1) !important;
+}
+
+[data-theme="dark"] .catalog-card-body {
+    background: linear-gradient(180deg, transparent 0%, rgba(201, 168, 108, 0.03) 100%) !important;
+}
+
+/* Tabs sin azul */
+[data-theme="dark"] .catalog-tab.active {
+    background: linear-gradient(135deg, rgba(201, 168, 108, 0.15) 0%, rgba(201, 168, 108, 0.08) 100%) !important;
+    border: 1px solid var(--brand-gold) !important;
+}
+
+[data-theme="dark"] .catalog-tab .tab-icon {
+    background: rgba(201, 168, 108, 0.1) !important;
+    color: var(--brand-gold) !important;
+}
+
+[data-theme="dark"] .catalog-tab.active .tab-icon {
+    background: rgba(201, 168, 108, 0.2) !important;
+    color: var(--brand-gold) !important;
+}
+
+/* Line intro sin azul */
+[data-theme="dark"] .line-intro-clasica {
+    border-left: 4px solid var(--brand-gold) !important;
+}
+
+[data-theme="dark"] .line-intro-icon {
+    background: linear-gradient(135deg, rgba(201, 168, 108, 0.2) 0%, rgba(201, 168, 108, 0.1) 100%) !important;
+    color: var(--brand-gold) !important;
+}
+
+/* =============================================
+   MODAL SIN SCROLL - DISEÑO COMPACTO
+============================================= */
+
+.model-modal-content {
+    height: auto !important;
+    max-height: 95vh !important;
+    overflow: hidden !important;
+}
+
+@media (min-width: 768px) {
+    .model-modal-content {
+        max-height: 90vh !important;
+        overflow: hidden !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .model-modal-content {
+        max-width: 1000px !important;
+        max-height: 85vh !important;
+    }
+}
+
+/* Imagen del modal más compacta */
+.modal-image-section {
+    max-height: 45vh !important;
+    overflow: hidden !important;
+}
+
+@media (min-width: 768px) {
+    .modal-image-section {
+        max-height: none !important;
+        height: 100% !important;
+    }
+}
+
+.modal-image-section img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* Info section más compacta */
+.modal-info-section {
+    padding: 1.5rem !important;
+    overflow-y: auto !important;
+    max-height: 50vh !important;
+}
+
+@media (min-width: 768px) {
+    .modal-info-section {
+        padding: 2rem !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+    }
+}
+
+/* Features list más compacta */
+.modal-features-list {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+    margin: 1rem 0 !important;
+}
+
+.modal-features-list li {
+    font-size: 0.85rem !important;
+    padding: 0.4rem 0 !important;
+}
+
+/* Specs más compactos */
+.modal-specs {
+    gap: 0.75rem !important;
+}
+
+.modal-spec-item {
+    padding: 0.6rem !important;
+}
+
+/* =============================================
+   ANIMACIONES GSAP - Estados iniciales
+============================================= */
+
+.model-modal {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.model-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Quitar transiciones CSS para que GSAP controle */
+.model-modal-content {
+    transform: none !important;
+    transition: none !important;
+}
+
+.model-modal.active .model-modal-content {
+    transform: none !important;
+}
+
+/* Overlay animable */
+.model-modal-overlay {
+    opacity: 0;
+}
+
+.model-modal.active .model-modal-overlay {
+    opacity: 1;
+}

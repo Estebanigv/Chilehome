@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KC6J7N6');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2ZE7K13K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KW2ZE7K13K');
+    </script>
+
+    <title>Contacto | Chile Home - Casas Prefabricadas en Chile | Cotiza Gratis</title>
+    <meta name="description" content="Contacta con Chile Home para cotizar tu casa prefabricada. WhatsApp +56 9 9865 4665, email contacto@chilehome.cl. Atención lunes a viernes 9:00 a 18:00.">
+    <link rel="canonical" href="https://chilehome.cl/contacto">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Logotipo/isotipo.svg">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #c9a86c;
+            --gold-dark: #b8956a;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-input: #1a1a1a;
+            --border: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .navbar .logo {
+            height: 50px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .navbar .logo:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .contact-page {
+            padding: 130px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Left Column - Info */
+        .contact-info {
+            position: sticky;
+            top: 100px;
+        }
+
+        .contact-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .contact-title span {
+            color: var(--gold);
+        }
+
+        .contact-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-card-icon i {
+            font-size: 1.2rem;
+            color: var(--bg-dark);
+        }
+
+        .info-card-icon.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .info-card-icon.location {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+        }
+
+        .info-card-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .info-card-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Locations */
+        .locations-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .locations-title i {
+            color: var(--gold);
+        }
+
+        .location-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+
+        .location-item.featured {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(201, 168, 108, 0.1), transparent);
+        }
+
+        .location-item.featured .location-name i {
+            color: var(--gold);
+            margin-right: 6px;
+        }
+
+        .location-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .location-address {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .location-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .location-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .location-btn.google {
+            background: #4285f4;
+            color: white;
+        }
+
+        .location-btn.waze {
+            background: #33ccff;
+            color: #000;
+        }
+
+        /* Right Column - Form */
+        .contact-form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-group label .required {
+            color: var(--gold);
+        }
+
+        .form-group label .optional {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.8rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 108, 0.1);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .form-group select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .location-input-wrap {
+            position: relative;
+        }
+
+        .location-input-wrap input {
+            padding-right: 50px;
+        }
+
+        .btn-location {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: var(--gold);
+            border: none;
+            border-radius: 8px;
+            color: var(--bg-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-location:hover {
+            background: var(--gold-dark);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bg-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 168, 108, 0.3);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .social-links a {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-info {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-page {
+                padding: 100px 16px 40px;
+            }
+
+            .contact-form-card {
+                padding: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-title {
+                font-size: 2rem;
+            }
+
+            .navbar .logo {
+                height: 42px;
+            }
+        }
+    </style>
+
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPRTA5cEHWOWe1S56SIkwBXtJK8pZZpWM&libraries=places&language=es&region=CL"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC6J7N6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="./" title="Volver al inicio">
+            <img src="Logotipo/logo-navbar-blanco.svg" alt="Chile Home - Volver al inicio" class="logo">
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="contact-page">
+        <div class="contact-grid">
+            <!-- Info Column -->
+            <div class="contact-info">
+                <h1 class="contact-title">
+                    Hablemos de tu <span>proyecto</span>
+                </h1>
+                <p class="contact-subtitle">
+                    Estamos listos para ayudarte a construir la casa de tus sueños.
+                    Completa el formulario o contáctanos directamente.
+                </p>
+
+                <div class="info-cards">
+                    <a href="https://wa.me/56926178767" target="_blank" class="info-card" id="contactWhatsAppLink">
+                        <div class="info-card-icon whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div class="info-card-label">WhatsApp</div>
+                            <div class="info-card-value" id="contactWhatsAppText">+56 9 9865 4665</div>
+                        </div>
+                    </a>
+
+                    <a href="mailto:contacto@chilehome.cl" class="info-card">
+                        <div class="info-card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <div class="info-card-label">Email</div>
+                            <div class="info-card-value">contacto@chilehome.cl</div>
+                        </div>
+                    </a>
+                </div>
+
+                <h3 class="locations-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Nuestras ubicaciones
+                </h3>
+
+                <div class="location-item featured">
+                    <div class="location-name"><i class="fas fa-industry"></i> Planta Paillaco</div>
+                    <div class="location-address">Ruta T678, entre Pichi Ropulli y Paillaco, Los Ríos</div>
+                    <div class="location-btns">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-40.0711,-72.8561" target="_blank" class="location-btn google">
+                            <i class="fab fa-google"></i> Maps
+                        </a>
+                        <a href="https://waze.com/ul?ll=-40.0711,-72.8561&navigate=yes" target="_blank" class="location-btn waze">
+                            <i class="fab fa-waze"></i> Waze
+                        </a>
+                    </div>
+                </div>
+
+                <div class="location-item">
+                    <div class="location-name">Galpón Copiapó</div>
+                    <div class="location-address">Punto de venta Copiapó</div>
+                    <div class="location-btns">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-27.3386475,-70.6031352" target="_blank" class="location-btn google">
+                            <i class="fab fa-google"></i> Maps
+                        </a>
+                        <a href="https://waze.com/ul?ll=-27.3386475,-70.6031352&navigate=yes" target="_blank" class="location-btn waze">
+                            <i class="fab fa-waze"></i> Waze
+                        </a>
+                    </div>
+                </div>
+
+                <div class="location-item">
+                    <div class="location-name">Sala de Ventas Paine</div>
+                    <div class="location-address">Km 37 Ruta 5 Sur</div>
+                    <div class="location-btns">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-33.7735668,-70.7442035" target="_blank" class="location-btn google">
+                            <i class="fab fa-google"></i> Maps
+                        </a>
+                        <a href="https://waze.com/ul?ll=-33.7735668,-70.7442035&navigate=yes" target="_blank" class="location-btn waze">
+                            <i class="fab fa-waze"></i> Waze
+                        </a>
+                    </div>
+                </div>
+
+                <div class="location-item">
+                    <div class="location-name">Sucursal Puerto Varas</div>
+                    <div class="location-address">Camino al Complejo Deportivo El Mirador</div>
+                    <div class="location-btns">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-41.3507704,-72.9526841" target="_blank" class="location-btn google">
+                            <i class="fab fa-google"></i> Maps
+                        </a>
+                        <a href="https://waze.com/ul?ll=-41.3507704,-72.9526841&navigate=yes" target="_blank" class="location-btn waze">
+                            <i class="fab fa-waze"></i> Waze
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Column -->
+            <div class="contact-form-card">
+                <div class="form-header">
+                    <h2>Envíanos un mensaje</h2>
+                    <p>Te contactaremos a la brevedad</p>
+                </div>
+
+                <form id="contactPageForm">
+                    <div class="form-group">
+                        <label>Nombre <span class="required">*</span></label>
+                        <input type="text" id="contactNombre" name="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Teléfono <span class="required">*</span></label>
+                            <input type="tel" id="contactTelefono" name="telefono" placeholder="+56 9 9865 4665" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email <span class="optional">(opcional)</span></label>
+                            <input type="email" id="contactEmail" name="email" placeholder="correo@ejemplo.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Modelo de interés <span class="optional">(opcional)</span></label>
+                        <select id="contactModelo" name="modelo">
+                            <option value="">Selecciona un modelo</option>
+                            <optgroup label="Línea Clásica - 2 Aguas">
+                                <option value="Clásica 36m² - 2 Aguas">36 m² | 2 Aguas</option>
+                                <option value="Clásica 54m² - 2 Aguas">54 m² | 2 Aguas</option>
+                                <option value="Clásica 72m² - 2 Aguas">72 m² | 2 Aguas</option>
+                            </optgroup>
+                            <optgroup label="Línea Clásica - 6 Aguas">
+                                <option value="Clásica 36m² - 6 Aguas">36 m² | 6 Aguas</option>
+                                <option value="Clásica 54m² - 6 Aguas">54 m² | 6 Aguas</option>
+                                <option value="Clásica 72m² - 6 Aguas">72 m² | 6 Aguas</option>
+                            </optgroup>
+                            <optgroup label="Nueva Línea 2026">
+                                <option value="2026 36m² - 1 Agua">36 m² | 1 Agua</option>
+                                <option value="2026 36m² - 2 Aguas">36 m² | 2 Aguas</option>
+                                <option value="2026 54m² - 1 Agua">54 m² | 1 Agua</option>
+                            </optgroup>
+                            <option value="Diseño Personalizado">Diseño Personalizado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ubicación del terreno <span class="optional">(opcional)</span></label>
+                        <div class="location-input-wrap">
+                            <input type="text" id="contactUbicacion" name="ubicacion" placeholder="¿Dónde construirás tu casa?">
+                            <button type="button" class="btn-location" id="btnGetLocation" title="Usar mi ubicación">
+                                <i class="fas fa-location-crosshairs"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" id="contactCoordenadas" name="coordenadas">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mensaje <span class="optional">(opcional)</span></label>
+                        <textarea id="contactMensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btnSubmit">
+                        <span>Enviar mensaje</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/chilehome/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=100088847798188" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@ChileHome" target="_blank" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@chilehome.cl" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const SMTP_ENDPOINT = 'send-email.php';
+
+        // Geolocation
+        document.getElementById('btnGetLocation').addEventListener('click', function() {
+            const btn = this;
+            const ubicacionInput = document.getElementById('contactUbicacion');
+            const coordenadasInput = document.getElementById('contactCoordenadas');
+
+            if (!navigator.geolocation) {
+                alert('Tu navegador no soporta geolocalización');
+                return;
+            }
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    coordenadasInput.value = `${lat},${lng}`;
+
+                    // Reverse geocode
+                    try {
+                        const geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+                            if (status === 'OK' && results[0]) {
+                                ubicacionInput.value = results[0].formatted_address;
+                            } else {
+                                ubicacionInput.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+                            }
+                        });
+                    } catch (e) {
+                        ubicacionInput.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+                    }
+
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+                        btn.disabled = false;
+                    }, 2000);
+                },
+                (error) => {
+                    btn.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+                    btn.disabled = false;
+                    alert('No se pudo obtener tu ubicación');
+                },
+                { enableHighAccuracy: true, timeout: 15000 }
+            );
+        });
+
+        // WhatsApp dinámico desde API
+        (async function actualizarWhatsApp() {
+            try {
+                const response = await fetch('/chilehome/admin/api/whatsapp.php?action=get&_t=' + Date.now());
+                const data = await response.json();
+
+                if (data.success && data.whatsapp) {
+                    const numero = data.whatsapp.replace(/\D/g, '');
+                    const numeroFormateado = '+' + numero.replace(/(\d{2})(\d)(\d{4})(\d{4})/, '$1 $2 $3 $4');
+                    console.log('WhatsApp API (Contacto):', numeroFormateado, '-', data.ejecutivo);
+
+                    // Actualizar enlace WhatsApp
+                    const waLink = document.getElementById('contactWhatsAppLink');
+                    const waText = document.getElementById('contactWhatsAppText');
+                    if (waLink) waLink.href = 'https://wa.me/' + numero;
+                    if (waText) waText.textContent = numeroFormateado;
+                }
+            } catch (error) {
+                console.log('WhatsApp API error:', error);
+            }
+        })();
+
+        // Form submission
+        document.getElementById('contactPageForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('btnSubmit');
+            const originalHTML = btn.innerHTML;
+
+            const formData = {
+                form_type: 'contacto_pagina',
+                nombre: document.getElementById('contactNombre').value.trim(),
+                telefono: document.getElementById('contactTelefono').value.trim(),
+                email: document.getElementById('contactEmail').value.trim(),
+                modelo: document.getElementById('contactModelo').value,
+                ubicacion: document.getElementById('contactUbicacion').value.trim(),
+                coordenadas: document.getElementById('contactCoordenadas').value,
+                mensaje: document.getElementById('contactMensaje').value.trim()
+            };
+
+            if (!formData.nombre || !formData.telefono) {
+                alert('Por favor completa nombre y teléfono');
+                return;
+            }
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(SMTP_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    window.location.href = '/gracias';
+                } else {
+                    throw new Error(result.message || 'Error al enviar');
+                }
+            } catch (error) {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+                alert('Error al enviar. Intenta nuevamente.');
+            }
+        });
+    </script>
+</body>
+</html>

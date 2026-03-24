@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KC6J7N6');</script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2ZE7K13K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KW2ZE7K13K');
+        window.dataLayer.push({
+            'event': 'generate_lead',
+            'event_category': 'Conversion',
+            'event_label': 'Lead Completado',
+            'lead_type': 'form_submission',
+            'conversion_page': 'gracias',
+            'value': 1,
+            'currency': 'CLP'
+        });
+        gtag('event', 'conversion', {
+            'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+            'event_category': 'Lead',
+            'event_label': 'Formulario Completado',
+            'value': 1.0,
+            'currency': 'CLP'
+        });
+    </script>
+
+    <title>Gracias por contactarnos | Chile Home</title>
+    <meta name="description" content="Gracias por contactar a Chile Home. Te responderemos a la brevedad.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="Logotipo/isotipo.svg">
+    <meta name="theme-color" content="#003660">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --navy: #003660;
+            --navy-dark: #002744;
+            --gold: #c9a86c;
+            --gold-light: #d4b87d;
+            --bg: #f4f6f8;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --text-dark: #1a202c;
+            --text-mid: #4a5568;
+            --text-light: #a0aec0;
+            --green: #25D366;
+            --green-dark: #1eba59;
+            --radius: 16px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === HEADER === */
+        .ty-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        .ty-header-actions-left { display: flex; align-items: center; }
+        .ty-header-actions { display: flex; align-items: center; gap: 10px; }
+        .ty-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .ty-btn-outline {
+            color: var(--text-mid);
+            border: 1.5px solid var(--border);
+            background: transparent;
+        }
+        .ty-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+        .ty-btn-wa {
+            background: var(--green);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(37,211,102,0.25);
+        }
+        .ty-btn-wa:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,211,102,0.35); }
+
+        /* === HERO === */
+        .ty-hero {
+            background: linear-gradient(160deg, var(--navy) 0%, #00507d 50%, var(--navy-dark) 100%);
+            padding: 56px 24px 64px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .ty-hero::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201,168,108,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .ty-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .ty-hero-inner { position: relative; max-width: 560px; margin: 0 auto; }
+
+        .ty-hero-logo {
+            margin-bottom: 28px;
+            animation: fadeDown 0.6s ease both;
+        }
+        .ty-hero-logo img {
+            height: 56px;
+            filter: brightness(0) invert(1);
+        }
+
+        .ty-check-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
+            box-shadow: 0 8px 32px rgba(201,168,108,0.4);
+        }
+        .ty-check-icon i { font-size: 2.2rem; color: #fff; }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.12); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ty-hero h1 {
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            animation: fadeUp 0.5s ease 0.35s both;
+        }
+        .ty-hero p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            animation: fadeUp 0.5s ease 0.45s both;
+        }
+        .ty-hero strong { color: var(--gold-light); font-weight: 600; }
+
+        /* === STEPS === */
+        .ty-steps {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            display: flex;
+            justify-content: center;
+            animation: fadeUp 0.5s ease 0.55s both;
+        }
+        .ty-steps-inner {
+            display: flex;
+            max-width: 700px;
+            width: 100%;
+        }
+        .ty-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 16px;
+            font-size: 0.85rem;
+            color: var(--text-mid);
+            position: relative;
+        }
+        .ty-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 28px;
+            background: var(--border);
+        }
+        .ty-step-num {
+            width: 32px;
+            height: 32px;
+            background: var(--navy);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .ty-step-text { line-height: 1.3; }
+        .ty-step-text strong { display: block; color: var(--text-dark); font-weight: 600; font-size: 0.8rem; }
+        .ty-step-text span { font-size: 0.75rem; color: var(--text-light); }
+
+        /* === MAIN === */
+        .ty-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 48px 24px 40px;
+        }
+
+        /* === LINE SECTION === */
+        .ty-line-section {
+            margin-bottom: 40px;
+        }
+        .ty-line-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .ty-line-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .ty-line-tag-2026 {
+            background: linear-gradient(135deg, var(--navy), #004a80);
+            color: var(--gold);
+        }
+        .ty-line-tag-clasica {
+            background: linear-gradient(135deg, #1a1a2e, #2d2d44);
+            color: #e2e8f0;
+        }
+        .ty-line-divider {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* === MODELS GRID === */
+        .ty-models {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .ty-model-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+        .ty-model-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+        .ty-model-img-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        .ty-model-img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            background: #edf2f7;
+            transition: transform 0.4s ease;
+        }
+        .ty-model-card:hover .ty-model-img { transform: scale(1.05); }
+        .ty-model-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(8px);
+        }
+        .badge-new { background: rgba(37,99,235,0.9); color: #fff; }
+        .badge-offer { background: rgba(234,88,12,0.9); color: #fff; }
+        .badge-line { background: rgba(0,54,96,0.85); color: var(--gold); }
+
+        .ty-model-body { padding: 16px 18px 18px; }
+        .ty-model-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .ty-model-specs {
+            display: flex;
+            gap: 14px;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        .ty-model-specs span { display: flex; align-items: center; gap: 4px; }
+        .ty-model-specs i { font-size: 0.7rem; color: var(--gold); }
+        .ty-model-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .ty-model-cta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        .ty-model-cta i { font-size: 0.65rem; transition: transform 0.2s; }
+        .ty-model-card:hover .ty-model-cta i { transform: translateX(3px); }
+
+        /* === CTA BANNER === */
+        .ty-cta {
+            background: linear-gradient(135deg, var(--navy), #00507d);
+            border-radius: var(--radius);
+            padding: 44px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            margin: 48px 0;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,54,96,0.25);
+        }
+        .ty-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201,168,108,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .ty-cta-content { position: relative; }
+        .ty-cta-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .ty-cta-content p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.5;
+        }
+        .ty-cta-btn {
+            position: relative;
+            padding: 16px 32px;
+            background: var(--green);
+            color: #fff;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+        }
+        .ty-cta-btn:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+        }
+        .ty-cta-btn i { font-size: 1.2rem; }
+
+        /* === FOOTER === */
+        .ty-footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            padding: 40px 24px;
+        }
+        .ty-footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ty-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .ty-footer-brand img { height: 32px; opacity: 0.6; }
+        .ty-footer-brand span { font-size: 0.8rem; color: var(--text-light); }
+        .ty-social-links { display: flex; gap: 8px; }
+        .ty-social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .ty-social-links a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: var(--surface);
+            transform: translateY(-2px);
+        }
+
+        /* === SKELETON === */
+        .ty-model-skeleton {
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .skeleton-img { width: 100%; height: 190px; background: linear-gradient(90deg, #edf2f7 25%, #f7fafc 50%, #edf2f7 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        .skeleton-body { padding: 16px 18px; }
+        .skeleton-line { height: 12px; background: linear-gradient(90deg, #edf2f7 25%, #f7fafc 50%, #edf2f7 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; margin-bottom: 10px; }
+        .skeleton-line.w70 { width: 70%; }
+        .skeleton-line.w50 { width: 50%; }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 900px) {
+            .ty-models { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .ty-header { padding: 0 16px; }
+            .ty-hero { padding: 40px 20px 48px; }
+            .ty-hero-logo img { height: 44px; }
+            .ty-steps-inner { flex-direction: column; }
+            .ty-step:not(:last-child)::after { display: none; }
+            .ty-step { padding: 12px 0; }
+            .ty-cta { flex-direction: column; text-align: center; padding: 32px 24px; }
+            .ty-footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+            .ty-btn span.desktop { display: none; }
+        }
+        @media (max-width: 520px) {
+            .ty-models { grid-template-columns: 1fr; }
+            .ty-model-img { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC6J7N6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Header -->
+    <header class="ty-header">
+        <div class="ty-header-actions-left">
+            <a href="./" class="ty-btn ty-btn-outline">
+                <i class="fas fa-arrow-left"></i>
+                <span class="desktop">Volver al inicio</span>
+            </a>
+        </div>
+        <div class="ty-header-actions">
+            <a href="https://wa.me/56998654665?text=Hola,%20acabo%20de%20enviar%20un%20formulario" target="_blank" class="ty-btn ty-btn-wa" data-wa-origen="gracias_nav">
+                <i class="fab fa-whatsapp"></i>
+                <span class="desktop">WhatsApp</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="ty-hero">
+        <div class="ty-hero-inner">
+            <div class="ty-hero-logo">
+                <img src="Logotipo/Logo horizontal - Chile Home.svg" alt="Chile Home">
+            </div>
+            <div class="ty-check-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>Tu mensaje fue recibido con exito</h1>
+            <p>Nuestro equipo comercial te contactara dentro de las proximas <strong>24 horas habiles</strong> para brindarte una asesoria personalizada.</p>
+        </div>
+    </section>
+
+    <!-- Steps -->
+    <div class="ty-steps">
+        <div class="ty-steps-inner">
+            <div class="ty-step">
+                <span class="ty-step-num">1</span>
+                <div class="ty-step-text">
+                    <strong>Correo enviado</strong>
+                    <span>Recibimos tu consulta</span>
+                </div>
+            </div>
+            <div class="ty-step">
+                <span class="ty-step-num">2</span>
+                <div class="ty-step-text">
+                    <strong>Asesor asignado</strong>
+                    <span>Te contactaremos pronto</span>
+                </div>
+            </div>
+            <div class="ty-step">
+                <span class="ty-step-num">3</span>
+                <div class="ty-step-text">
+                    <strong>Cotizacion lista</strong>
+                    <span>Personalizada para ti</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <main class="ty-main">
+
+        <!-- Linea 2026 -->
+        <div class="ty-line-section" id="linea2026Section">
+            <div class="ty-line-header">
+                <span class="ty-line-tag ty-line-tag-2026">
+                    <i class="fas fa-star"></i> Linea 2026
+                </span>
+                <div class="ty-line-divider"></div>
+            </div>
+            <div class="ty-models" id="models2026">
+                <div class="ty-model-skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w70"></div><div class="skeleton-line w50"></div></div></div>
+                <div class="ty-model-skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w70"></div><div class="skeleton-line w50"></div></div></div>
+                <div class="ty-model-skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w70"></div><div class="skeleton-line w50"></div></div></div>
+            </div>
+        </div>
+
+        <!-- Linea Clasica -->
+        <div class="ty-line-section" id="lineaClasicaSection">
+            <div class="ty-line-header">
+                <span class="ty-line-tag ty-line-tag-clasica">
+                    <i class="fas fa-gem"></i> Linea Clasica
+                </span>
+                <div class="ty-line-divider"></div>
+            </div>
+            <div class="ty-models" id="modelsClasica">
+                <div class="ty-model-skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w70"></div><div class="skeleton-line w50"></div></div></div>
+                <div class="ty-model-skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w70"></div><div class="skeleton-line w50"></div></div></div>
+                <div class="ty-model-skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w70"></div><div class="skeleton-line w50"></div></div></div>
+            </div>
+        </div>
+
+        <!-- CTA WhatsApp -->
+        <div class="ty-cta">
+            <div class="ty-cta-content">
+                <h3>Necesitas respuesta inmediata?</h3>
+                <p>Escribenos por WhatsApp y un asesor te atendera al instante.</p>
+            </div>
+            <a href="https://wa.me/56998654665?text=Hola,%20acabo%20de%20enviar%20un%20formulario%20de%20contacto" target="_blank" class="ty-cta-btn" data-wa-origen="gracias_cta">
+                <i class="fab fa-whatsapp"></i>
+                Escribir por WhatsApp
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="ty-footer">
+        <div class="ty-footer-inner">
+            <div class="ty-footer-brand">
+                <img src="Logotipo/logo-navbar-color.svg" alt="Chile Home">
+                <span>&copy; 2026 Chile Home - Casas Prefabricadas</span>
+            </div>
+            <div class="ty-social-links">
+                <a href="https://www.instagram.com/chilehome/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100088847798188" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@ChileHome" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@chilehome.cl" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const apiBase = window.location.pathname.includes('/chilehome') ? '/chilehome' : '';
+
+    const fallback2026 = [
+        { nombre: '36 m\u00b2 | 1 Agua', slug: '36-1a', metros: 36, dormitorios: 1, banos: 1, nuevo: true, imagen_principal: 'Imagenes/Nuevos Modelos/36m2 1A.png', precio_texto: '' },
+        { nombre: 'Terra 36 m\u00b2 | 2 Aguas', slug: 'terra-36', metros: 36, dormitorios: 1, banos: 1, nuevo: true, imagen_principal: 'Imagenes/Nuevos Modelos/36m2 2A.png', precio_texto: '' },
+        { nombre: '54 m\u00b2 | 1 Agua', slug: '54-1a', metros: 54, dormitorios: 2, banos: 1, nuevo: true, imagen_principal: 'Imagenes/Nuevos Modelos/54m2 1A.png', precio_texto: '' }
+    ];
+    const fallbackClasica = [
+        { nombre: '54 m\u00b2 | 2 Aguas', slug: 'clasica-54', metros: 54, dormitorios: 2, banos: 1, imagen_principal: 'Imagenes/Modelos/36m2 2A/webp/54 2Ablanca/54 2A_Blanca H.png', precio_texto: '' },
+        { nombre: '72 m\u00b2 | 6 Aguas', slug: 'clasica-72', metros: 72, dormitorios: 3, banos: 2, imagen_principal: 'Imagenes/Modelos/36m2 2A/webp/72.6a/72m 6A.webp', precio_texto: '' },
+        { nombre: '72 m\u00b2 | 2 Aguas', slug: 'clasica-72-2a', metros: 72, dormitorios: 3, banos: 2, imagen_principal: 'Imagenes/Modelos/36m2 2A/webp/72m2 2Aguas/72m2 2A portada.webp', precio_texto: '' }
+    ];
+
+    function renderModels(models, containerId) {
+        const grid = document.getElementById(containerId);
+        if (!models.length) {
+            grid.closest('.ty-line-section').style.display = 'none';
+            return;
+        }
+        grid.innerHTML = models.map(m => {
+            const badge = m.en_oferta ? '<span class="ty-model-badge badge-offer"><i class="fas fa-tag"></i> Oferta</span>'
+                        : m.nuevo ? '<span class="ty-model-badge badge-new"><i class="fas fa-bolt"></i> Nuevo</span>'
+                        : '';
+            const precio = m.precio_mostrar || m.precio_texto || '';
+            const img = m.imagen_principal || '';
+            return `<a class="ty-model-card" href="./#modelos" data-slug="${m.slug}">
+                <div class="ty-model-img-wrap">
+                    <img class="ty-model-img" src="${img}" alt="${m.nombre}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23edf2f7%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23a0aec0%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2214%22%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
+                    ${badge}
+                </div>
+                <div class="ty-model-body">
+                    <div class="ty-model-name">${m.nombre}</div>
+                    <div class="ty-model-specs">
+                        <span><i class="fas fa-ruler-combined"></i> ${m.metros}m\u00b2</span>
+                        <span><i class="fas fa-bed"></i> ${m.dormitorios}D</span>
+                        <span><i class="fas fa-bath"></i> ${m.banos}B</span>
+                    </div>
+                    ${precio ? `<div class="ty-model-price">${precio}</div>` : ''}
+                    <div class="ty-model-cta">Ver detalles <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>`;
+        }).join('');
+    }
+
+    fetch(apiBase + '/admin/api/modelos.php')
+        .then(r => r.json())
+        .then(data => {
+            if (data.success && data.data && data.data.length > 0) {
+                const activos = data.data.filter(m => m.activo !== false);
+                const linea2026 = activos.filter(m => (m.linea || '').includes('2026') || m.nuevo);
+                const lineaClasica = activos.filter(m => !(m.linea || '').includes('2026') && !m.nuevo);
+                renderModels(linea2026.slice(0, 3), 'models2026');
+                renderModels(lineaClasica.slice(0, 3), 'modelsClasica');
+            } else {
+                renderModels(fallback2026, 'models2026');
+                renderModels(fallbackClasica, 'modelsClasica');
+            }
+        })
+        .catch(() => {
+            renderModels(fallback2026, 'models2026');
+            renderModels(fallbackClasica, 'modelsClasica');
+        });
+
+    // === TRACKING WhatsApp clicks (sendBeacon para no perder el clic al navegar) ===
+    document.querySelectorAll('a[data-wa-origen]').forEach(link => {
+        link.addEventListener('click', function() {
+            const origen = this.dataset.waOrigen;
+            const url = apiBase + '/admin/api/whatsapp.php?action=click';
+            const payload = JSON.stringify({ origen: origen, ejecutivo_id: null, modelo: null });
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+            } else {
+                fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(() => {});
+            }
+        });
+    });
+    </script>
+</body>
+</html>

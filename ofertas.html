@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KC6J7N6');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2ZE7K13K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KW2ZE7K13K');
+    </script>
+
+    <title>Ofertas | Chile Home - Casas Prefabricadas desde $1.990.000 | Stock Limitado</title>
+    <meta name="description" content="Ofertas exclusivas en casas prefabricadas Chile Home. Casa 36m² desde $1.990.000 y 54m² desde $2.490.000. Flete gratis, entrega inmediata. Solo 10 unidades.">
+    <link rel="canonical" href="https://chilehome.cl/ofertas">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chilehome.cl/ofertas">
+    <meta property="og:title" content="Ofertas Exclusivas | Chile Home - Casas Prefabricadas">
+    <meta property="og:description" content="Casa 36m² desde $1.990.000 y 54m² desde $2.490.000. Flete gratis de Chañaral a Puerto Montt. Entrega inmediata.">
+    <meta property="og:image" content="https://chilehome.cl/Imagenes/Ofertas/casa-36m2.webp">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Logotipo/isotipo.svg">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "OfferCatalog",
+        "name": "Ofertas Chile Home - Casas Prefabricadas",
+        "description": "Ofertas exclusivas en casas prefabricadas de madera",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "name": "Casa Prefabricada 36m² - 2 Aguas",
+                "description": "Casa prefabricada 36m², tabiquería 2x3, incluye puertas y ventanas frontales 1x1m. Flete gratis.",
+                "price": "1990000",
+                "priceCurrency": "CLP",
+                "availability": "https://schema.org/LimitedAvailability",
+                "seller": {
+                    "@type": "Organization",
+                    "name": "Chile Home"
+                }
+            },
+            {
+                "@type": "Offer",
+                "name": "Casa Prefabricada 54m² - 2 Aguas",
+                "description": "Casa prefabricada 54m², tabiquería 2x3, incluye puertas y ventanas frontales 1x1m. Flete gratis.",
+                "price": "2490000",
+                "priceCurrency": "CLP",
+                "availability": "https://schema.org/LimitedAvailability",
+                "seller": {
+                    "@type": "Organization",
+                    "name": "Chile Home"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --gold: #c9a86c;
+            --gold-light: #d4b87a;
+            --gold-dark: #b8956a;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1a1a1a;
+            --bg-input: #1a1a1a;
+            --border: #2a2a2a;
+            --border-light: #333;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --green: #22c55e;
+            --green-dark: #16a34a;
+            --red: #ef4444;
+            --red-soft: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(16px, 4vw, 40px);
+        }
+
+        .navbar .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .navbar .logo {
+            height: 42px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .navbar .logo:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .navbar-links a:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .navbar-links .btn-cotizar {
+            background: var(--gold);
+            color: #000;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 8px;
+        }
+
+        .navbar-links .btn-cotizar:hover {
+            background: var(--gold-light);
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 20px 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(239, 68, 68, 0.12);
+            color: var(--red);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: pulse-badge 2s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-badge i {
+            font-size: 0.7rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Offers Grid */
+        .offers-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 20px 80px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        /* Offer Card */
+        .offer-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold-dark);
+        }
+
+        /* Card Image */
+        .offer-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .offer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .offer-card:hover .offer-image img {
+            transform: scale(1.05);
+        }
+
+        .offer-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+        }
+
+        .offer-badges {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-area {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+
+        .badge-roof {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+
+        .badge-stock {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(239, 68, 68, 0.9);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            animation: pulse-badge 2s infinite;
+        }
+
+        /* Card Body */
+        .offer-body {
+            padding: 24px;
+        }
+
+        .offer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .offer-subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        /* Price */
+        .offer-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .offer-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .offer-price-iva {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Specs Grid */
+        .offer-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.85rem;
+        }
+
+        .spec-item i {
+            color: var(--gold);
+            font-size: 0.9rem;
+            width: 16px;
+            text-align: center;
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Includes Section */
+        .offer-includes {
+            margin-bottom: 20px;
+        }
+
+        .includes-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .includes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .includes-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .includes-item i {
+            color: var(--green);
+            font-size: 0.8rem;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Highlight Tags */
+        .offer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .offer-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: var(--green);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .offer-tag i {
+            font-size: 0.75rem;
+        }
+
+        .offer-tag-gold {
+            background: rgba(201, 168, 108, 0.08);
+            border-color: rgba(201, 168, 108, 0.2);
+            color: var(--gold);
+        }
+
+        /* CTA Buttons */
+        .offer-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-offer {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-whatsapp {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .btn-whatsapp:hover {
+            background: var(--green-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-cotizar-card {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .btn-cotizar-card:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        /* Benefits Bar */
+        .benefits-bar {
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .benefit-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(201, 168, 108, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon i {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .benefit-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .benefit-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Footer */
+        .footer-simple {
+            border-top: 1px solid var(--border);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .footer-simple-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-simple p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-simple-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-simple-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-simple-links a:hover {
+            color: var(--gold);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float i {
+            color: #fff;
+            font-size: 1.6rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .offers-section {
+                grid-template-columns: 1fr;
+                max-width: 550px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 100px 16px 24px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .offers-section {
+                padding: 16px 16px 60px;
+            }
+
+            .offer-body {
+                padding: 20px;
+            }
+
+            .offer-price {
+                font-size: 1.8rem;
+            }
+
+            .offer-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .offer-actions {
+                flex-direction: column;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-links a:not(.btn-cotizar) {
+                display: none;
+            }
+
+            .footer-simple-inner {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC6J7N6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="./" class="logo-link">
+            <img src="Logotipo/logo-navbar-blanco.svg?v=2" alt="Chile Home" class="logo">
+        </a>
+        <div class="navbar-links">
+            <a href="./">Inicio</a>
+            <a href="contacto">Contacto</a>
+            <a href="https://wa.me/56998654665?text=Hola%2C%20me%20interesan%20las%20ofertas%20de%20casas%20prefabricadas" class="btn-cotizar"><i class="fab fa-whatsapp"></i> Cotizar</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">
+            <i class="fas fa-fire"></i>
+            Stock limitado — Solo 10 unidades
+        </div>
+        <h1>Ofertas <span>Exclusivas</span></h1>
+        <p>Casas prefabricadas con puertas y ventanas incluidas. Flete gratis, paga al recibir y entrega inmediata.</p>
+    </section>
+
+    <!-- Benefits -->
+    <div class="benefits-bar">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-truck"></i></div>
+                <div>
+                    <div class="benefit-text">Flete Gratis</div>
+                    <div class="benefit-sub">Chañaral a Puerto Montt</div>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <div>
+                    <div class="benefit-text">Paga al Recibir</div>
+                    <div class="benefit-sub">Sin anticipos</div>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                <div>
+                    <div class="benefit-text">Entrega Inmediata</div>
+                    <div class="benefit-sub">Despacho rápido</div>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-door-open"></i></div>
+                <div>
+                    <div class="benefit-text">Puertas y Ventanas</div>
+                    <div class="benefit-sub">Frontales incluidas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offers -->
+    <section class="offers-section">
+
+        <!-- Offer 1: 36m² -->
+        <article class="offer-card" id="oferta-36">
+            <div class="offer-image">
+                <img src="Imagenes/Ofertas/casa-36m2.webp" alt="Casa prefabricada 36m² 2 Aguas - Chile Home" loading="lazy" width="960" height="540">
+                <div class="offer-image-overlay"></div>
+                <div class="offer-badges">
+                    <span class="badge badge-area"><i class="fas fa-ruler-combined"></i> 36 m²</span>
+                    <span class="badge badge-roof"><i class="fas fa-home"></i> 2 Aguas</span>
+                </div>
+                <span class="badge-stock"><i class="fas fa-fire"></i> Solo 10 unidades</span>
+            </div>
+            <div class="offer-body">
+                <h2 class="offer-title">Casa Prefabricada 36 m²</h2>
+                <p class="offer-subtitle">Techo 2 Aguas · Tabiquería 2x3 · Paneles de Pino</p>
+
+                <div class="offer-price-row">
+                    <span class="offer-price">$1.990.000</span>
+                </div>
+
+                <div class="offer-specs">
+                    <div class="spec-item">
+                        <i class="fas fa-bed"></i>
+                        <span class="spec-label">1 Dormitorio</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-bath"></i>
+                        <span class="spec-label">1 Baño</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span class="spec-label">Tabiquería 2x3</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <span class="spec-label">36 m²</span>
+                    </div>
+                </div>
+
+                <div class="offer-includes">
+                    <div class="includes-title">Incluye</div>
+                    <div class="includes-list">
+                        <div class="includes-item"><i class="fas fa-check"></i> Puertas y ventanas frontales 1 x 1 m</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Paneles exteriores e interiores de pino</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Forro exterior en media luna de pino</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Cubiertas de zinc</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Cerchas de pino tradicionales</div>
+                    </div>
+                </div>
+
+                <div class="offer-tags">
+                    <span class="offer-tag"><i class="fas fa-truck"></i> Flete Gratis</span>
+                    <span class="offer-tag"><i class="fas fa-hand-holding-usd"></i> Paga al Recibir</span>
+                    <span class="offer-tag offer-tag-gold"><i class="fas fa-bolt"></i> Entrega Inmediata</span>
+                </div>
+
+                <div class="offer-actions">
+                    <a href="https://wa.me/56998654665?text=Hola%2C%20me%20interesa%20la%20oferta%20de%20la%20casa%2036m%C2%B2%20a%20%241.990.000" class="btn-offer btn-whatsapp" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="/#modelos-principales" class="btn-offer btn-cotizar-card">
+                        <i class="fas fa-eye"></i> Ver Modelo
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Offer 2: 54m² -->
+        <article class="offer-card" id="oferta-54">
+            <div class="offer-image">
+                <img src="Imagenes/Ofertas/casa-54m2.webp" alt="Casa prefabricada 54m² 2 Aguas - Chile Home" loading="lazy" width="960" height="540">
+                <div class="offer-image-overlay"></div>
+                <div class="offer-badges">
+                    <span class="badge badge-area"><i class="fas fa-ruler-combined"></i> 54 m²</span>
+                    <span class="badge badge-roof"><i class="fas fa-home"></i> 2 Aguas</span>
+                </div>
+                <span class="badge-stock"><i class="fas fa-fire"></i> Solo 10 unidades</span>
+            </div>
+            <div class="offer-body">
+                <h2 class="offer-title">Casa Prefabricada 54 m²</h2>
+                <p class="offer-subtitle">Techo 2 Aguas · Tabiquería 2x3 · Paneles de Pino</p>
+
+                <div class="offer-price-row">
+                    <span class="offer-price">$2.490.000</span>
+                </div>
+
+                <div class="offer-specs">
+                    <div class="spec-item">
+                        <i class="fas fa-bed"></i>
+                        <span class="spec-label">2 Dormitorios</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-bath"></i>
+                        <span class="spec-label">1 Baño</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span class="spec-label">Tabiquería 2x3</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <span class="spec-label">54 m²</span>
+                    </div>
+                </div>
+
+                <div class="offer-includes">
+                    <div class="includes-title">Incluye</div>
+                    <div class="includes-list">
+                        <div class="includes-item"><i class="fas fa-check"></i> Puertas y ventanas frontales 1 x 1 m</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Paneles exteriores e interiores de pino</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Forro exterior en media luna de pino</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Cubiertas de zinc</div>
+                        <div class="includes-item"><i class="fas fa-check"></i> Cerchas de pino tradicionales</div>
+                    </div>
+                </div>
+
+                <div class="offer-tags">
+                    <span class="offer-tag"><i class="fas fa-truck"></i> Flete Gratis</span>
+                    <span class="offer-tag"><i class="fas fa-hand-holding-usd"></i> Paga al Recibir</span>
+                    <span class="offer-tag offer-tag-gold"><i class="fas fa-bolt"></i> Entrega Inmediata</span>
+                </div>
+
+                <div class="offer-actions">
+                    <a href="https://wa.me/56998654665?text=Hola%2C%20me%20interesa%20la%20oferta%20de%20la%20casa%2054m%C2%B2%20a%20%242.490.000" class="btn-offer btn-whatsapp" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="/#modelos-principales" class="btn-offer btn-cotizar-card">
+                        <i class="fas fa-eye"></i> Ver Modelo
+                    </a>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-simple">
+        <div class="footer-simple-inner">
+            <p>&copy; 2026 Chile Home SPA. Todos los derechos reservados.</p>
+            <div class="footer-simple-links">
+                <a href="./">Inicio</a>
+                <a href="contacto">Contacto</a>
+                <a href="agenda">Agendar Visita</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/56998654665?text=Hola%2C%20me%20interesan%20las%20ofertas%20de%20casas%20prefabricadas" class="whatsapp-float" id="waFlotanteOfertas" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+    // WhatsApp dinámico - usa el número del admin CRM
+    (function() {
+        async function updateWA() {
+            try {
+                var basePath = window.location.pathname.includes('/chilehome') ? '/chilehome' : '';
+                var resp = await fetch(basePath + '/admin/api/whatsapp.php?action=get_all&_t=' + Date.now());
+                var data = await resp.json();
+                if (!data.success) return;
+
+                var num = data.global?.whatsapp?.replace(/\D/g, '') || '56998654665';
+
+                // Actualizar todos los links de WhatsApp en la página
+                document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+                    var oldHref = link.getAttribute('href');
+                    link.setAttribute('href', oldHref.replace(/wa\.me\/\d+/, 'wa.me/' + num));
+                });
+            } catch(e) { /* fallback al número hardcodeado */ }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateWA);
+        } else {
+            updateWA();
+        }
+    })();
+    </script>
+</body>
+</html>

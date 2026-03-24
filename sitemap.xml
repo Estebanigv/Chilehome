@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Página Principal -->
     <url>
         <loc>https://chilehome.cl/</loc>
-        <lastmod>2025-12-23</lastmod>
+        <lastmod>2026-02-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://chilehome.cl/Imagenes/og-image.jpg</image:loc>
+            <image:title>Chile Home - Casas Prefabricadas en Chile</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://chilehome.cl/Imagenes/Modelos/36m2%202A/36%202A/36m2%202A%20H.png</image:loc>
+            <image:title>Casa prefabricada 36m2 dos aguas - Chile Home</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://chilehome.cl/Imagenes/Modelos/36m2%202A/webp/54%202Ablanca/54%202A_Blanca%20H.png</image:loc>
+            <image:title>Casa prefabricada 54m2 dos aguas - Chile Home</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://chilehome.cl/Imagenes/Modelos/36m2%202A/webp/72m2%202Aguas/72m2%202A%20portada.webp</image:loc>
+            <image:title>Casa prefabricada 72m2 dos aguas - Chile Home</image:title>
+        </image:image>
     </url>
+
+    <!-- Agenda tu Visita -->
     <url>
-        <loc>https://chilehome.cl/#proyectos</loc>
-        <lastmod>2025-12-23</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://chilehome.cl/#nosotros</loc>
-        <lastmod>2025-12-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://chilehome.cl/#proceso</loc>
-        <lastmod>2025-12-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://chilehome.cl/#contacto</loc>
-        <lastmod>2025-12-23</lastmod>
+        <loc>https://chilehome.cl/agenda</loc>
+        <lastmod>2026-02-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://chilehome.cl/Imagenes/Banners/agendaSuc.webp</image:loc>
+            <image:title>Agenda tu visita a sucursales Chile Home</image:title>
+        </image:image>
+    </url>
+
+    <!-- Contacto -->
+    <url>
+        <loc>https://chilehome.cl/contacto</loc>
+        <lastmod>2026-02-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Política de Privacidad -->
+    <url>
+        <loc>https://chilehome.cl/politica-privacidad</loc>
+        <lastmod>2026-03-24</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Términos y Condiciones -->
+    <url>
+        <loc>https://chilehome.cl/terminos-condiciones</loc>
+        <lastmod>2026-03-24</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
     </url>
 </urlset>

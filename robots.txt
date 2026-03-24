@@ -1,22 +1,59 @@
+# ============================================
 # robots.txt para Chile Home
 # https://chilehome.cl
+# ============================================
 
+# Todos los bots (incluye Google, Bing, etc.)
 User-agent: *
 Allow: /
-
-# Archivos permitidos
-Allow: /index.html
-Allow: /styles-improved.css
-Allow: /script.js
+Allow: /agenda
+Allow: /contacto
 Allow: /Imagenes/
 Allow: /Logotipo/
 
-# Bloquear archivos de desarrollo
+# Bloquear archivos internos
+Disallow: /admin/
 Disallow: /*.md$
 Disallow: /.htaccess
 Disallow: /.claude/
 
-# Bloquear bots maliciosos conocidos
+# ============================================
+# BUSCADORES DE IA - PERMITIDOS
+# ============================================
+
+# Bing AI / Copilot
+User-agent: bingbot
+Allow: /
+
+# ChatGPT / OpenAI
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Google AI / Bard / Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic Claude
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# ============================================
+# BOTS SEO - BLOQUEADOS (spam/scraping)
+# ============================================
 User-agent: AhrefsBot
 Disallow: /
 
@@ -26,5 +63,10 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-# Sitemap
+User-agent: DotBot
+Disallow: /
+
+# ============================================
+# SITEMAP
+# ============================================
 Sitemap: https://chilehome.cl/sitemap.xml

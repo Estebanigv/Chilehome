@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Visita a Sucursal | Chile Home - Casas Prefabricadas en Chile</title>
+    <meta name="description" content="Agenda tu visita a nuestras sucursales en Santiago, Puerto Varas o Paillaco. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita y sin compromiso.">
+    <link rel="canonical" href="https://chilehome.cl/agenda">
+    <meta name="robots" content="index, follow">
+    <meta name="color-scheme" content="light only">
+
+    <link rel="icon" type="image/svg+xml" href="Logotipo/isotipo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-blue: #003660;
+            --brand-blue-dark: #002847;
+            --brand-gold: #d4a574;
+            --brand-gold-light: #e8c9a8;
+            --text-dark: #1a1a1a;
+            --text-body: #4a4a4a;
+            --text-muted: #6b7280;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --success: #059669;
+        }
+
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        /* Header Simple */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 16px 0;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            height: 48px;
+        }
+
+
+        .btn-back-home {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .btn-back-home:hover {
+            color: var(--brand-blue);
+        }
+
+        /* Main Layout */
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            padding-top: 82px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left - Image */
+        .image-section {
+            position: sticky;
+            top: 82px;
+            height: calc(100vh - 82px);
+            background: url('Imagenes/Banners/agendaSuc.webp') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        @media (max-width: 1024px) {
+            .image-section {
+                position: relative;
+                top: 0;
+                height: 350px;
+            }
+        }
+
+        .image-overlay {
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+        }
+
+        .image-overlay h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .image-overlay h1 span {
+            color: var(--brand-gold);
+        }
+
+        .image-overlay p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            max-width: 380px;
+        }
+
+        /* Right - Form */
+        .form-section {
+            background: var(--gray-50);
+            padding: 40px;
+            min-height: calc(100vh - 82px);
+        }
+
+        @media (max-width: 1024px) {
+            .form-section {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+        }
+
+        /* Page Title */
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--brand-blue);
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        /* Steps - Simplified */
+        .steps-bar {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            background: var(--white);
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .step-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .step-item.active {
+            background: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .step-item.completed {
+            background: rgba(5,150,105,0.1);
+            color: var(--success);
+        }
+
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            color: var(--text-muted);
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-item.active .step-num {
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+
+        .step-item.completed .step-num {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .step-label {
+            display: none;
+        }
+
+        @media (min-width: 600px) {
+            .step-label {
+                display: block;
+            }
+        }
+
+        /* Card */
+        .booking-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Visit Benefits */
+        .visit-benefits {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, rgba(0,54,96,0.04) 0%, rgba(212,165,116,0.08) 100%);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .benefit-item i {
+            color: var(--brand-blue);
+            font-size: 14px;
+        }
+
+        /* Branch Cards */
+        .branch-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .branch-card {
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--white);
+            position: relative;
+        }
+
+        .branch-card:hover {
+            border-color: var(--brand-blue);
+            box-shadow: 0 4px 12px rgba(0,54,96,0.1);
+        }
+
+        .branch-card.selected {
+            border-color: var(--brand-blue);
+            border-width: 3px;
+            background: linear-gradient(135deg, rgba(0,54,96,0.04) 0%, rgba(212,165,116,0.06) 100%);
+            box-shadow: 0 6px 20px rgba(0,54,96,0.15);
+            transform: scale(1.01);
+        }
+
+        .branch-card.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 28px;
+            height: 28px;
+            background: var(--success);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .branch-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .branch-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gray-100);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-blue);
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .branch-card.selected .branch-icon {
+            background: var(--brand-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .branch-card.selected .branch-name {
+            color: var(--brand-blue);
+        }
+
+        .branch-location-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 12px 0;
+            padding: 10px 16px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            color: var(--text-body);
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .branch-location-btn:hover {
+            background: var(--brand-blue);
+            border-color: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .branch-location-btn i {
+            color: var(--brand-gold);
+        }
+
+        .branch-location-btn:hover i {
+            color: var(--white);
+        }
+
+        .branch-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .branch-region {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .branch-info {
+            padding: 12px;
+            background: var(--brand-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .branch-info i {
+            color: var(--brand-gold);
+            font-size: 16px;
+        }
+
+        .branch-info span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Calendar */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .calendar-month {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 6px;
+        }
+
+        .calendar-nav button {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+
+        .calendar-nav button:hover {
+            border-color: var(--brand-blue);
+            color: var(--brand-blue);
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin-bottom: 8px;
+        }
+
+        .calendar-weekdays span {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            padding: 8px 0;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .day-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--gray-50);
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-dark);
+            border: 2px solid transparent;
+            padding: 8px 4px;
+            min-height: 40px;
+        }
+
+        .day-cell:hover:not(.disabled):not(.empty) {
+            background: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .day-cell.selected {
+            background: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .day-cell.today {
+            border-color: var(--brand-gold);
+        }
+
+        .day-cell.disabled {
+            background: transparent;
+            color: var(--gray-200);
+            cursor: not-allowed;
+        }
+
+        .day-cell.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .day-cell .slots {
+            font-size: 7px;
+            font-weight: 600;
+            color: #16a34a;
+            background: #dcfce7;
+            border-radius: 4px;
+            padding: 1px 4px;
+            margin-top: 2px;
+            line-height: 1.2;
+        }
+
+        .day-cell.selected .slots,
+        .day-cell:hover:not(.disabled):not(.empty) .slots {
+            color: #fff;
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* Time Grid */
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 500px) {
+            .time-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .time-slot {
+            padding: 12px 8px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .time-slot:hover:not(.disabled) {
+            border-color: var(--brand-blue);
+        }
+
+        .time-slot.selected {
+            background: var(--brand-blue);
+            border-color: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .time-slot.disabled {
+            background: var(--gray-50);
+            color: var(--gray-200);
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .time-slot-hour {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .time-slot-exec {
+            display: block;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .time-slot.selected .time-slot-exec {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .time-slot.disabled .time-slot-exec {
+            text-decoration: none;
+        }
+
+        /* Form */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width: 500px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 500px) {
+            .form-group.full { grid-column: span 1; }
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            padding: 11px 12px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--brand-blue);
+        }
+
+        /* Summary */
+        .booking-summary {
+            background: var(--brand-blue);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--white);
+        }
+
+        .booking-summary h4 {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--brand-gold);
+            margin-bottom: 2px;
+        }
+
+        .booking-summary p {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .booking-summary i {
+            font-size: 24px;
+            color: var(--brand-gold);
+            opacity: 0.6;
+        }
+
+        /* Info Note */
+        .info-note {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .info-note i {
+            color: var(--brand-blue);
+        }
+
+        /* Buttons */
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-back {
+            background: var(--white);
+            color: var(--text-body);
+            border: 1px solid var(--gray-200);
+        }
+
+        .btn-back:hover {
+            border-color: var(--text-body);
+        }
+
+        .btn-primary {
+            background: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--brand-blue-dark);
+        }
+
+        .btn-primary:disabled {
+            background: var(--gray-200);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        /* Success */
+        .success-view {
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: var(--white);
+            font-size: 32px;
+        }
+
+        .success-view h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .success-view > p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .success-details {
+            background: var(--gray-50);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: left;
+        }
+
+        .success-details .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 13px;
+        }
+
+        .success-details .row:last-child { border-bottom: none; }
+        .success-details .row span:first-child { color: var(--text-muted); }
+        .success-details .row span:last-child { font-weight: 600; color: var(--text-dark); }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--brand-blue);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Simple -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="./" class="logo">
+                <img src="Logotipo/logo-navbar-color.svg" alt="Chile Home">
+            </a>
+            <a href="./" class="btn-back-home">
+                <i class="fas fa-arrow-left"></i>
+                Volver al inicio
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-wrapper">
+        <!-- Left - Image -->
+        <div class="image-section">
+            <div class="image-overlay">
+                <h1>Agenda tu <span>Visita</span></h1>
+                <p>Conoce nuestras casas prefabricadas en persona. Te esperamos en nuestras sucursales.</p>
+            </div>
+        </div>
+
+        <!-- Right - Form -->
+        <div class="form-section">
+            <!-- Page Title -->
+            <div class="page-header">
+                <h1 class="page-title">Agenda tu Visita</h1>
+                <p class="page-subtitle">Conoce nuestras casas prefabricadas en persona</p>
+            </div>
+
+            <!-- Steps -->
+            <div class="steps-bar">
+                <div class="step-item active" data-step="1">
+                    <span class="step-num">1</span>
+                    <span class="step-label">Sucursal</span>
+                </div>
+                <div class="step-item" data-step="2">
+                    <span class="step-num">2</span>
+                    <span class="step-label">Fecha</span>
+                </div>
+                <div class="step-item" data-step="3">
+                    <span class="step-num">3</span>
+                    <span class="step-label">Horario</span>
+                </div>
+                <div class="step-item" data-step="4">
+                    <span class="step-num">4</span>
+                    <span class="step-label">Datos</span>
+                </div>
+            </div>
+
+            <!-- Card -->
+            <div class="booking-card">
+                <!-- Step 1: Sucursal -->
+                <div id="step-1">
+                    <h2 class="section-title">Selecciona una sucursal</h2>
+                    <p class="section-desc">Elige la sucursal más cercana para tu visita</p>
+
+                    <div class="visit-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-home"></i>
+                            <span>Recorre modelos en tamaño real</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Asesoría personalizada</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Cotización sin compromiso</span>
+                        </div>
+                    </div>
+
+                    <div class="branch-grid">
+                        <!-- Santiago -->
+                        <div class="branch-card" onclick="selectBranch('santiago', this)">
+                            <div class="branch-header">
+                                <div class="branch-icon"><i class="fas fa-city"></i></div>
+                                <div>
+                                    <div class="branch-name">Santiago</div>
+                                    <div class="branch-region">Región Metropolitana</div>
+                                </div>
+                            </div>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-33.7735668,-70.7442035" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Ver ubicación en el mapa
+                            </a>
+                            <div class="branch-info">
+                                <i class="fas fa-clock"></i>
+                                <span>Lun-Vie: 10:00 - 17:00 | Sáb: 10:00 - 14:00</span>
+                            </div>
+                        </div>
+
+                        <!-- Puerto Varas -->
+                        <div class="branch-card" onclick="selectBranch('puerto_varas', this)">
+                            <div class="branch-header">
+                                <div class="branch-icon"><i class="fas fa-mountain"></i></div>
+                                <div>
+                                    <div class="branch-name">Puerto Varas</div>
+                                    <div class="branch-region">Región de Los Lagos</div>
+                                </div>
+                            </div>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-41.3507704,-72.9526841" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Ver ubicación en el mapa
+                            </a>
+                            <div class="branch-info">
+                                <i class="fas fa-clock"></i>
+                                <span>Lun-Sáb: 10:00 - 18:00 (turnos mañana y tarde)</span>
+                            </div>
+                        </div>
+
+                        <!-- Paillaco -->
+                        <div class="branch-card" onclick="selectBranch('paillaco', this)">
+                            <div class="branch-header">
+                                <div class="branch-icon"><i class="fas fa-industry"></i></div>
+                                <div>
+                                    <div class="branch-name">Paillaco</div>
+                                    <div class="branch-region">Región de Los Ríos</div>
+                                </div>
+                            </div>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-40.141144,-72.886742" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Ver ubicación en el mapa
+                            </a>
+                            <div class="branch-info">
+                                <i class="fas fa-clock"></i>
+                                <span>Lun-Vie: 9:00 - 16:00 | Sáb: 10:00 - 14:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <div></div>
+                        <button class="btn btn-primary" id="btn-1" disabled onclick="goToStep(2)">
+                            Continuar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Fecha -->
+                <div id="step-2" class="hidden">
+                    <h2 class="section-title">Selecciona una fecha</h2>
+                    <p class="section-desc">Elige el día que mejor te acomode</p>
+
+                    <div class="calendar-header">
+                        <span class="calendar-month" id="calendar-month"></span>
+                        <div class="calendar-nav">
+                            <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid">
+                        <div class="loading"><div class="spinner"></div></div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="btn btn-back" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Volver</button>
+                        <button class="btn btn-primary" id="btn-2" disabled onclick="goToStep(3)">Continuar <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Horario -->
+                <div id="step-3" class="hidden">
+                    <h2 class="section-title">Elige un horario</h2>
+                    <p class="section-desc">Selecciona la hora para tu visita</p>
+
+                    <div class="time-grid" id="time-grid">
+                        <div class="loading"><div class="spinner"></div></div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="btn btn-back" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Volver</button>
+                        <button class="btn btn-primary" id="btn-3" disabled onclick="goToStep(4)">Continuar <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Datos -->
+                <div id="step-4" class="hidden">
+                    <h2 class="section-title">Completa tus datos</h2>
+                    <p class="section-desc">Ingresa tu información para confirmar</p>
+
+                    <div class="booking-summary">
+                        <div>
+                            <h4>Tu cita</h4>
+                            <p id="summary-text"></p>
+                        </div>
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+
+                    <form id="appointment-form" onsubmit="submitForm(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Nombre completo *</label>
+                                <input type="text" name="nombre" required placeholder="Ej: Juan Pérez">
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono *</label>
+                                <input type="tel" name="telefono" required placeholder="+56 9 1234 5678">
+                            </div>
+                            <div class="form-group full">
+                                <label>Email (opcional)</label>
+                                <input type="email" name="email" placeholder="juan@email.com">
+                            </div>
+                        </div>
+
+                        <div class="info-note">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Un ejecutivo te contactará por WhatsApp para <strong>confirmar</strong> tu visita.</span>
+                        </div>
+
+                        <div class="btn-row">
+                            <button type="button" class="btn btn-back" onclick="goToStep(3)"><i class="fas fa-arrow-left"></i> Volver</button>
+                            <button type="submit" class="btn btn-primary" id="btn-submit">Confirmar <i class="fas fa-check"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success -->
+                <div id="step-success" class="hidden">
+                    <div class="success-view">
+                        <div class="success-icon"><i class="fas fa-check"></i></div>
+                        <h2>¡Visita Agendada!</h2>
+                        <p>Un ejecutivo te contactará por WhatsApp para <strong>confirmar</strong> tu visita.</p>
+                        <div class="success-details">
+                            <div class="row"><span><i class="fas fa-map-marker-alt" style="color:#ef4444;width:18px"></i> Sucursal</span><span id="conf-branch"></span></div>
+                            <div class="row"><span><i class="fas fa-calendar-alt" style="color:#3b82f6;width:18px"></i> Fecha</span><span id="conf-date"></span></div>
+                            <div class="row"><span><i class="fas fa-clock" style="color:#8b5cf6;width:18px"></i> Hora</span><span id="conf-time"></span></div>
+                            <div class="row"><span><i class="fas fa-user-tie" style="color:#0ea5e9;width:18px"></i> Ejecutivo</span><span id="conf-exec"></span></div>
+                            <div class="row"><span><i class="fas fa-user" style="color:#64748b;width:18px"></i> Cliente</span><span id="conf-name"></span></div>
+                            <div class="row"><span><i class="fas fa-info-circle" style="color:#eab308;width:18px"></i> Estado</span><span style="color:#eab308;font-weight:700;">⏳ Pendiente de confirmación</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BASE = window.location.pathname.includes('/chilehome') ? '/chilehome' : '';
+        const API = BASE + '/admin/api/citas.php';
+
+        const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const BRANCH_NAMES = { 'santiago': 'Santiago', 'puerto_varas': 'Puerto Varas', 'paillaco': 'Paillaco' };
+
+        let currentMonth = new Date().getMonth() + 1;
+        let currentYear = new Date().getFullYear();
+        let selectedBranch = null;
+        let selectedDate = null;
+        let selectedTime = null;
+
+        function goToStep(step) {
+            document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+
+            document.querySelectorAll('.step-item').forEach((el, i) => {
+                el.classList.remove('active', 'completed');
+                if (i + 1 < step) el.classList.add('completed');
+                if (i + 1 === step) el.classList.add('active');
+            });
+
+            if (step === 2) loadCalendar();
+            if (step === 3) loadTimeSlots();
+        }
+
+        function selectBranch(branch, el) {
+            document.querySelectorAll('.branch-card.selected').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedBranch = branch;
+            document.getElementById('btn-1').disabled = false;
+        }
+
+        async function loadCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            grid.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            document.getElementById('calendar-month').textContent = `${MONTHS[currentMonth - 1]} ${currentYear}`;
+
+            try {
+                const res = await fetch(`${API}?action=calendario&mes=${currentMonth}&anio=${currentYear}&sucursal=${selectedBranch}`);
+                const data = await res.json();
+                if (data.success) renderCalendar(data.dias);
+                else grid.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">Error al cargar</p>';
+            } catch (e) {
+                grid.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">Error de conexión</p>';
+            }
+        }
+
+        function renderCalendar(days) {
+            const grid = document.getElementById('calendar-grid');
+            grid.innerHTML = '';
+            const today = new Date().toISOString().split('T')[0];
+            const offset = days[0].dia_semana - 1;
+
+            for (let i = 0; i < offset; i++) {
+                grid.innerHTML += '<div class="day-cell empty"></div>';
+            }
+
+            days.forEach(day => {
+                const div = document.createElement('div');
+                div.className = 'day-cell';
+                div.innerHTML = `<span>${parseInt(day.dia)}</span>`;
+
+                if (day.fecha === today) div.classList.add('today');
+                if (day.fecha < today || day.dia_semana === 7 || !day.disponible) {
+                    div.classList.add('disabled');
+                } else {
+                    div.onclick = () => selectDate(day.fecha, div);
+                }
+                grid.appendChild(div);
+            });
+        }
+
+        function changeMonth(dir) {
+            currentMonth += dir;
+            if (currentMonth > 12) { currentMonth = 1; currentYear++; }
+            if (currentMonth < 1) { currentMonth = 12; currentYear--; }
+            loadCalendar();
+        }
+
+        function selectDate(date, el) {
+            document.querySelectorAll('.day-cell.selected').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedDate = date;
+            document.getElementById('btn-2').disabled = false;
+        }
+
+        async function loadTimeSlots() {
+            const grid = document.getElementById('time-grid');
+            grid.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+            try {
+                const res = await fetch(`${API}?action=horarios&fecha=${selectedDate}&sucursal=${selectedBranch}`);
+                const data = await res.json();
+                if (data.success) renderTimeSlots(data.horarios);
+            } catch (e) {
+                grid.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">Error</p>';
+            }
+        }
+
+        let selectedEjecutivo = null;
+
+        function renderTimeSlots(slots) {
+            const grid = document.getElementById('time-grid');
+            grid.innerHTML = '';
+
+            slots.forEach(slot => {
+                const div = document.createElement('div');
+                div.className = 'time-slot';
+                div.innerHTML = `<span class="time-slot-hour">${slot.hora}</span>`;
+                if (slot.ejecutivo) {
+                    div.innerHTML += `<span class="time-slot-exec">${slot.ejecutivo}</span>`;
+                }
+                if (!slot.disponible) {
+                    div.classList.add('disabled');
+                } else {
+                    div.onclick = () => selectTime(slot.hora, slot.ejecutivo || '', div);
+                }
+                grid.appendChild(div);
+            });
+        }
+
+        function selectTime(time, ejecutivo, el) {
+            document.querySelectorAll('.time-slot.selected').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedTime = time;
+            selectedEjecutivo = ejecutivo;
+            document.getElementById('btn-3').disabled = false;
+
+            const d = new Date(selectedDate + 'T12:00:00');
+            let summary = `${BRANCH_NAMES[selectedBranch]} · ${d.toLocaleDateString('es-CL', {day: 'numeric', month: 'long'})} · ${time} hrs`;
+            if (ejecutivo) summary += ` · ${ejecutivo}`;
+            document.getElementById('summary-text').textContent = summary;
+        }
+
+        async function submitForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Agendando...';
+
+            const form = new FormData(e.target);
+            const data = {
+                nombre: form.get('nombre'),
+                telefono: form.get('telefono'),
+                email: form.get('email') || '',
+                sucursal: selectedBranch,
+                fecha: selectedDate,
+                hora: selectedTime
+            };
+
+            try {
+                const res = await fetch(`${API}?action=crear`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    showSuccess(data, result.ejecutivo || '');
+                } else {
+                    alert(result.error || 'Error al agendar');
+                    btn.disabled = false;
+                    btn.innerHTML = 'Confirmar <i class="fas fa-check"></i>';
+                }
+            } catch (err) {
+                alert('Error de conexión');
+                btn.disabled = false;
+                btn.innerHTML = 'Confirmar <i class="fas fa-check"></i>';
+            }
+        }
+
+        function showSuccess(data, ejecutivo) {
+            document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step-success').classList.remove('hidden');
+            document.querySelectorAll('.step-item').forEach(el => el.classList.add('completed'));
+
+            const d = new Date(data.fecha + 'T12:00:00');
+            document.getElementById('conf-branch').textContent = BRANCH_NAMES[data.sucursal];
+            document.getElementById('conf-date').textContent = d.toLocaleDateString('es-CL', {
+                weekday: 'long', day: 'numeric', month: 'long'
+            });
+            document.getElementById('conf-time').textContent = data.hora + ' hrs';
+            document.getElementById('conf-exec').textContent = ejecutivo || selectedEjecutivo || '';
+            document.getElementById('conf-name').textContent = data.nombre;
+        }
+    </script>
+</body>
+</html>

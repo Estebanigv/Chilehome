@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KC6J7N6');</script>
+    <!-- End Google Tag Manager -->
+
+    <title>Política de Privacidad | Chile Home - Casas Prefabricadas en Chile</title>
+    <meta name="description" content="Política de privacidad de Chile Home SPA. Conoce cómo recopilamos, usamos y protegemos tus datos personales.">
+    <link rel="canonical" href="https://chilehome.cl/politica-privacidad">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Logotipo/isotipo.svg">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #c9a86c;
+            --gold-dark: #b8956a;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --border: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .navbar .logo {
+            height: 50px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .navbar .logo:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .legal-page {
+            padding: 130px 20px 60px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .legal-page h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-page h1 span {
+            color: var(--gold);
+        }
+
+        .legal-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .legal-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+        }
+
+        .legal-section h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .legal-section p,
+        .legal-section li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .legal-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .legal-section ul li {
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .legal-section p + p,
+        .legal-section p + ul,
+        .legal-section ul + p {
+            margin-top: 0.8rem;
+        }
+
+        .legal-section a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .legal-section a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover { opacity: 0.8; }
+
+        .legal-footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .legal-footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .legal-footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 0.85rem;
+        }
+
+        .legal-footer a:hover {
+            color: var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .legal-page {
+                padding: 110px 16px 40px;
+            }
+            .legal-section {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC6J7N6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/">
+            <img src="Logotipo/logo-navbar-blanco.svg" alt="Chile Home" class="logo">
+        </a>
+    </nav>
+
+    <!-- Content -->
+    <main class="legal-page">
+        <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+
+        <h1>Política de <span>Privacidad</span></h1>
+        <p class="legal-date">Última actualización: 24 de marzo de 2026</p>
+
+        <section class="legal-section">
+            <h2>1. Información General</h2>
+            <p>Chile Home SPA (en adelante, "Chile Home", "nosotros" o "la empresa") se compromete a proteger la privacidad de los usuarios que visitan nuestro sitio web <strong>chilehome.cl</strong> y utilizan nuestros servicios.</p>
+            <p>Esta Política de Privacidad describe cómo recopilamos, usamos, almacenamos y protegemos tu información personal, en cumplimiento con la Ley N° 19.628 sobre Protección de la Vida Privada de Chile.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2>2. Datos que Recopilamos</h2>
+            <p>Podemos recopilar los siguientes tipos de información:</p>
+            <ul>
+                <li><strong>Datos de identificación:</strong> nombre completo, RUT, dirección de correo electrónico, número de teléfono.</li>
+                <li><strong>Datos de ubicación:</strong> comuna, región y dirección de despacho, geolocalización aproximada (con tu consentimiento).</li>
+                <li><strong>Datos de cotización:</strong> modelo de casa de interés, metraje, preferencias de construcción.</li>
+                <li><strong>Datos de navegación:</strong> dirección IP, tipo de navegador, páginas visitadas, tiempo en el sitio, cookies y tecnologías similares.</li>
+                <li><strong>Datos de comunicación:</strong> mensajes enviados a través de formularios de contacto, WhatsApp o correo electrónico.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2>3. Cómo Usamos tus Datos</h2>
+            <p>Utilizamos la información recopilada para:</p>
+            <ul>
+                <li>Procesar cotizaciones y solicitudes de información sobre nuestras casas prefabricadas.</li>
+                <li>Contactarte por teléfono, correo electrónico o WhatsApp en relación a tu consulta.</li>
+                <li>Coordinar visitas a sucursales y agendar citas.</li>
+                <li>Mejorar la experiencia de navegación en nuestro sitio web.</li>
+                <li>Enviar información comercial, ofertas y novedades (solo si has dado tu consentimiento).</li>
+                <li>Cumplir con obligaciones legales y regulatorias.</li>
+                <li>Generar estadísticas internas de uso del sitio.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2>4. Cookies y Tecnologías de Seguimiento</h2>
+            <p>Nuestro sitio utiliza cookies y herramientas de analítica para mejorar tu experiencia:</p>
+            <ul>
+                <li><strong>Google Analytics (GA4):</strong> para analizar el comportamiento de navegación de forma agregada y anónima.</li>
+                <li><strong>Google Tag Manager:</strong> para gestionar etiquetas de seguimiento y marketing.</li>
+                <li><strong>Meta Pixel (Facebook):</strong> para medir la efectividad de nuestras campañas publicitarias.</li>
+                <li><strong>Cookies esenciales:</strong> necesarias para el funcionamiento correcto del sitio.</li>
+            </ul>
+            <p>Puedes configurar tu navegador para rechazar cookies, aunque esto podría afectar la funcionalidad del sitio.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2>5. Compartición de Datos</h2>
+            <p>No vendemos ni alquilamos tus datos personales a terceros. Podemos compartir información con:</p>
+            <ul>
+                <li><strong>Proveedores de servicios:</strong> plataformas de email, CRM y herramientas de gestión que nos ayudan a operar el negocio, bajo acuerdos de confidencialidad.</li>
+                <li><strong>Plataformas publicitarias:</strong> Google y Meta, para optimización de campañas (datos anonimizados).</li>
+                <li><strong>Autoridades competentes:</strong> cuando sea requerido por ley o proceso judicial.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2>6. Seguridad de los Datos</h2>
+            <p>Implementamos medidas de seguridad técnicas y organizativas para proteger tu información personal, incluyendo:</p>
+            <ul>
+                <li>Conexión cifrada mediante SSL/TLS (HTTPS).</li>
+                <li>Acceso restringido a datos personales solo al personal autorizado.</li>
+                <li>Protección contra ataques CSRF, XSS y SQL injection.</li>
+                <li>Copias de seguridad periódicas de la información.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2>7. Tus Derechos</h2>
+            <p>De acuerdo con la legislación chilena, tienes derecho a:</p>
+            <ul>
+                <li><strong>Acceso:</strong> solicitar información sobre los datos personales que tenemos almacenados.</li>
+                <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos.</li>
+                <li><strong>Cancelación:</strong> solicitar la eliminación de tus datos personales.</li>
+                <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos con fines de marketing.</li>
+            </ul>
+            <p>Para ejercer estos derechos, contáctanos en <a href="mailto:contacto@chilehome.cl">contacto@chilehome.cl</a>.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2>8. Retención de Datos</h2>
+            <p>Conservamos tus datos personales durante el tiempo necesario para cumplir con los fines descritos en esta política, o según lo exija la legislación vigente. Los datos de cotización se mantienen por un máximo de 24 meses desde el último contacto.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2>9. Menores de Edad</h2>
+            <p>Nuestros servicios no están dirigidos a menores de 18 años. No recopilamos intencionalmente datos de menores. Si detectamos que hemos recopilado información de un menor, procederemos a eliminarla.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2>10. Modificaciones</h2>
+            <p>Chile Home se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Las modificaciones serán publicadas en esta página con la fecha de última actualización. Te recomendamos revisarla periódicamente.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2>11. Contacto</h2>
+            <p>Si tienes preguntas sobre esta Política de Privacidad, puedes contactarnos:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:contacto@chilehome.cl">contacto@chilehome.cl</a></li>
+                <li><strong>Teléfono:</strong> <a href="tel:+56998654665">+56 9 9865 4665</a></li>
+                <li><strong>Sitio web:</strong> <a href="https://chilehome.cl">chilehome.cl</a></li>
+            </ul>
+        </section>
+
+        <div class="legal-footer">
+            <p>&copy; 2026 Chile Home SPA. Todos los derechos reservados.</p>
+            <div style="margin-top: 12px;">
+                <a href="terminos-condiciones">Términos y Condiciones</a>
+                <a href="/">Inicio</a>
+                <a href="contacto">Contacto</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
