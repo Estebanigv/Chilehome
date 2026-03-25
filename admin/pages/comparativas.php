@@ -122,38 +122,70 @@ include __DIR__ . '/../includes/sidebar.php';
 ?>
 
 <style>
-.comp-container { padding: 20px; max-width: 1400px; margin: 0 auto; }
-.comp-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
-.comp-kpi { background: var(--dash-bg-secondary); border: 1px solid var(--dash-border); border-radius: 12px; padding: 20px; text-align: center; }
-.comp-kpi .number { font-size: 1.8rem; font-weight: 800; display: block; }
+.comp-container { padding: 20px; max-width: 1600px; margin: 0 auto; }
+
+/* KPIs */
+.comp-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+.comp-kpi { background: var(--dash-bg-secondary); border: 1px solid var(--dash-border); border-radius: 14px; padding: 22px 16px; text-align: center; position: relative; overflow: hidden; }
+.comp-kpi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.comp-kpi:nth-child(1)::before { background: #3b82f6; }
+.comp-kpi:nth-child(2)::before { background: #c9a86c; }
+.comp-kpi:nth-child(3)::before { background: #22c55e; }
+.comp-kpi:nth-child(4)::before { background: #22c55e; }
+.comp-kpi .number { font-size: 1.7rem; font-weight: 800; display: block; letter-spacing: -0.02em; }
 .comp-kpi .number.green { color: #22c55e; }
 .comp-kpi .number.gold { color: #c9a86c; }
 .comp-kpi .number.blue { color: #3b82f6; }
-.comp-kpi .label { font-size: 0.8rem; color: var(--dash-text-muted); margin-top: 4px; display: block; }
-.comp-card { background: var(--dash-bg-secondary); border: 1px solid var(--dash-border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
-.comp-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-.comp-card h3 i { color: #c9a86c; }
-.charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; margin-bottom: 24px; }
-.chart-wrap { position: relative; height: 320px; }
-.comp-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.comp-kpi .label { font-size: 0.75rem; color: var(--dash-text-muted); margin-top: 6px; display: block; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+
+/* Cards */
+.comp-card { background: var(--dash-bg-secondary); border: 1px solid var(--dash-border); border-radius: 14px; padding: 20px; margin-bottom: 20px; }
+.comp-card h3 { font-size: 0.88rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; color: var(--dash-text-primary); }
+.comp-card h3 i { color: #c9a86c; font-size: 0.85rem; }
+.comp-card h3 .chart-tag { margin-left: auto; font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: rgba(34,197,94,0.1); color: #22c55e; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* Charts grid — 4 en una línea */
+.charts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.chart-wrap { position: relative; height: 280px; }
+
+/* Tabla */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
 .comp-table thead { position: sticky; top: 0; z-index: 2; }
-.comp-table th { background: var(--dash-bg-tertiary, #1a1a1a); padding: 10px 12px; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--dash-text-muted); border-bottom: 2px solid var(--dash-border); white-space: nowrap; }
-.comp-table td { padding: 10px 12px; border-bottom: 1px solid var(--dash-border); vertical-align: middle; }
-.comp-table tr:hover td { background: rgba(201,168,108,0.04); }
-.comp-table .empresa-badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 6px; font-weight: 600; font-size: 0.78rem; }
+.comp-table th { background: var(--dash-bg-tertiary, #111); padding: 10px 12px; text-align: left; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--dash-text-muted); border-bottom: 2px solid var(--dash-border); white-space: nowrap; }
+.comp-table td { padding: 9px 12px; border-bottom: 1px solid var(--dash-border); vertical-align: middle; }
+.comp-table tbody tr { transition: background 0.15s; }
+.comp-table tr:hover td { background: rgba(201,168,108,0.05); }
+.comp-table tr.row-ch td { background: rgba(34,197,94,0.03); }
+.comp-table .empresa-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; white-space: nowrap; }
 .comp-table .badge-ch { background: rgba(34,197,94,0.12); color: #22c55e; }
-.comp-table .badge-comp { background: rgba(100,116,139,0.1); color: var(--dash-text-muted); }
+.comp-table .badge-comp { background: rgba(100,116,139,0.08); color: var(--dash-text-muted); }
 .comp-table .precio-val { font-weight: 700; font-variant-numeric: tabular-nums; }
 .comp-table .precio-ch { color: #22c55e; }
-.comp-table .precio-comp { color: var(--dash-text-primary); }
-.comp-table .diff-badge { font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+.comp-table .diff-badge { font-size: 0.7rem; padding: 3px 8px; border-radius: 5px; font-weight: 700; white-space: nowrap; }
 .comp-table .diff-win { background: rgba(34,197,94,0.12); color: #22c55e; }
 .comp-table .diff-lose { background: rgba(239,68,68,0.1); color: #ef4444; }
-.table-scroll { overflow-x: auto; max-height: 500px; overflow-y: auto; border-radius: 10px; border: 1px solid var(--dash-border); }
-.btn-seed { background: #c9a86c; color: #0a0a0a; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
-.btn-seed:hover { background: #b8956a; }
-.empty-state { text-align: center; padding: 60px 20px; color: var(--dash-text-muted); }
-.empty-state i { font-size: 3rem; margin-bottom: 16px; color: #c9a86c; display: block; }
+.table-scroll { overflow-x: auto; max-height: 520px; overflow-y: auto; border-radius: 12px; border: 1px solid var(--dash-border); }
+
+/* Tabs para tablas */
+.comp-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+.comp-tab { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--dash-border); background: transparent; color: var(--dash-text-muted); cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s; }
+.comp-tab:hover { border-color: #c9a86c; color: var(--dash-text-primary); }
+.comp-tab.active { background: rgba(201,168,108,0.12); border-color: #c9a86c; color: #c9a86c; }
+.comp-tab-content { display: none; }
+.comp-tab-content.active { display: block; }
+
+/* Botón */
+.btn-seed { background: #c9a86c; color: #0a0a0a; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.btn-seed:hover { background: #b8956a; transform: translateY(-1px); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 80px 20px; color: var(--dash-text-muted); }
+.empty-state i { font-size: 3rem; margin-bottom: 16px; color: #c9a86c; display: block; opacity: 0.6; }
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .charts-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 768px) {
     .charts-grid { grid-template-columns: 1fr; }
     .comp-kpis { grid-template-columns: repeat(2, 1fr); }
@@ -208,29 +240,36 @@ include __DIR__ . '/../includes/sidebar.php';
             </div>
         </div>
 
-        <!-- GRÁFICOS -->
+        <!-- GRÁFICOS — 4 en línea -->
         <div class="charts-grid">
             <div class="comp-card">
-                <h3><i class="fas fa-chart-bar"></i> Comparativa ~36 m²</h3>
+                <h3><i class="fas fa-home"></i> Kit ~36 m² <span class="chart-tag"><?= count($chartCompare36) ?> empresas</span></h3>
                 <div class="chart-wrap"><canvas id="chart36"></canvas></div>
             </div>
             <div class="comp-card">
-                <h3><i class="fas fa-chart-bar"></i> Comparativa ~54 m²</h3>
+                <h3><i class="fas fa-home"></i> Kit ~54 m² <span class="chart-tag"><?= count($chartCompare54) ?> empresas</span></h3>
                 <div class="chart-wrap"><canvas id="chart54"></canvas></div>
             </div>
             <div class="comp-card">
-                <h3><i class="fas fa-chart-bar"></i> Comparativa ~72 m²</h3>
+                <h3><i class="fas fa-home"></i> Kit ~72 m² <span class="chart-tag"><?= count($chartCompare72) ?> empresas</span></h3>
                 <div class="chart-wrap"><canvas id="chart72"></canvas></div>
             </div>
             <div class="comp-card">
-                <h3><i class="fas fa-chart-bar"></i> Precio Promedio por m²</h3>
+                <h3><i class="fas fa-dollar-sign"></i> Promedio $/m² <span class="chart-tag">ranking</span></h3>
                 <div class="chart-wrap"><canvas id="chartM2"></canvas></div>
             </div>
         </div>
 
-        <!-- TABLA DETALLE POR EMPRESA -->
+        <!-- TABS -->
+        <div class="comp-tabs">
+            <button class="comp-tab active" onclick="switchTab('detalle', this)"><i class="fas fa-table" style="margin-right:4px;"></i> Detalle Completo</button>
+            <button class="comp-tab" onclick="switchTab('resumen', this)"><i class="fas fa-building" style="margin-right:4px;"></i> Resumen por Empresa</button>
+        </div>
+
+        <!-- TABLA DETALLE -->
+        <div class="comp-tab-content active" id="tab-detalle">
         <div class="comp-card">
-            <h3><i class="fas fa-table"></i> Detalle Completo por Empresa</h3>
+            <h3><i class="fas fa-table"></i> Todos los Modelos <span class="chart-tag"><?= count($allData) ?> registros</span></h3>
             <div class="table-scroll">
                 <table class="comp-table">
                     <thead>
@@ -285,10 +324,10 @@ include __DIR__ . '/../includes/sidebar.php';
                                 }
                             }
                         ?>
-                        <tr>
+                        <tr class="<?= $isCH ? 'row-ch' : '' ?>">
                             <td>
                                 <span class="empresa-badge <?= $isCH ? 'badge-ch' : 'badge-comp' ?>">
-                                    <?php if ($isCH): ?><i class="fas fa-star" style="font-size:0.65rem;"></i><?php endif; ?>
+                                    <?php if ($isCH): ?><i class="fas fa-star" style="font-size:0.6rem;"></i><?php endif; ?>
                                     <?= htmlspecialchars($r['empresa']) ?>
                                 </span>
                             </td>
@@ -296,11 +335,11 @@ include __DIR__ . '/../includes/sidebar.php';
                             <td><strong><?= $metros ?>m²</strong></td>
                             <td><?= $r['dormitorios'] ?></td>
                             <td><?= $r['banos'] ?></td>
-                            <td><?= htmlspecialchars($r['tipo_techo']) ?></td>
-                            <td class="precio-val <?= $isCH ? 'precio-ch' : 'precio-comp' ?>">$<?= number_format($precio, 0, ',', '.') ?></td>
-                            <td style="color:var(--dash-text-muted);">$<?= number_format($precioM2, 0, ',', '.') ?></td>
+                            <td style="font-size:0.75rem;"><?= htmlspecialchars($r['tipo_techo']) ?></td>
+                            <td class="precio-val <?= $isCH ? 'precio-ch' : '' ?>">$<?= number_format($precio, 0, ',', '.') ?></td>
+                            <td style="color:var(--dash-text-muted);font-size:0.75rem;">$<?= number_format($precioM2, 0, ',', '.') ?></td>
                             <td><?= $diff ?></td>
-                            <td style="font-size:0.75rem;color:var(--dash-text-muted);"><?= htmlspecialchars($r['cobertura']) ?></td>
+                            <td style="font-size:0.72rem;color:var(--dash-text-muted);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><?= htmlspecialchars($r['cobertura']) ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -308,7 +347,10 @@ include __DIR__ . '/../includes/sidebar.php';
             </div>
         </div>
 
+        </div><!-- /tab-detalle -->
+
         <!-- RESUMEN POR EMPRESA -->
+        <div class="comp-tab-content" id="tab-resumen">
         <div class="comp-card">
             <h3><i class="fas fa-building"></i> Resumen por Empresa</h3>
             <div class="table-scroll">
@@ -351,11 +393,22 @@ include __DIR__ . '/../includes/sidebar.php';
                 </table>
             </div>
         </div>
+        </div><!-- /tab-resumen -->
 
         <?php endif; ?>
 
     </div>
 </main>
+
+<script>
+// ─── TABS ───────────────────────────────────────────
+function switchTab(tabId, btn) {
+    document.querySelectorAll('.comp-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.comp-tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + tabId).classList.add('active');
+}
+</script>
 
 <script>
 // ─── SEED DATA ──────────────────────────────────────
