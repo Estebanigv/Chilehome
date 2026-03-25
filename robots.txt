@@ -11,8 +11,9 @@ Allow: /contacto
 Allow: /Imagenes/
 Allow: /Logotipo/
 
-# Bloquear archivos internos
+# Bloquear archivos internos y rutas huérfanas
 Disallow: /admin/
+Disallow: /author/
 Disallow: /*.md$
 Disallow: /.htaccess
 Disallow: /.claude/
