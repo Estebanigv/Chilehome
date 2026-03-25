@@ -2612,7 +2612,22 @@ function createOrUpdateMap(mapId, lat, lng, ubicacionInput, coordenadasInput, ma
     const mapElement = document.getElementById(mapId);
     if (!mapElement) return;
 
-    // Mostrar loading state
+    const position = { lat, lng };
+
+    // Si el mapa ya existe, solo mover marcador (NO destruir el DOM)
+    if (mapInstances[mapId]) {
+        try {
+            mapInstances[mapId].map.setCenter(position);
+            mapInstances[mapId].map.setZoom(17);
+            mapInstances[mapId].marker.setPosition(position);
+            return;
+        } catch (e) {
+            // Mapa corrupto, recrear
+            delete mapInstances[mapId];
+        }
+    }
+
+    // Mostrar loading state (solo para mapa nuevo)
     mapElement.innerHTML = `
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #f5f5f5; border-radius: 8px; padding: 20px; text-align: center;">
             <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #c9a86c; margin-bottom: 10px;"></i>
@@ -2620,24 +2635,22 @@ function createOrUpdateMap(mapId, lat, lng, ubicacionInput, coordenadasInput, ma
         </div>
     `;
 
-    // Si Google Maps no está disponible después de 3 segundos, mostrar fallback
-    const fallbackTimeout = setTimeout(() => {
-        if (!isGoogleMapsLoaded()) {
-            mapElement.innerHTML = `
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #e8e8e8; border-radius: 8px; padding: 20px; text-align: center;">
-                    <i class="fas fa-map-marker-alt" style="font-size: 32px; color: #c9a86c; margin-bottom: 10px;"></i>
-                    <p style="margin: 0 0 10px; font-size: 14px; color: #666;">Ubicación guardada</p>
-                    <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="background: #c9a86c; color: white; padding: 12px 20px; min-height: 44px; border-radius: 8px; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-external-link-alt"></i> Ver en Google Maps
-                    </a>
-                </div>
-            `;
-        }
-    }, 3000);
-
-    // Si Maps no esta disponible, mostrar mapa estatico de OpenStreetMap
+    // Si Maps no esta disponible, mostrar fallback
     if (!isGoogleMapsLoaded()) {
-        clearTimeout(fallbackTimeout);
+        const fallbackTimeout = setTimeout(() => {
+            if (!isGoogleMapsLoaded()) {
+                mapElement.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #e8e8e8; border-radius: 8px; padding: 20px; text-align: center;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 32px; color: #c9a86c; margin-bottom: 10px;"></i>
+                        <p style="margin: 0 0 10px; font-size: 14px; color: #666;">Ubicación guardada</p>
+                        <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="background: #c9a86c; color: white; padding: 12px 20px; min-height: 44px; border-radius: 8px; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-external-link-alt"></i> Ver en Google Maps
+                        </a>
+                    </div>
+                `;
+            }
+        }, 3000);
+
         const staticMapUrl = `https://staticmap.openstreetmap.de/staticmap.php?center=${lat},${lng}&zoom=16&size=400x200&maptype=mapnik&markers=${lat},${lng},red-pushpin`;
         mapElement.innerHTML = `
             <div style="height: 100%; border-radius: 8px; overflow: hidden; position: relative; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
@@ -2659,88 +2672,72 @@ function createOrUpdateMap(mapId, lat, lng, ubicacionInput, coordenadasInput, ma
         return;
     }
 
-    // Limpiar timeout si Maps cargó
-    clearTimeout(fallbackTimeout);
-
-    const position = { lat, lng };
-
     try {
-        if (mapInstances[mapId]) {
-            // Si el mapa ya existe, solo mover el marcador
-            mapInstances[mapId].map.setCenter(position);
-            mapInstances[mapId].marker.setPosition(position);
-        } else {
-            // Crear nuevo mapa
-            const map = new google.maps.Map(mapElement, {
-                center: position,
-                zoom: 17,
-                mapTypeId: 'hybrid',
-                mapTypeControl: false,
-                streetViewControl: false,
-                fullscreenControl: false,
-                zoomControl: true,
-                gestureHandling: 'greedy' // Mejor para móvil
-            });
+        const map = new google.maps.Map(mapElement, {
+            center: position,
+            zoom: 17,
+            mapTypeId: 'hybrid',
+            mapTypeControl: false,
+            streetViewControl: false,
+            fullscreenControl: false,
+            zoomControl: true,
+            gestureHandling: 'greedy'
+        });
 
-            // Crear marcador arrastrable con icono personalizado (sin cuadro negro)
-            const markerIcon = {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#c9a86c',
-                fillOpacity: 1,
-                strokeColor: '#ffffff',
-                strokeWeight: 3,
-                scale: 12
-            };
+        const markerIcon = {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: '#c9a86c',
+            fillOpacity: 1,
+            strokeColor: '#ffffff',
+            strokeWeight: 3,
+            scale: 12
+        };
 
-            const marker = new google.maps.Marker({
-                position: position,
-                map: map,
-                draggable: true,
-                animation: google.maps.Animation.DROP,
-                title: 'Arrastra para ajustar la ubicacion',
-                icon: markerIcon
-            });
+        const marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Arrastra para ajustar la ubicacion',
+            icon: markerIcon
+        });
 
-            // Evento cuando se arrastra el marcador
-            marker.addListener('dragend', async () => {
-                const newPos = marker.getPosition();
-                const newLat = newPos.lat();
-                const newLng = newPos.lng();
+        marker.addListener('dragend', async () => {
+            const newPos = marker.getPosition();
+            const newLat = newPos.lat();
+            const newLng = newPos.lng();
 
-                if (coordenadasInput) {
-                    coordenadasInput.value = `${newLat},${newLng}`;
-                }
+            if (coordenadasInput) {
+                coordenadasInput.value = `${newLat},${newLng}`;
+            }
 
-                const direccion = await reverseGeocode(newLat, newLng);
-                if (direccion && ubicacionInput) {
-                    ubicacionInput.value = direccion;
-                }
+            const direccion = await reverseGeocode(newLat, newLng);
+            if (direccion && ubicacionInput) {
+                ubicacionInput.value = direccion;
+            }
 
-                map.panTo(newPos);
-            });
+            map.panTo(newPos);
+        });
 
-            // Clic en el mapa para mover el marcador
-            map.addListener('click', async (e) => {
-                const newLat = e.latLng.lat();
-                const newLng = e.latLng.lng();
+        map.addListener('click', async (e) => {
+            const newLat = e.latLng.lat();
+            const newLng = e.latLng.lng();
 
-                marker.setPosition(e.latLng);
+            marker.setPosition(e.latLng);
 
-                if (coordenadasInput) {
-                    coordenadasInput.value = `${newLat},${newLng}`;
-                }
+            if (coordenadasInput) {
+                coordenadasInput.value = `${newLat},${newLng}`;
+            }
 
-                const direccion = await reverseGeocode(newLat, newLng);
-                if (direccion && ubicacionInput) {
-                    ubicacionInput.value = direccion;
-                }
-            });
+            const direccion = await reverseGeocode(newLat, newLng);
+            if (direccion && ubicacionInput) {
+                ubicacionInput.value = direccion;
+            }
+        });
 
-            mapInstances[mapId] = { map, marker };
-        }
+        mapInstances[mapId] = { map, marker };
     } catch (error) {
         console.log('Error creando mapa:', error);
-        // Fallback: mostrar link a Google Maps
         mapElement.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #e8e8e8; border-radius: 8px; padding: 20px; text-align: center;">
                 <p style="margin: 0 0 10px; font-size: 14px; color: #666;">Ubicación: ${lat.toFixed(6)}, ${lng.toFixed(6)}</p>
@@ -2749,6 +2746,26 @@ function createOrUpdateMap(mapId, lat, lng, ubicacionInput, coordenadasInput, ma
                 </a>
             </div>
         `;
+    }
+}
+
+// Expandir/contraer mapa inline (empieza expandido, toggle colapsa)
+function toggleMapExpand(btn, targetMapId) {
+    const container = btn.closest('.map-container, .quote-map-container');
+    const mapEl = targetMapId ? document.getElementById(targetMapId) : container.querySelector('.inline-map');
+    if (!mapEl) return;
+
+    const isCollapsed = mapEl.classList.toggle('map-collapsed');
+    btn.classList.toggle('expanded', !isCollapsed);
+    btn.querySelector('span').textContent = isCollapsed ? 'Expandir mapa' : 'Contraer mapa';
+
+    // Notificar a Google Maps del cambio de tamaño
+    const mapId = mapEl.id;
+    if (mapInstances[mapId]) {
+        setTimeout(() => {
+            google.maps.event.trigger(mapInstances[mapId].map, 'resize');
+            mapInstances[mapId].map.setCenter(mapInstances[mapId].marker.getPosition());
+        }, 350);
     }
 }
 
@@ -2859,10 +2876,12 @@ function setupGeolocation(btnId, inputId, coordsId, mapContainerId, mapId) {
 
                 // Aviso si precision es baja (ubicacion por IP en vez de GPS)
                 if (accuracy > 1000) {
-                    showNotification('Ubicacion aproximada por IP. Para mejor precision, ingresa tu direccion manualmente o activa el GPS.', 'warning');
-                    ubicacionInput.placeholder = 'Ingresa tu direccion para mayor precision';
+                    showNotification('Ubicación aproximada. Escribe tu dirección arriba o arrastra el marcador para ajustar.', 'warning');
+                    ubicacionInput.value = '';
+                    ubicacionInput.placeholder = 'Escribe tu dirección para mayor precisión';
+                    ubicacionInput.focus();
                 } else if (accuracy > 100) {
-                    showNotification(`Ubicacion aproximada (${Math.round(accuracy)}m). Ajusta el marcador si es necesario.`, 'warning');
+                    showNotification(`Ubicación aproximada (${Math.round(accuracy)}m). Arrastra el marcador para ajustar.`, 'warning');
                 }
 
                 setTimeout(() => {

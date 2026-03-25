@@ -1325,6 +1325,10 @@
                         <input type="hidden" id="quoteCoords" name="coordenadas">
                         <div class="quote-map-container" id="quoteMapContainer" style="display: none;">
                             <div id="quoteMap"></div>
+                            <button type="button" class="map-expand-btn" onclick="toggleMapExpand(this, 'quoteMap')">
+                                <i class="fas fa-chevron-down"></i>
+                                <span>Contraer mapa</span>
+                            </button>
                             <p class="quote-map-hint"><i class="fas fa-hand-pointer"></i> Arrastra el marcador para ajustar tu ubicación</p>
                         </div>
                     </div>
@@ -1825,6 +1829,10 @@
                             </div>
                             <div class="map-container" id="emailFormMapContainer" style="display: none;">
                                 <div id="emailFormMap" class="inline-map"></div>
+                                <button type="button" class="map-expand-btn expanded" onclick="toggleMapExpand(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>Contraer mapa</span>
+                                </button>
                                 <p class="map-hint"><i class="fas fa-hand-pointer"></i> Arrastra el marcador para ajustar la ubicación</p>
                             </div>
                         </div>
@@ -1902,6 +1910,10 @@
                             </div>
                             <div class="map-container" id="pdfFormMapContainer" style="display: none;">
                                 <div id="pdfFormMap" class="inline-map"></div>
+                                <button type="button" class="map-expand-btn expanded" onclick="toggleMapExpand(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>Contraer mapa</span>
+                                </button>
                                 <p class="map-hint"><i class="fas fa-hand-pointer"></i> Arrastra el marcador para ajustar la ubicación</p>
                             </div>
                         </div>
