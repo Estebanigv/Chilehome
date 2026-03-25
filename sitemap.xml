@@ -12,15 +12,15 @@
             <image:title>Chile Home - Casas Prefabricadas en Chile</image:title>
         </image:image>
         <image:image>
-            <image:loc>https://chilehome.cl/Imagenes/Modelos/36m2%202A/36%202A/36m2%202A%20H.png</image:loc>
+            <image:loc>https://chilehome.cl/Imagenes/modelos/36m2-2a/36m2-2a-horizontal.png</image:loc>
             <image:title>Casa prefabricada 36m2 dos aguas - Chile Home</image:title>
         </image:image>
         <image:image>
-            <image:loc>https://chilehome.cl/Imagenes/Modelos/36m2%202A/webp/54%202Ablanca/54%202A_Blanca%20H.png</image:loc>
+            <image:loc>https://chilehome.cl/Imagenes/modelos/54m2-2a/54m2-2a-horizontal.png</image:loc>
             <image:title>Casa prefabricada 54m2 dos aguas - Chile Home</image:title>
         </image:image>
         <image:image>
-            <image:loc>https://chilehome.cl/Imagenes/Modelos/36m2%202A/webp/72m2%202Aguas/72m2%202A%20portada.webp</image:loc>
+            <image:loc>https://chilehome.cl/Imagenes/modelos/72m2-2a/72m2-2a-portada.webp</image:loc>
             <image:title>Casa prefabricada 72m2 dos aguas - Chile Home</image:title>
         </image:image>
     </url>
@@ -45,12 +45,52 @@
         </image:image>
     </url>
 
+    <!-- Sobre Nosotros -->
+    <url>
+        <loc>https://chilehome.cl/nosotros</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
     <!-- Contacto -->
     <url>
         <loc>https://chilehome.cl/contacto</loc>
         <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+    </url>
+
+    <!-- Guías / Blog -->
+    <url>
+        <loc>https://chilehome.cl/guias/cuanto-cuesta-una-casa-prefabricada-en-chile</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://chilehome.cl/guias/casa-prefabricada-vs-casa-tradicional</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://chilehome.cl/guias/como-instalar-casa-prefabricada</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://chilehome.cl/guias/casas-prefabricadas-pino-impregnado</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://chilehome.cl/guias/permiso-construccion-casa-prefabricada-chile</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 
     <!-- Política de Privacidad -->

@@ -10,6 +10,8 @@ Allow: /agenda
 Allow: /contacto
 Allow: /Imagenes/
 Allow: /Logotipo/
+Allow: /guias/
+Allow: /nosotros
 
 # Bloquear archivos internos y rutas huérfanas
 Disallow: /admin/
