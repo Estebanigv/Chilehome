@@ -25,10 +25,31 @@ try {
         material VARCHAR(150),
         precio INT DEFAULT 0,
         precio_texto VARCHAR(50),
+        flete_incluido TINYINT(1) DEFAULT 0,
+        flete_politica VARCHAR(200) DEFAULT '',
+        origen_planta VARCHAR(150) DEFAULT '',
+        distancia_chillan_km INT DEFAULT 0,
+        flete_min INT DEFAULT 0,
+        flete_max INT DEFAULT 0,
+        precio_total_min INT DEFAULT 0,
+        precio_total_max INT DEFAULT 0,
         cobertura VARCHAR(200),
         observaciones TEXT,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    // Add new columns if table already exists
+    $cols = $db->fetchAll("SHOW COLUMNS FROM comparativas_precios");
+    $colNames = array_column($cols, 'Field');
+    if (!in_array('flete_incluido', $colNames)) {
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN flete_incluido TINYINT(1) DEFAULT 0 AFTER precio_texto");
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN flete_politica VARCHAR(200) DEFAULT '' AFTER flete_incluido");
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN origen_planta VARCHAR(150) DEFAULT '' AFTER flete_politica");
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN distancia_chillan_km INT DEFAULT 0 AFTER origen_planta");
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN flete_min INT DEFAULT 0 AFTER distancia_chillan_km");
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN flete_max INT DEFAULT 0 AFTER flete_min");
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN precio_total_min INT DEFAULT 0 AFTER flete_max");
+        $db->query("ALTER TABLE comparativas_precios ADD COLUMN precio_total_max INT DEFAULT 0 AFTER precio_total_min");
+    }
 } catch (Exception $e) {
     error_log("Migration comparativas_precios: " . $e->getMessage());
 }
@@ -47,38 +68,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 // Limpiar e insertar datos frescos
                 $db->query("TRUNCATE TABLE comparativas_precios");
 
+                // empresa, website, modelo, metros, dorm, banos, techo, material, precio, precio_texto,
+                // flete_incluido, flete_politica, origen_planta, dist_km, flete_min, flete_max, total_min, total_max, cobertura, obs
                 $data = [
-                    ['Chile Home','chilehome.cl','2 Aguas 36 m² (Línea Clásica)',36,2,1,'2 Aguas','Paneles Pino',1550000,'','Nacional (Chañaral a Puerto Varas)','Precio base. Flete incluido. +25.000 casas entregadas'],
-                    ['Chile Home','chilehome.cl','2 Aguas 54 m² (Línea Clásica)',54,2,1,'2 Aguas','Paneles Pino',1950000,'','Nacional (Chañaral a Puerto Varas)','PRECIO MÁS POPULAR. Puertas y ventanas incluidas'],
-                    ['Chile Home','chilehome.cl','2 Aguas 72 m² (Línea Clásica)',72,3,1,'2 Aguas','Paneles Pino',2700000,'','Nacional (Chañaral a Puerto Varas)','Modelo nuevo 2026. Puertas y ventanas incluidas'],
-                    ['Chile Home','chilehome.cl','6 Aguas 54 m² (Línea Clásica)',54,2,1,'6 Aguas','Paneles Pino - Siding',0,'A consultar','Nacional','Siding exterior. Precio requiere cotización'],
-                    ['Chile Home','chilehome.cl','6 Aguas 72 m² (Línea Clásica)',72,3,1,'6 Aguas','Paneles Pino',0,'A consultar','Nacional','Precio requiere cotización'],
-                    ['Chile Home','chilehome.cl','Terra 36 m² (Línea 2026)',36,2,1,'2 Aguas','Paneles Pino - Diseño contemporáneo',0,'A consultar','Nacional','Línea 2026 minimalista'],
-                    ['Casas San Gabriel','soloprefabricadas.cl','2 Aguas 36 m²',36,2,1,'2 Aguas','Madera (Paneles)',2250000,'','Biobío (cobertura nacional)','Modelo mediterráneo. Kit básico'],
-                    ['Casas San Gabriel','soloprefabricadas.cl','Mediterráneo 54 m²',54,3,1,'4 Aguas','Madera (Paneles)',2450000,'','Biobío (cobertura nacional)','3 dormitorios. Kit básico'],
-                    ['Casas San Gabriel','soloprefabricadas.cl','4 Aguas 82 m²',82,3,2,'4 Aguas','Madera (Paneles)',3470000,'','Biobío (cobertura nacional)','Kit básico'],
-                    ['Casas San Gabriel','soloprefabricadas.cl','4 Aguas 101 m²',101,4,2,'4 Aguas','Madera (Paneles)',3920000,'','Biobío (cobertura nacional)','Kit básico'],
-                    ['Casas San Gabriel','soloprefabricadas.cl','4 Aguas 122 m²',122,6,3,'4 Aguas','Madera (Paneles)',4430000,'','Biobío (cobertura nacional)','Kit básico'],
-                    ['Casas Laguna','casaslaguna.cl','Casa 36 m² 2 Aguas',36,2,1,'2 Aguas','Madera (Paneles)',1690000,'','R. Metropolitana / Coquimbo','Kit básico. Precio incluye IVA'],
-                    ['Casas Laguna','casaslaguna.cl','Casa 54 m² 4 Aguas',54,3,1,'4 Aguas','Madera (Paneles)',2190000,'','R. Metropolitana / Coquimbo','Kit básico'],
-                    ['Casas Laguna','casaslaguna.cl','Casa 72 m² 6 Aguas',72,4,2,'6 Aguas','Madera (Paneles)',2690000,'','R. Metropolitana / Coquimbo','Kit básico'],
-                    ['Casas Laguna','casaslaguna.cl','Casa 93 m² Mediterránea',93,4,2,'4 Aguas','Madera (Paneles)',3790000,'','R. Metropolitana / Coquimbo','Kit básico'],
-                    ['Casas Huelquen','casaschilespa.cl','Estrella 36 m²',36,2,1,'2 Aguas','Madera (Paneles)',1600000,'','R. Metropolitana','Kit básico'],
-                    ['Casas Huelquen','casaschilespa.cl','Estrella 54 m²',54,3,1,'2 Aguas','Madera (Paneles)',2300000,'','R. Metropolitana','Kit básico'],
-                    ['Casas Huelquen','casaschilespa.cl','Estrella 72 m²',72,4,2,'2 Aguas','Madera (Paneles)',3100000,'','R. Metropolitana','Kit básico'],
-                    ['Casas Huelquen','casaschilespa.cl','Caupolicán 72 m²',72,4,2,'2 Aguas','Madera (Paneles)',3300000,'','R. Metropolitana','Modelo superior'],
-                    ['Casas Chile SpA','casaschilespa.cl','Temuco 36 m²',36,2,1,'2 Aguas','Madera Pino 1ª selección',4070000,'','Nacional (3 sucursales)','Kit inicial. Alta calidad'],
-                    ['Casas Chile SpA','casaschilespa.cl','Temuco 54 m²',54,3,1,'2 Aguas','Madera Pino 1ª selección',5092000,'','Nacional (3 sucursales)','Kit inicial'],
-                    ['Casas Chile SpA','casaschilespa.cl','Temuco 72 m²',72,4,2,'2 Aguas','Madera Pino 1ª selección',6573000,'','Nacional (3 sucursales)','Kit inicial. 4 dorm 2 baños'],
-                    ['Casas Chile SpA','casaschilespa.cl','Mediterránea 72 m²',72,4,2,'4 Aguas','Madera Pino 1ª selección',8569000,'','Nacional (3 sucursales)','Kit inicial. Premium'],
-                    ['Casas Río Bueno','casasriobueno.cl','Crucero 37 m²',37,2,1,'2 Aguas','Madera (Paneles)',2390000,'','Los Lagos / Los Ríos','Kit básico. Sur de Chile'],
-                    ['Casas Río Bueno','casasriobueno.cl','Rupanco 49 m²',49,3,1,'2 Aguas','Madera (Paneles)',2790000,'','Los Lagos / Los Ríos','Kit básico'],
-                    ['Casas Río Bueno','casasriobueno.cl','Río Bueno 55 m²',55,3,1,'2 Aguas','Madera (Paneles)',3290000,'','Los Lagos / Los Ríos','Kit básico'],
-                    ['Casas Río Bueno','casasriobueno.cl','Riñinahue 74 m²',74,4,2,'2 Aguas','Madera (Paneles)',3990000,'','Los Lagos / Los Ríos','Kit básico'],
-                    ['Casa de Madera','casademadera.cl','2 Aguas 72 m²',72,3,1,'2 Aguas','Madera (Paneles)',3770000,'','Los Ríos','Incluye kit ventanas y puertas'],
+                    // Chile Home — FLETE INCLUIDO
+                    ['Chile Home','chilehome.cl','2 Aguas 36 m² (Clásica)',36,2,1,'2 Aguas','Paneles Pino',1550000,'',1,'FLETE GRATIS - INCLUIDO','Paillaco (Los Ríos)',390,0,0,1550000,1550000,'Nacional (Chañaral a Puerto Varas)','Flete incluido. +25.000 casas entregadas'],
+                    ['Chile Home','chilehome.cl','2 Aguas 54 m² (Clásica)',54,2,1,'2 Aguas','Paneles Pino',1950000,'',1,'FLETE GRATIS - INCLUIDO','Paillaco (Los Ríos)',390,0,0,1950000,1950000,'Nacional (Chañaral a Puerto Varas)','PRECIO MÁS POPULAR. Puertas y ventanas incluidas'],
+                    ['Chile Home','chilehome.cl','2 Aguas 72 m² (Clásica)',72,3,1,'2 Aguas','Paneles Pino',2700000,'',1,'FLETE GRATIS - INCLUIDO','Paillaco (Los Ríos)',390,0,0,2700000,2700000,'Nacional (Chañaral a Puerto Varas)','Modelo 2026. Puertas y ventanas incluidas'],
+                    ['Chile Home','chilehome.cl','6 Aguas 54 m² (Clásica)',54,2,1,'6 Aguas','Paneles Pino - Siding',0,'A consultar',1,'FLETE GRATIS - INCLUIDO','Paillaco (Los Ríos)',390,0,0,0,0,'Nacional','Siding exterior'],
+                    ['Chile Home','chilehome.cl','6 Aguas 72 m² (Clásica)',72,3,1,'6 Aguas','Paneles Pino',0,'A consultar',1,'FLETE GRATIS - INCLUIDO','Paillaco (Los Ríos)',390,0,0,0,0,'Nacional','Precio requiere cotización'],
+                    ['Chile Home','chilehome.cl','Terra 36 m² (Línea 2026)',36,2,1,'2 Aguas','Paneles Pino',0,'A consultar',1,'FLETE GRATIS - INCLUIDO','Paillaco (Los Ríos)',390,0,0,0,0,'Nacional','Línea 2026 minimalista'],
+                    // Casas Laguna — Flete cobrado por destino
+                    ['Casas Laguna','casaslaguna.cl','Casa 36 m² 2 Aguas',36,2,1,'2 Aguas','Madera (Paneles)',1690000,'',0,'Flete cobrado por destino (empresa ext.)','Paine (RM)',350,525000,875000,2215000,2565000,'R. Metropolitana / Coquimbo','Kit básico. IVA incluido'],
+                    ['Casas Laguna','casaslaguna.cl','Casa 54 m² 4 Aguas',54,3,1,'4 Aguas','Madera (Paneles)',2190000,'',0,'Flete cobrado por destino','Paine (RM)',350,525000,875000,2715000,3065000,'R. Metropolitana / Coquimbo','Kit básico'],
+                    ['Casas Laguna','casaslaguna.cl','Casa 72 m² 6 Aguas',72,4,2,'6 Aguas','Madera (Paneles)',2690000,'',0,'Flete cobrado por destino','Paine (RM)',350,525000,875000,3215000,3565000,'R. Metropolitana / Coquimbo','Kit básico'],
+                    ['Casas Laguna','casaslaguna.cl','Casa 93 m² Mediterránea',93,4,2,'4 Aguas','Madera (Paneles)',3790000,'',0,'Flete cobrado por destino','Paine (RM)',350,525000,875000,4315000,4665000,'R. Metropolitana / Coquimbo','Kit básico'],
+                    // Casas Huelquen — Flete y montaje cobrados aparte
+                    ['Casas Huelquen','casaschilespa.cl','Estrella 36 m²',36,2,1,'2 Aguas','Madera (Paneles)',1600000,'',0,'Flete y montaje cobrados aparte','R. Metropolitana',350,525000,875000,2125000,2475000,'R. Metropolitana','Kit básico. $1.500-$2.500/km ref.'],
+                    ['Casas Huelquen','casaschilespa.cl','Estrella 54 m²',54,3,1,'2 Aguas','Madera (Paneles)',2300000,'',0,'Flete y montaje cobrados aparte','R. Metropolitana',350,525000,875000,2825000,3175000,'R. Metropolitana','Kit básico'],
+                    ['Casas Huelquen','casaschilespa.cl','Estrella 72 m²',72,4,2,'2 Aguas','Madera (Paneles)',3100000,'',0,'Flete y montaje cobrados aparte','R. Metropolitana',350,525000,875000,3625000,3975000,'R. Metropolitana','Kit básico'],
+                    ['Casas Huelquen','casaschilespa.cl','Caupolicán 72 m²',72,4,2,'2 Aguas','Madera (Paneles)',3300000,'',0,'Flete y montaje cobrados aparte','R. Metropolitana',350,525000,875000,3825000,4175000,'R. Metropolitana','Modelo superior'],
+                    // Casas San Gabriel — Flete cobrado aparte
+                    ['Casas San Gabriel','soloprefabricadas.cl','2 Aguas 36 m²',36,2,1,'2 Aguas','Madera (Paneles)',2250000,'',0,'Flete cobrado aparte. Cotizar','Los Ángeles (Biobío)',110,165000,275000,2415000,2525000,'Biobío (cobertura nacional)','Kit básico'],
+                    ['Casas San Gabriel','soloprefabricadas.cl','Mediterráneo 54 m²',54,3,1,'4 Aguas','Madera (Paneles)',2450000,'',0,'Flete cobrado aparte. Cotizar','Los Ángeles (Biobío)',110,165000,275000,2615000,2725000,'Biobío (cobertura nacional)','3 dormitorios. Kit básico'],
+                    ['Casas San Gabriel','soloprefabricadas.cl','4 Aguas 82 m²',82,3,2,'4 Aguas','Madera (Paneles)',3470000,'',0,'Flete cobrado aparte. Cotizar','Los Ángeles (Biobío)',110,165000,275000,3635000,3745000,'Biobío (cobertura nacional)','Kit básico'],
+                    ['Casas San Gabriel','soloprefabricadas.cl','4 Aguas 101 m²',101,4,2,'4 Aguas','Madera (Paneles)',3920000,'',0,'Flete cobrado aparte. Cotizar','Los Ángeles (Biobío)',110,165000,275000,4085000,4195000,'Biobío (cobertura nacional)','Kit básico'],
+                    ['Casas San Gabriel','soloprefabricadas.cl','4 Aguas 122 m²',122,6,3,'4 Aguas','Madera (Paneles)',4430000,'',0,'Flete cobrado aparte. Cotizar','Los Ángeles (Biobío)',110,165000,275000,4595000,4705000,'Biobío (cobertura nacional)','Kit básico'],
+                    // Casas Río Bueno — Gratis hasta 50km, luego cobrado
+                    ['Casas Río Bueno','casasriobueno.cl','Crucero 37 m²',37,2,1,'2 Aguas','Madera (Paneles)',2390000,'',0,'Gratis hasta 50 km. Luego cobrado/km','Osorno / Río Bueno',440,660000,1100000,3050000,3490000,'Los Lagos / Los Ríos','Kit básico. Sur de Chile'],
+                    ['Casas Río Bueno','casasriobueno.cl','Rupanco 49 m²',49,3,1,'2 Aguas','Madera (Paneles)',2790000,'',0,'Gratis hasta 50 km. Luego cobrado/km','Osorno / Río Bueno',440,660000,1100000,3450000,3890000,'Los Lagos / Los Ríos','Kit básico'],
+                    ['Casas Río Bueno','casasriobueno.cl','Río Bueno 55 m²',55,3,1,'2 Aguas','Madera (Paneles)',3290000,'',0,'Gratis hasta 50 km. Luego cobrado/km','Osorno / Río Bueno',440,660000,1100000,3950000,4390000,'Los Lagos / Los Ríos','Kit básico'],
+                    ['Casas Río Bueno','casasriobueno.cl','Riñinahue 74 m²',74,4,2,'2 Aguas','Madera (Paneles)',3990000,'',0,'Gratis hasta 50 km. Luego cobrado/km','Osorno / Río Bueno',440,660000,1100000,4650000,5090000,'Los Lagos / Los Ríos','Kit básico'],
+                    // Casas Chile SpA — Flete NO incluido
+                    ['Casas Chile SpA','casaschilespa.cl','Temuco 36 m²',36,2,1,'2 Aguas','Madera Pino 1ª',4070000,'',0,'Flete NO incluido. Cliente gestiona','San Bernardo (RM)',350,525000,875000,4595000,4945000,'Nacional (3 sucursales)','Kit inicial. Alta calidad'],
+                    ['Casas Chile SpA','casaschilespa.cl','Temuco 54 m²',54,3,1,'2 Aguas','Madera Pino 1ª',5092000,'',0,'Flete NO incluido. Cliente gestiona','San Bernardo (RM)',350,525000,875000,5617000,5967000,'Nacional (3 sucursales)','Kit inicial'],
+                    ['Casas Chile SpA','casaschilespa.cl','Temuco 72 m²',72,4,2,'2 Aguas','Madera Pino 1ª',6573000,'',0,'Flete NO incluido. Cliente gestiona','San Bernardo (RM)',350,525000,875000,7098000,7448000,'Nacional (3 sucursales)','Kit inicial. 4 dorm 2 baños'],
+                    ['Casas Chile SpA','casaschilespa.cl','Mediterránea 72 m²',72,4,2,'4 Aguas','Madera Pino 1ª',8569000,'',0,'Flete NO incluido. Cliente gestiona','San Bernardo (RM)',350,525000,875000,9094000,9444000,'Nacional (3 sucursales)','Kit inicial. Premium'],
+                    // Casa de Madera
+                    ['Casa de Madera','casademadera.cl','2 Aguas 72 m²',72,3,1,'2 Aguas','Madera (Paneles)',3770000,'',0,'Flete NO incluido','Los Ríos',350,525000,875000,4295000,4645000,'Los Ríos','Kit ventanas y puertas incluido'],
                 ];
 
-                $sql = "INSERT INTO comparativas_precios (empresa, website, modelo, metros, dormitorios, banos, tipo_techo, material, precio, precio_texto, cobertura, observaciones) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                $sql = "INSERT INTO comparativas_precios (empresa, website, modelo, metros, dormitorios, banos, tipo_techo, material, precio, precio_texto, flete_incluido, flete_politica, origen_planta, distancia_chillan_km, flete_min, flete_max, precio_total_min, precio_total_max, cobertura, observaciones) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 foreach ($data as $row) {
                     $db->query($sql, $row);
                 }
@@ -112,10 +142,11 @@ try {
 }
 
 // Datos para gráficos
-$chartCompare36 = $db->fetchAll("SELECT empresa, precio FROM comparativas_precios WHERE metros BETWEEN 35 AND 37 AND precio > 0 ORDER BY precio ASC") ?: [];
-$chartCompare54 = $db->fetchAll("SELECT empresa, precio FROM comparativas_precios WHERE metros BETWEEN 53 AND 55 AND precio > 0 ORDER BY precio ASC") ?: [];
-$chartCompare72 = $db->fetchAll("SELECT empresa, precio FROM comparativas_precios WHERE metros BETWEEN 71 AND 74 AND precio > 0 ORDER BY precio ASC") ?: [];
-$chartPrecioM2 = $db->fetchAll("SELECT empresa, ROUND(AVG(precio/metros)) as precio_m2 FROM comparativas_precios WHERE precio > 0 GROUP BY empresa ORDER BY precio_m2 ASC") ?: [];
+// Gráficos con PRECIO TOTAL (kit + flete) para comparación justa
+$chartCompare36 = $db->fetchAll("SELECT empresa, precio as precio_kit, precio_total_min as precio_total, flete_incluido FROM comparativas_precios WHERE metros BETWEEN 35 AND 37 AND precio > 0 ORDER BY precio_total_min ASC") ?: [];
+$chartCompare54 = $db->fetchAll("SELECT empresa, precio as precio_kit, precio_total_min as precio_total, flete_incluido FROM comparativas_precios WHERE metros BETWEEN 53 AND 55 AND precio > 0 ORDER BY precio_total_min ASC") ?: [];
+$chartCompare72 = $db->fetchAll("SELECT empresa, precio as precio_kit, precio_total_min as precio_total, flete_incluido FROM comparativas_precios WHERE metros BETWEEN 71 AND 74 AND precio > 0 ORDER BY precio_total_min ASC") ?: [];
+$chartPrecioM2 = $db->fetchAll("SELECT empresa, ROUND(AVG(precio_total_min/metros)) as precio_m2 FROM comparativas_precios WHERE precio > 0 AND precio_total_min > 0 GROUP BY empresa ORDER BY precio_m2 ASC") ?: [];
 
 include __DIR__ . '/../includes/header.php';
 include __DIR__ . '/../includes/sidebar.php';
@@ -240,22 +271,33 @@ include __DIR__ . '/../includes/sidebar.php';
             </div>
         </div>
 
+        <!-- INFO FLETE -->
+        <div class="comp-card" style="margin-bottom:20px;border-left:3px solid #22c55e;">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-truck" style="color:#22c55e;font-size:1.2rem;"></i>
+                <div>
+                    <strong style="color:var(--dash-text-primary);">Chile Home incluye flete GRATIS</strong>
+                    <span style="color:var(--dash-text-muted);font-size:0.82rem;margin-left:6px;">Los gráficos muestran precio total (kit + flete estimado a Chillán, Ñuble) para comparación justa.</span>
+                </div>
+            </div>
+        </div>
+
         <!-- GRÁFICOS — 4 en línea -->
         <div class="charts-grid">
             <div class="comp-card">
-                <h3><i class="fas fa-home"></i> Kit ~36 m² <span class="chart-tag"><?= count($chartCompare36) ?> empresas</span></h3>
+                <h3><i class="fas fa-home"></i> Total ~36 m² <span class="chart-tag">kit + flete</span></h3>
                 <div class="chart-wrap"><canvas id="chart36"></canvas></div>
             </div>
             <div class="comp-card">
-                <h3><i class="fas fa-home"></i> Kit ~54 m² <span class="chart-tag"><?= count($chartCompare54) ?> empresas</span></h3>
+                <h3><i class="fas fa-home"></i> Total ~54 m² <span class="chart-tag">kit + flete</span></h3>
                 <div class="chart-wrap"><canvas id="chart54"></canvas></div>
             </div>
             <div class="comp-card">
-                <h3><i class="fas fa-home"></i> Kit ~72 m² <span class="chart-tag"><?= count($chartCompare72) ?> empresas</span></h3>
+                <h3><i class="fas fa-home"></i> Total ~72 m² <span class="chart-tag">kit + flete</span></h3>
                 <div class="chart-wrap"><canvas id="chart72"></canvas></div>
             </div>
             <div class="comp-card">
-                <h3><i class="fas fa-dollar-sign"></i> Promedio $/m² <span class="chart-tag">ranking</span></h3>
+                <h3><i class="fas fa-dollar-sign"></i> $/m² total <span class="chart-tag">ranking</span></h3>
                 <div class="chart-wrap"><canvas id="chartM2"></canvas></div>
             </div>
         </div>
@@ -278,12 +320,12 @@ include __DIR__ . '/../includes/sidebar.php';
                             <th>Modelo</th>
                             <th>m²</th>
                             <th>Dorm.</th>
-                            <th>Baños</th>
-                            <th>Techo</th>
                             <th>Precio Kit</th>
-                            <th>$/m²</th>
+                            <th>Flete</th>
+                            <th>Precio Total</th>
+                            <th>$/m² total</th>
                             <th>vs Chile Home</th>
-                            <th>Cobertura</th>
+                            <th>Origen</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -292,7 +334,7 @@ include __DIR__ . '/../includes/sidebar.php';
                         $chPrecios = [];
                         foreach ($allData as $r) {
                             if ($r['empresa'] === 'Chile Home') {
-                                $chPrecios[(int)$r['metros']] = (int)$r['precio'];
+                                $chPrecios[(int)$r['metros']] = (int)($r['precio_total_min'] ?? $r['precio']);
                             }
                         }
 
@@ -300,11 +342,15 @@ include __DIR__ . '/../includes/sidebar.php';
                             $isCH = $r['empresa'] === 'Chile Home';
                             $precio = (int)$r['precio'];
                             $metros = (float)$r['metros'];
-                            $precioM2 = $metros > 0 ? round($precio / $metros) : 0;
+                            $fleteInc = (int)($r['flete_incluido'] ?? 0);
+                            $fleteMin = (int)($r['flete_min'] ?? 0);
+                            $totalMin = (int)($r['precio_total_min'] ?? $precio);
+                            $totalMax = (int)($r['precio_total_max'] ?? $precio);
+                            $precioM2 = $metros > 0 && $totalMin > 0 ? round($totalMin / $metros) : 0;
 
-                            // Buscar precio CH del tamaño más cercano
+                            // Comparar precio TOTAL vs Chile Home total
                             $diff = '';
-                            if (!$isCH && $precio > 0) {
+                            if (!$isCH && $totalMin > 0) {
                                 $closest = null;
                                 $closestDist = 999;
                                 foreach ($chPrecios as $m => $p) {
@@ -315,11 +361,9 @@ include __DIR__ . '/../includes/sidebar.php';
                                     }
                                 }
                                 if ($closest && $closestDist <= 5) {
-                                    $pct = round(($precio - $closest) / $closest * 100);
+                                    $pct = round(($totalMin - $closest) / $closest * 100);
                                     if ($pct > 0) {
-                                        $diff = '<span class="diff-badge diff-win">CH -' . $pct . '%</span>';
-                                    } else {
-                                        $diff = '<span class="diff-badge diff-lose">+' . abs($pct) . '%</span>';
+                                        $diff = '<span class="diff-badge diff-win">CH ahorra ' . $pct . '%</span>';
                                     }
                                 }
                             }
@@ -331,15 +375,26 @@ include __DIR__ . '/../includes/sidebar.php';
                                     <?= htmlspecialchars($r['empresa']) ?>
                                 </span>
                             </td>
-                            <td><?= htmlspecialchars($r['modelo']) ?></td>
+                            <td style="font-size:0.78rem;"><?= htmlspecialchars($r['modelo']) ?></td>
                             <td><strong><?= $metros ?>m²</strong></td>
                             <td><?= $r['dormitorios'] ?></td>
-                            <td><?= $r['banos'] ?></td>
-                            <td style="font-size:0.75rem;"><?= htmlspecialchars($r['tipo_techo']) ?></td>
-                            <td class="precio-val <?= $isCH ? 'precio-ch' : '' ?>">$<?= number_format($precio, 0, ',', '.') ?></td>
+                            <td class="precio-val" style="font-size:0.78rem;">$<?= number_format($precio, 0, ',', '.') ?></td>
+                            <td style="font-size:0.75rem;">
+                                <?php if ($fleteInc): ?>
+                                    <span style="color:#22c55e;font-weight:600;"><i class="fas fa-check-circle" style="font-size:0.65rem;"></i> Incluido</span>
+                                <?php else: ?>
+                                    <span style="color:#f59e0b;">$<?= number_format($fleteMin, 0, ',', '.') ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="precio-val <?= $isCH ? 'precio-ch' : '' ?>" style="font-size:0.85rem;">
+                                $<?= number_format($totalMin, 0, ',', '.') ?>
+                                <?php if ($totalMax > $totalMin): ?>
+                                    <span style="font-size:0.65rem;color:var(--dash-text-muted);font-weight:400;"> — $<?= number_format($totalMax, 0, ',', '.') ?></span>
+                                <?php endif; ?>
+                            </td>
                             <td style="color:var(--dash-text-muted);font-size:0.75rem;">$<?= number_format($precioM2, 0, ',', '.') ?></td>
                             <td><?= $diff ?></td>
-                            <td style="font-size:0.72rem;color:var(--dash-text-muted);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><?= htmlspecialchars($r['cobertura']) ?></td>
+                            <td style="font-size:0.7rem;color:var(--dash-text-muted);white-space:nowrap;"><?= htmlspecialchars($r['origen_planta'] ?? '') ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -503,11 +558,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return labels.map(l => l === 'Chile Home' ? '#22c55e' : 'rgba(148,163,184,0.35)');
     }
 
-    // Gráfico 36m²
+    // Gráfico 36m² — Precio Total (kit + flete)
     <?php if (!empty($chartCompare36)): ?>
     makeBarChart('chart36',
         <?= json_encode(array_column($chartCompare36, 'empresa')) ?>,
-        <?= json_encode(array_map('intval', array_column($chartCompare36, 'precio'))) ?>,
+        <?= json_encode(array_map('intval', array_column($chartCompare36, 'precio_total'))) ?>,
         getColors(<?= json_encode(array_column($chartCompare36, 'empresa')) ?>)
     );
     <?php endif; ?>
@@ -516,7 +571,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <?php if (!empty($chartCompare54)): ?>
     makeBarChart('chart54',
         <?= json_encode(array_column($chartCompare54, 'empresa')) ?>,
-        <?= json_encode(array_map('intval', array_column($chartCompare54, 'precio'))) ?>,
+        <?= json_encode(array_map('intval', array_column($chartCompare54, 'precio_total'))) ?>,
         getColors(<?= json_encode(array_column($chartCompare54, 'empresa')) ?>)
     );
     <?php endif; ?>
@@ -525,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <?php if (!empty($chartCompare72)): ?>
     makeBarChart('chart72',
         <?= json_encode(array_column($chartCompare72, 'empresa')) ?>,
-        <?= json_encode(array_map('intval', array_column($chartCompare72, 'precio'))) ?>,
+        <?= json_encode(array_map('intval', array_column($chartCompare72, 'precio_total'))) ?>,
         getColors(<?= json_encode(array_column($chartCompare72, 'empresa')) ?>)
     );
     <?php endif; ?>
