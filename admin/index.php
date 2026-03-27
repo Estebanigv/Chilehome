@@ -5497,6 +5497,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Zonas: Chart + Tabs + Colapsable -->
 <script>
+document.addEventListener('DOMContentLoaded', function() {
 (function() {
     // Plugin para mostrar porcentajes dentro de los slices
     const zonasPercentPlugin = {
@@ -5732,29 +5733,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Chart.js se carga con defer — esperar a que esté disponible
-    function _initZonasChart() {
-        if (typeof Chart !== 'undefined') {
-            buildZonasChart('doughnut');
-        } else {
-            // Reintentar cuando Chart.js termine de cargar
-            document.addEventListener('DOMContentLoaded', function() {
-                if (typeof Chart !== 'undefined') {
-                    buildZonasChart('doughnut');
-                } else {
-                    // Fallback: polling breve
-                    var _poll = setInterval(function() {
-                        if (typeof Chart !== 'undefined') {
-                            clearInterval(_poll);
-                            buildZonasChart('doughnut');
-                        }
-                    }, 100);
-                }
-            });
-        }
-    }
-    _initZonasChart();
+    // Inicializar gráfico — Chart.js ya está disponible (DOMContentLoaded)
+    buildZonasChart('doughnut');
 })();
+}); // end DOMContentLoaded
 
 function switchZonasChart(type, btn) {
     document.querySelectorAll('.zona-chart-btn').forEach(b => b.classList.remove('active'));
