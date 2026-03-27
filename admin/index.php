@@ -5492,12 +5492,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Animaciones hover para meta cards - DESACTIVADAS para evitar movimiento extraño
     // Las tarjetas ahora son estáticas sin movimiento en hover
+
+    // ─── INIT ZONAS CHART (dentro del mismo DOMContentLoaded) ───
+    if (typeof window._initZonasChartOnReady === 'function') {
+        window._initZonasChartOnReady();
+    } else {
+        window._zonasChartPendingInit = true;
+    }
 });
 </script>
 
 <!-- Zonas: Chart + Tabs + Colapsable -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
 (function() {
     // Plugin para mostrar porcentajes dentro de los slices
     const zonasPercentPlugin = {
@@ -5733,10 +5739,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Inicializar gráfico — Chart.js ya está disponible (DOMContentLoaded)
-    buildZonasChart('doughnut');
+    // Registrar función de init para ser llamada cuando Chart.js esté disponible
+    window._initZonasChartOnReady = function() {
+        if (typeof Chart !== 'undefined') {
+            buildZonasChart('doughnut');
+        }
+    };
+    // Si DOMContentLoaded ya se disparó (flag del otro listener), ejecutar ahora
+    if (window._zonasChartPendingInit && typeof Chart !== 'undefined') {
+        buildZonasChart('doughnut');
+    }
+    // Fallback: window load (se dispara después de TODO, incluidos scripts defer)
+    window.addEventListener('load', function() {
+        if (!window.zonasChartInstance && typeof Chart !== 'undefined') {
+            buildZonasChart('doughnut');
+        }
+    });
 })();
-}); // end DOMContentLoaded
 
 function switchZonasChart(type, btn) {
     document.querySelectorAll('.zona-chart-btn').forEach(b => b.classList.remove('active'));
