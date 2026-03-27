@@ -3234,8 +3234,7 @@ $horaActual = date('H:i');
     window.zonasChartData   = [<?php echo (int)($zonas['Norte']['mensajes_semana']??0); ?>,<?php echo (int)($zonas['Centro']['mensajes_semana']??0); ?>,<?php echo (int)($zonas['Sur']['mensajes_semana']??0); ?>,<?php echo (int)($zonas['Todas']['mensajes_semana']??0); ?><?php if (!empty($zonas['Sin Definir']) && $zonas['Sin Definir']['mensajes_semana'] > 0): ?>,<?php echo (int)$zonas['Sin Definir']['mensajes_semana']; ?><?php endif; ?>];
     window.zonasChartLabels = ['Norte','Centro','Sur','Nacional'<?php if (!empty($zonas['Sin Definir']) && $zonas['Sin Definir']['mensajes_semana'] > 0): ?>,'Sin Zona'<?php endif; ?>];
     window.zonasChartColors = ['#f97316','#3b82f6','#22c55e','#8b5cf6'<?php if (!empty($zonas['Sin Definir']) && $zonas['Sin Definir']['mensajes_semana'] > 0): ?>,'#94a3b8'<?php endif; ?>];
-    if (typeof window.buildZonasChart === 'function' && typeof Chart !== 'undefined') { window.buildZonasChart('doughnut'); }
-    else if (typeof window.buildZonasChart === 'function') { setTimeout(function(){ if(typeof Chart!=='undefined') window.buildZonasChart('doughnut'); }, 200); }
+    if (typeof window.buildZonasChart === 'function') { window.buildZonasChart('doughnut'); }
     </script>
     </div>
     <?php if ($_isZonasPartial) exit; ?>
@@ -5733,6 +5732,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Chart.js ya cargado (sin defer) — crear gráfico directamente
+    buildZonasChart('doughnut');
 })();
 
 function switchZonasChart(type, btn) {
@@ -6765,24 +6766,5 @@ document.getElementById('wkBudgetBtn')?.addEventListener('click', () => openBudg
 updateBudgetPreview();
 </script>
 <?php endif; ?>
-
-<!-- Garantizar renderizado del gráfico de zonas -->
-<script>
-(function() {
-    function _ensureZonasChart() {
-        if (typeof Chart === 'undefined' || typeof window.buildZonasChart !== 'function') return;
-        var wrap = document.getElementById('zonasChartWrap');
-        if (!wrap) return;
-        // Si ya hay un chart instance activo, no recrear
-        if (window.zonasChartInstance) return;
-        window.buildZonasChart('doughnut');
-    }
-    // Intentar en load (después de TODOS los scripts defer)
-    window.addEventListener('load', _ensureZonasChart);
-    // Doble fallback con delay por si load ya pasó
-    setTimeout(_ensureZonasChart, 1500);
-    setTimeout(_ensureZonasChart, 3000);
-})();
-</script>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
