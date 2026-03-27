@@ -5493,12 +5493,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animaciones hover para meta cards - DESACTIVADAS para evitar movimiento extraño
     // Las tarjetas ahora son estáticas sin movimiento en hover
 
-    // ─── INIT ZONAS CHART (dentro del mismo DOMContentLoaded) ───
-    if (typeof window._initZonasChartOnReady === 'function') {
-        window._initZonasChartOnReady();
-    } else {
-        window._zonasChartPendingInit = true;
-    }
 });
 </script>
 
@@ -5739,22 +5733,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Registrar función de init para ser llamada cuando Chart.js esté disponible
-    window._initZonasChartOnReady = function() {
-        if (typeof Chart !== 'undefined') {
-            buildZonasChart('doughnut');
-        }
-    };
-    // Si DOMContentLoaded ya se disparó (flag del otro listener), ejecutar ahora
-    if (window._zonasChartPendingInit && typeof Chart !== 'undefined') {
-        buildZonasChart('doughnut');
-    }
-    // Fallback: window load (se dispara después de TODO, incluidos scripts defer)
-    window.addEventListener('load', function() {
-        if (!window.zonasChartInstance && typeof Chart !== 'undefined') {
-            buildZonasChart('doughnut');
-        }
-    });
 })();
 
 function switchZonasChart(type, btn) {
@@ -6787,5 +6765,24 @@ document.getElementById('wkBudgetBtn')?.addEventListener('click', () => openBudg
 updateBudgetPreview();
 </script>
 <?php endif; ?>
+
+<!-- Garantizar renderizado del gráfico de zonas -->
+<script>
+(function() {
+    function _ensureZonasChart() {
+        if (typeof Chart === 'undefined' || typeof window.buildZonasChart !== 'function') return;
+        var wrap = document.getElementById('zonasChartWrap');
+        if (!wrap) return;
+        // Si ya hay un chart instance activo, no recrear
+        if (window.zonasChartInstance) return;
+        window.buildZonasChart('doughnut');
+    }
+    // Intentar en load (después de TODOS los scripts defer)
+    window.addEventListener('load', _ensureZonasChart);
+    // Doble fallback con delay por si load ya pasó
+    setTimeout(_ensureZonasChart, 1500);
+    setTimeout(_ensureZonasChart, 3000);
+})();
+</script>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
