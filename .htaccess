@@ -12,6 +12,12 @@
 # Habilitar mod_rewrite
 RewriteEngine On
 
+# Detectar si estamos en localhost/chilehome o en produccion
+RewriteCond %{REQUEST_URI} ^/chilehome/ [NC]
+RewriteRule ^ - [E=BASE:/chilehome/]
+RewriteCond %{REQUEST_URI} !^/chilehome/ [NC]
+RewriteRule ^ - [E=BASE:/]
+
 # ============================================
 # HTTPS (descomentar en produccion)
 # ============================================
@@ -24,11 +30,11 @@ RewriteEngine On
 
 # Redireccionar index.html a la raiz
 RewriteCond %{THE_REQUEST} /index\.html [NC]
-RewriteRule ^(.*)index\.html$ /$1 [L,R=301]
+RewriteRule ^(.*)index\.html$ %{ENV:BASE}$1 [L,R=301]
 
 # Redireccionar cualquier .html a URL sin extension
 RewriteCond %{THE_REQUEST} \.html[\s?] [NC]
-RewriteRule ^(.*)\.html$ /$1 [L,R=301]
+RewriteRule ^(.*)\.html$ %{ENV:BASE}$1 [L,R=301]
 
 # Servir archivos .html sin necesidad de escribir la extension
 RewriteCond %{REQUEST_FILENAME} !-d

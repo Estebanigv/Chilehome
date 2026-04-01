@@ -843,6 +843,94 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .hidden { display: none !important; }
+
+        /* Inline flow transitions */
+        .branch-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+            max-height: 300px;
+        }
+        .branch-card.collapsed {
+            max-height: 0;
+            padding: 0 18px;
+            margin: 0;
+            border-color: transparent;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .branch-card.selected.compact {
+            cursor: default;
+            padding: 12px 16px;
+        }
+        .branch-card.selected.compact .branch-header {
+            margin-bottom: 0;
+        }
+        .branch-card.selected.compact .branch-location-btn,
+        .branch-card.selected.compact .branch-info {
+            display: none;
+        }
+        .branch-card.selected.compact::after {
+            display: none;
+        }
+
+        .branch-selected-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .branch-selected-bar .selected-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--brand-blue);
+        }
+        .branch-selected-bar .selected-name i {
+            font-size: 16px;
+        }
+        .btn-change-branch {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            background: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .btn-change-branch:hover {
+            border-color: var(--brand-blue);
+            color: var(--brand-blue);
+        }
+
+        .inline-calendar { display: none; margin-top: 20px; }
+        .inline-calendar.visible { display: block; animation: fadeSlideIn 0.3s ease; }
+        .inline-time { display: none; margin-top: 20px; }
+        .inline-time.visible { display: block; animation: fadeSlideIn 0.3s ease; }
+        .inline-form { display: none; margin-top: 20px; }
+        .inline-form.visible { display: block; animation: fadeSlideIn 0.3s ease; }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .visit-benefits {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .visit-benefits.collapsed {
+            max-height: 0;
+            margin: 0;
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
@@ -968,7 +1056,7 @@
                                     <div class="branch-region">Región de Los Ríos</div>
                                 </div>
                             </div>
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=-40.141144,-72.886742" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-40.1409625,-72.8860806" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
                                 <i class="fas fa-map-marker-alt"></i>
                                 Ver ubicación en el mapa
                             </a>
@@ -979,93 +1067,82 @@
                         </div>
                     </div>
 
-                    <div class="btn-row">
-                        <div></div>
-                        <button class="btn btn-primary" id="btn-1" disabled onclick="goToStep(2)">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Fecha -->
-                <div id="step-2" class="hidden">
-                    <h2 class="section-title">Selecciona una fecha</h2>
-                    <p class="section-desc">Elige el día que mejor te acomode</p>
-
-                    <div class="calendar-header">
-                        <span class="calendar-month" id="calendar-month"></span>
-                        <div class="calendar-nav">
-                            <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                            <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="calendar-weekdays">
-                        <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
-                    </div>
-                    <div class="calendar-grid" id="calendar-grid">
-                        <div class="loading"><div class="spinner"></div></div>
-                    </div>
-
-                    <div class="btn-row">
-                        <button class="btn btn-back" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Volver</button>
-                        <button class="btn btn-primary" id="btn-2" disabled onclick="goToStep(3)">Continuar <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Horario -->
-                <div id="step-3" class="hidden">
-                    <h2 class="section-title">Elige un horario</h2>
-                    <p class="section-desc">Selecciona la hora para tu visita</p>
-
-                    <div class="time-grid" id="time-grid">
-                        <div class="loading"><div class="spinner"></div></div>
-                    </div>
-
-                    <div class="btn-row">
-                        <button class="btn btn-back" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Volver</button>
-                        <button class="btn btn-primary" id="btn-3" disabled onclick="goToStep(4)">Continuar <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Step 4: Datos -->
-                <div id="step-4" class="hidden">
-                    <h2 class="section-title">Completa tus datos</h2>
-                    <p class="section-desc">Ingresa tu información para confirmar</p>
-
-                    <div class="booking-summary">
-                        <div>
-                            <h4>Tu cita</h4>
-                            <p id="summary-text"></p>
-                        </div>
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-
-                    <form id="appointment-form" onsubmit="submitForm(event)">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Nombre completo *</label>
-                                <input type="text" name="nombre" required placeholder="Ej: Juan Pérez">
+                    <!-- Inline Calendar (appears after selecting branch) -->
+                    <div class="inline-calendar" id="inline-calendar">
+                        <div class="branch-selected-bar">
+                            <div class="selected-name">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="selected-branch-label"></span>
                             </div>
-                            <div class="form-group">
-                                <label>Teléfono *</label>
-                                <input type="tel" name="telefono" required placeholder="+56 9 1234 5678">
-                            </div>
-                            <div class="form-group full">
-                                <label>Email (opcional)</label>
-                                <input type="email" name="email" placeholder="juan@email.com">
+                            <button class="btn-change-branch" onclick="resetBranchSelection()">
+                                <i class="fas fa-exchange-alt"></i> Cambiar
+                            </button>
+                        </div>
+
+                        <h2 class="section-title">Selecciona una fecha</h2>
+                        <p class="section-desc">Elige el día que mejor te acomode</p>
+
+                        <div class="calendar-header">
+                            <span class="calendar-month" id="calendar-month"></span>
+                            <div class="calendar-nav">
+                                <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
+                        <div class="calendar-weekdays">
+                            <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                        </div>
+                        <div class="calendar-grid" id="calendar-grid">
+                            <div class="loading"><div class="spinner"></div></div>
+                        </div>
+                    </div>
 
-                        <div class="info-note">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Un ejecutivo te contactará por WhatsApp para <strong>confirmar</strong> tu visita.</span>
+                    <!-- Inline Time Slots (appears after selecting date) -->
+                    <div class="inline-time" id="inline-time">
+                        <h2 class="section-title">Elige un horario</h2>
+                        <p class="section-desc">Selecciona la hora para tu visita</p>
+                        <div class="time-grid" id="time-grid">
+                            <div class="loading"><div class="spinner"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Inline Form (appears after selecting time) -->
+                    <div class="inline-form" id="inline-form">
+                        <div class="booking-summary">
+                            <div>
+                                <h4>Tu cita</h4>
+                                <p id="summary-text"></p>
+                            </div>
+                            <i class="fas fa-calendar-check"></i>
                         </div>
 
-                        <div class="btn-row">
-                            <button type="button" class="btn btn-back" onclick="goToStep(3)"><i class="fas fa-arrow-left"></i> Volver</button>
-                            <button type="submit" class="btn btn-primary" id="btn-submit">Confirmar <i class="fas fa-check"></i></button>
-                        </div>
-                    </form>
+                        <form id="appointment-form" onsubmit="submitForm(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Nombre completo *</label>
+                                    <input type="text" name="nombre" required placeholder="Ej: Juan Pérez">
+                                </div>
+                                <div class="form-group">
+                                    <label>Teléfono *</label>
+                                    <input type="tel" name="telefono" required placeholder="+56 9 1234 5678">
+                                </div>
+                                <div class="form-group full">
+                                    <label>Email (opcional)</label>
+                                    <input type="email" name="email" placeholder="juan@email.com">
+                                </div>
+                            </div>
+
+                            <div class="info-note">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Un ejecutivo te contactará por WhatsApp para <strong>confirmar</strong> tu visita.</span>
+                            </div>
+
+                            <div class="btn-row">
+                                <div></div>
+                                <button type="submit" class="btn btn-primary" id="btn-submit">Confirmar cita <i class="fas fa-check"></i></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <!-- Success -->
@@ -1095,32 +1172,95 @@
         const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         const BRANCH_NAMES = { 'santiago': 'Santiago', 'puerto_varas': 'Puerto Varas', 'paillaco': 'Paillaco' };
+        const BRANCH_ICONS = { 'santiago': 'fa-city', 'puerto_varas': 'fa-mountain', 'paillaco': 'fa-industry' };
 
         let currentMonth = new Date().getMonth() + 1;
         let currentYear = new Date().getFullYear();
         let selectedBranch = null;
         let selectedDate = null;
         let selectedTime = null;
+        let selectedEjecutivo = null;
 
-        function goToStep(step) {
-            document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`step-${step}`).classList.remove('hidden');
-
+        function updateSteps(activeStep) {
             document.querySelectorAll('.step-item').forEach((el, i) => {
                 el.classList.remove('active', 'completed');
-                if (i + 1 < step) el.classList.add('completed');
-                if (i + 1 === step) el.classList.add('active');
+                if (i + 1 < activeStep) el.classList.add('completed');
+                if (i + 1 === activeStep) el.classList.add('active');
             });
-
-            if (step === 2) loadCalendar();
-            if (step === 3) loadTimeSlots();
         }
 
         function selectBranch(branch, el) {
-            document.querySelectorAll('.branch-card.selected').forEach(e => e.classList.remove('selected'));
-            el.classList.add('selected');
+            // Deselect previous
+            document.querySelectorAll('.branch-card.selected').forEach(e => {
+                e.classList.remove('selected', 'compact');
+            });
+
             selectedBranch = branch;
-            document.getElementById('btn-1').disabled = false;
+            selectedDate = null;
+            selectedTime = null;
+            selectedEjecutivo = null;
+
+            // Collapse non-selected cards, compact selected
+            document.querySelectorAll('.branch-card').forEach(card => {
+                if (card === el) {
+                    card.classList.add('selected', 'compact');
+                    card.classList.remove('collapsed');
+                } else {
+                    card.classList.add('collapsed');
+                    card.classList.remove('selected', 'compact');
+                }
+            });
+
+            // Hide benefits
+            const benefits = document.querySelector('.visit-benefits');
+            if (benefits) benefits.classList.add('collapsed');
+
+            // Hide title/desc
+            document.querySelector('#step-1 .section-title').style.display = 'none';
+            document.querySelector('#step-1 .section-desc').style.display = 'none';
+
+            // Show branch label in calendar header
+            document.getElementById('selected-branch-label').innerHTML =
+                `<i class="fas ${BRANCH_ICONS[branch]}"></i> ${BRANCH_NAMES[branch]}`;
+
+            // Show calendar, hide time/form
+            document.getElementById('inline-calendar').classList.add('visible');
+            document.getElementById('inline-time').classList.remove('visible');
+            document.getElementById('inline-form').classList.remove('visible');
+
+            updateSteps(2);
+            loadCalendar();
+
+            // Scroll calendar into view
+            setTimeout(() => {
+                document.getElementById('inline-calendar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 350);
+        }
+
+        function resetBranchSelection() {
+            selectedBranch = null;
+            selectedDate = null;
+            selectedTime = null;
+
+            // Show all cards, remove compact/collapsed
+            document.querySelectorAll('.branch-card').forEach(card => {
+                card.classList.remove('selected', 'compact', 'collapsed');
+            });
+
+            // Show benefits
+            const benefits = document.querySelector('.visit-benefits');
+            if (benefits) benefits.classList.remove('collapsed');
+
+            // Show title/desc
+            document.querySelector('#step-1 .section-title').style.display = '';
+            document.querySelector('#step-1 .section-desc').style.display = '';
+
+            // Hide inline sections
+            document.getElementById('inline-calendar').classList.remove('visible');
+            document.getElementById('inline-time').classList.remove('visible');
+            document.getElementById('inline-form').classList.remove('visible');
+
+            updateSteps(1);
         }
 
         async function loadCalendar() {
@@ -1174,7 +1314,18 @@
             document.querySelectorAll('.day-cell.selected').forEach(e => e.classList.remove('selected'));
             el.classList.add('selected');
             selectedDate = date;
-            document.getElementById('btn-2').disabled = false;
+            selectedTime = null;
+            selectedEjecutivo = null;
+
+            // Show time slots inline
+            document.getElementById('inline-time').classList.add('visible');
+            document.getElementById('inline-form').classList.remove('visible');
+            updateSteps(3);
+            loadTimeSlots();
+
+            setTimeout(() => {
+                document.getElementById('inline-time').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
         }
 
         async function loadTimeSlots() {
@@ -1189,8 +1340,6 @@
                 grid.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">Error</p>';
             }
         }
-
-        let selectedEjecutivo = null;
 
         function renderTimeSlots(slots) {
             const grid = document.getElementById('time-grid');
@@ -1217,12 +1366,19 @@
             el.classList.add('selected');
             selectedTime = time;
             selectedEjecutivo = ejecutivo;
-            document.getElementById('btn-3').disabled = false;
 
             const d = new Date(selectedDate + 'T12:00:00');
             let summary = `${BRANCH_NAMES[selectedBranch]} · ${d.toLocaleDateString('es-CL', {day: 'numeric', month: 'long'})} · ${time} hrs`;
             if (ejecutivo) summary += ` · ${ejecutivo}`;
             document.getElementById('summary-text').textContent = summary;
+
+            // Show form inline
+            document.getElementById('inline-form').classList.add('visible');
+            updateSteps(4);
+
+            setTimeout(() => {
+                document.getElementById('inline-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
         }
 
         async function submitForm(e) {
@@ -1254,17 +1410,17 @@
                 } else {
                     alert(result.error || 'Error al agendar');
                     btn.disabled = false;
-                    btn.innerHTML = 'Confirmar <i class="fas fa-check"></i>';
+                    btn.innerHTML = 'Confirmar cita <i class="fas fa-check"></i>';
                 }
             } catch (err) {
                 alert('Error de conexión');
                 btn.disabled = false;
-                btn.innerHTML = 'Confirmar <i class="fas fa-check"></i>';
+                btn.innerHTML = 'Confirmar cita <i class="fas fa-check"></i>';
             }
         }
 
         function showSuccess(data, ejecutivo) {
-            document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step-1').classList.add('hidden');
             document.getElementById('step-success').classList.remove('hidden');
             document.querySelectorAll('.step-item').forEach(el => el.classList.add('completed'));
 
