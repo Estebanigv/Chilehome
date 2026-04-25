@@ -532,7 +532,7 @@
                 </p>
 
                 <div class="info-cards">
-                    <a href="https://wa.me/56926178767" target="_blank" class="info-card" id="contactWhatsAppLink">
+                    <a href="https://wa.me/56998654665" target="_blank" class="info-card" id="contactWhatsAppLink">
                         <div class="info-card-icon whatsapp">
                             <i class="fab fa-whatsapp"></i>
                         </div>
@@ -562,7 +562,7 @@
                     <div class="location-name"><i class="fas fa-industry"></i> Planta Paillaco</div>
                     <div class="location-address">Ruta T678, entre Pichi Ropulli y Paillaco, Los Ríos</div>
                     <div class="location-address" style="font-size:0.85rem;margin-top:2px;"><i class="fas fa-clock"></i> L-V 9:00-16:00 | Sáb 10:00-14:00</div>
-                    <div class="location-address" style="font-size:0.85rem;margin-top:2px;"><i class="fas fa-user"></i> Camila Perez — <a href="tel:+56945384428" style="color:inherit;">+56 9 4538 4428</a></div>
+                    <div class="location-address" style="font-size:0.85rem;margin-top:2px;"><i class="fas fa-user"></i> Camila Perez — <a href="tel:+56981472140" style="color:inherit;">+56 9 8147 2140</a></div>
                     <div class="location-btns">
                         <a href="https://www.google.com/maps/dir/?api=1&destination=-40.1409625,-72.8860806" target="_blank" class="location-btn google">
                             <i class="fab fa-google"></i> Maps
@@ -819,6 +819,12 @@
                 btn.disabled = false;
                 alert('Error al enviar. Intenta nuevamente.');
             }
+        });
+
+        // WhatsApp clicks
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href*="wa.me"]');
+            if (link) dataLayer.push({ event: 'whatsapp_contact', ubicacion: 'contacto' });
         });
     </script>
 </body>
