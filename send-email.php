@@ -181,6 +181,27 @@ if (!$input) {
     $input = $_POST;
 }
 
+// reCAPTCHA v3 verification
+$recaptchaToken = $input['recaptcha_token'] ?? '';
+if ($recaptchaToken) {
+    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, stream_context_create([
+        'http' => [
+            'method'  => 'POST',
+            'header'  => 'Content-type: application/x-www-form-urlencoded',
+            'content' => http_build_query([
+                'secret'   => '6LdLKcosAAAAAG4m1RMj4llc4df34vQHHyriUZ94',
+                'response' => $recaptchaToken,
+                'remoteip' => $_SERVER['REMOTE_ADDR'] ?? ''
+            ])
+        ]
+    ]));
+    $verifyData = json_decode($verifyResponse, true);
+    if (!($verifyData['success'] ?? false) || ($verifyData['score'] ?? 0) < 0.5) {
+        echo json_encode(['success' => false, 'message' => 'Verificación de seguridad fallida. Intenta nuevamente.']);
+        exit;
+    }
+}
+
 // Sanitize
 function sanitize($value) {
     return htmlspecialchars(strip_tags(trim($value)), ENT_QUOTES, 'UTF-8');

@@ -504,6 +504,8 @@
         }
     </style>
 
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdLKcosAAAAAJwns4fmYz1GNdzkyPW3QIdsR1dx" async defer></script>
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPRTA5cEHWOWe1S56SIkwBXtJK8pZZpWM&libraries=places&language=es&region=CL"></script>
     <script type="application/ld+json">
@@ -718,6 +720,19 @@
 
     <script>
         const SMTP_ENDPOINT = 'send-email.php';
+        const RECAPTCHA_SITE_KEY = '6LdLKcosAAAAAJwns4fmYz1GNdzkyPW3QIdsR1dx';
+
+        function getRecaptchaToken(action) {
+            return new Promise((resolve) => {
+                if (typeof grecaptcha === 'undefined') { resolve(null); return; }
+                const t = setTimeout(() => resolve(null), 5000);
+                grecaptcha.ready(() => {
+                    grecaptcha.execute(RECAPTCHA_SITE_KEY, { action }).then(token => {
+                        clearTimeout(t); resolve(token);
+                    }).catch(() => { clearTimeout(t); resolve(null); });
+                });
+            });
+        }
 
         // Geolocation
         document.getElementById('btnGetLocation').addEventListener('click', function() {
@@ -817,6 +832,9 @@
             btn.disabled = true;
 
             try {
+                const recaptchaToken = await getRecaptchaToken('contacto');
+                if (recaptchaToken) formData.recaptcha_token = recaptchaToken;
+
                 const response = await fetch(SMTP_ENDPOINT, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

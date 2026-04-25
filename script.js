@@ -15,7 +15,7 @@ if (!DEBUG_MODE) {
 // =============================================
 // reCAPTCHA v3 Configuration - Anti-spam
 // =============================================
-const RECAPTCHA_SITE_KEY = 'TU_SITE_KEY_AQUI'; // Reemplazar con tu Site Key de Google reCAPTCHA
+const RECAPTCHA_SITE_KEY = '6LdLKcosAAAAAJwns4fmYz1GNdzkyPW3QIdsR1dx';
 
 // Detectar base path dinámicamente (funciona en localhost/chilehome/ y en producción /)
 const API_BASE_PATH = (() => {
@@ -950,7 +950,7 @@ const modelData = {
         badge: 'Linea 2026',
         hasPdf: false,
         image: 'Imagenes/modelos/36m2-1a/36m2-1a.png',
-        bedrooms: '1',
+        bedrooms: '2',
         bathrooms: '1',
         area: '36',
         material: 'Paneles Pino',
@@ -969,7 +969,7 @@ const modelData = {
         badge: 'Linea 2026',
         hasPdf: false,
         image: 'Imagenes/modelos/36m2-terra/36m2-terra.png',
-        bedrooms: '1',
+        bedrooms: '2',
         bathrooms: '1',
         area: '36',
         material: 'Paneles Pino',
@@ -988,7 +988,7 @@ const modelData = {
         badge: 'Linea 2026',
         hasPdf: false,
         image: 'Imagenes/modelos/54m2-1a/54m2-1a.png',
-        bedrooms: '2',
+        bedrooms: '3',
         bathrooms: '1',
         area: '54',
         material: 'Paneles Pino',
@@ -1027,7 +1027,7 @@ const modelData = {
         badge: 'Linea Clasica',
         image: 'Imagenes/modelos/54m2-2a/54m2-2a-horizontal.png',
         imageDetail: 'Imagenes/modelos/54m2-2a/54m2-2a-blanca.webp',
-        bedrooms: '2',
+        bedrooms: '3',
         bathrooms: '1',
         area: '54',
         material: 'Paneles Pino',
@@ -1048,7 +1048,7 @@ const modelData = {
         roofType: '6 Aguas',
         badge: 'Linea Clasica',
         image: 'Imagenes/modelos/54m2-6a/54m2-6a.webp',
-        bedrooms: '2',
+        bedrooms: '3',
         bathrooms: '1',
         area: '54',
         material: 'Paneles Pino',
@@ -1070,7 +1070,7 @@ const modelData = {
         badge: 'Linea Clasica',
         image: 'Imagenes/modelos/72m2-6a/72m2-6a-alt.webp',
         imageDetail: 'Imagenes/modelos/72m2-6a/72m2-6a.webp',
-        bedrooms: '3',
+        bedrooms: '4',
         bathrooms: '2',
         area: '72',
         material: 'Paneles Pino',
@@ -1092,7 +1092,7 @@ const modelData = {
         badge: 'Nuevo Modelo',
         image: 'Imagenes/modelos/72m2-2a/72m2-2a-portada.webp',
         imageDetail: 'Imagenes/modelos/72m2-2a/72m2-2a-ficha.webp',
-        bedrooms: '3',
+        bedrooms: '4',
         bathrooms: '2',
         area: '72',
         material: 'Paneles Pino',

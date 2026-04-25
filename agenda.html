@@ -947,6 +947,8 @@
             opacity: 0;
         }
     </style>
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdLKcosAAAAAJwns4fmYz1GNdzkyPW3QIdsR1dx" async defer></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -1225,6 +1227,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script>
         const BASE = window.location.pathname.includes('/chilehome') ? '/chilehome' : '';
         const API = BASE + '/admin/api/citas.php';
+        const RECAPTCHA_SITE_KEY_AGENDA = '6LdLKcosAAAAAJwns4fmYz1GNdzkyPW3QIdsR1dx';
+
+        function getRecaptchaTokenAgenda(action) {
+            return new Promise((resolve) => {
+                if (typeof grecaptcha === 'undefined') { resolve(null); return; }
+                const t = setTimeout(() => resolve(null), 5000);
+                grecaptcha.ready(() => {
+                    grecaptcha.execute(RECAPTCHA_SITE_KEY_AGENDA, { action }).then(token => {
+                        clearTimeout(t); resolve(token);
+                    }).catch(() => { clearTimeout(t); resolve(null); });
+                });
+            });
+        }
 
         const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -1449,13 +1464,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Agendando...';
 
             const form = new FormData(e.target);
+            const recaptchaToken = await getRecaptchaTokenAgenda('agenda');
             const data = {
                 nombre: form.get('nombre'),
                 telefono: form.get('telefono'),
                 email: form.get('email') || '',
                 sucursal: selectedBranch,
                 fecha: selectedDate,
-                hora: selectedTime
+                hora: selectedTime,
+                ...(recaptchaToken ? { recaptcha_token: recaptchaToken } : {})
             };
 
             try {
