@@ -90,7 +90,7 @@
 
     <!-- Stylesheets with SRI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="styles-improved.css?v=20260226b">
+    <link rel="stylesheet" href="styles-improved.css?v=20260410h">
 
     <!-- GSAP Animation Library with SRI -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+nP6/mUhOZ5jxfuU/F/k5CmViJBiKQElN4Oyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -236,7 +236,7 @@
                     "latitude": -40.1409625,
                     "longitude": -72.8860806
                 },
-                "telephone": "+56 9 4538 4428",
+                "telephone": "+56 9 8147 2140",
                 "openingHoursSpecification": [
                     {
                         "@type": "OpeningHoursSpecification",
@@ -334,7 +334,7 @@
                         "@type": "Offer",
                         "url": "https://chilehome.cl/#proyectos",
                         "priceCurrency": "CLP",
-                        "price": "8990000",
+                        "price": "1550000",
                         "priceValidUntil": "2026-12-31",
                         "availability": "https://schema.org/InStock",
                         "itemCondition": "https://schema.org/NewCondition",
@@ -365,7 +365,7 @@
                         "@type": "Offer",
                         "url": "https://chilehome.cl/#proyectos",
                         "priceCurrency": "CLP",
-                        "price": "11990000",
+                        "price": "1950000",
                         "priceValidUntil": "2026-12-31",
                         "availability": "https://schema.org/InStock",
                         "itemCondition": "https://schema.org/NewCondition",
@@ -396,7 +396,7 @@
                         "@type": "Offer",
                         "url": "https://chilehome.cl/#proyectos",
                         "priceCurrency": "CLP",
-                        "price": "14990000",
+                        "price": "2700000",
                         "priceValidUntil": "2026-12-31",
                         "availability": "https://schema.org/InStock",
                         "itemCondition": "https://schema.org/NewCondition",
@@ -558,8 +558,6 @@
             <span class="review-text">5 estrellas en Google Reviews</span>
             <span class="top-bar-divider">|</span>
             <span class="shipping-text"><i class="fas fa-truck"></i> Despachos de Chañaral a Puerto Varas</span>
-            <span class="top-bar-divider">|</span>
-            <a href="ofertas" class="top-bar-offer"><i class="fas fa-tag"></i> Ofertas Exclusivas</a>
         </div>
     </div>
 
@@ -573,13 +571,33 @@
             </a>
 
             <nav class="nav" id="nav">
+                <div class="mobile-nav-header">
+                    <img src="Logotipo/logo-footer.svg?v=2" alt="Chile Home" class="mobile-nav-logo">
+                </div>
                 <ul class="nav-list">
                     <li><a href="#modelos-principales" class="nav-link">Modelos</a></li>
                     <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
                     <li><a href="#proceso" class="nav-link">Proceso</a></li>
-                    <li><a href="contacto" class="nav-link">Contacto</a></li>
-                    <li><a href="agenda" class="nav-link nav-link-highlight">Agenda Visita Sucursal</a></li>
+                    <li><a href="agenda" class="nav-link nav-link-highlight"><i class="fas fa-calendar-check"></i> Agenda</a></li>
                 </ul>
+                <div class="mobile-nav-ctas">
+                    <a href="contacto" class="mobile-nav-contacto">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contacto</span>
+                        <i class="fas fa-arrow-right mobile-nav-arrow"></i>
+                    </a>
+                    <a href="agenda" class="mobile-nav-agenda">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Agenda Visita Sucursal</span>
+                    </a>
+                </div>
+                <div class="mobile-nav-footer">
+                    <div class="mobile-nav-social">
+                        <a href="https://www.instagram.com/chilehome/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100088847798188" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/56998654665" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
             </nav>
 
             <div class="header-actions">
@@ -744,38 +762,7 @@
     <div class="assistant-overlay" id="assistantOverlay"></div>
     FIN ASISTENTE IA -->
 
-    <!-- Banner Ofertas -->
-    <section class="offers-banner" id="ofertas-banner">
-        <a href="ofertas" class="offers-banner-link">
-            <div class="offers-banner-inner">
-                <div class="offers-banner-bg"></div>
-                <div class="offers-banner-content">
-                    <div class="offers-banner-images">
-                        <img src="Imagenes/Ofertas/casa-36m2.webp" alt="Casa 36m²" class="offers-thumb offers-thumb-1">
-                        <img src="Imagenes/Ofertas/casa-54m2.webp" alt="Casa 54m²" class="offers-thumb offers-thumb-2">
-                    </div>
-                    <div class="offers-banner-info">
-                        <span class="offers-banner-badge"><i class="fas fa-fire"></i> Oferta Exclusiva · Solo 10 unidades</span>
-                        <div class="offers-banner-prices">
-                            <div class="offers-banner-price-item">
-                                <span class="obp-label">36 m²</span>
-                                <span class="obp-value">$1.990.000</span>
-                            </div>
-                            <div class="offers-banner-price-divider"></div>
-                            <div class="offers-banner-price-item">
-                                <span class="obp-label">54 m²</span>
-                                <span class="obp-value">$2.490.000</span>
-                            </div>
-                        </div>
-                        <p class="offers-banner-text">Flete gratis · Puertas y ventanas incluidas · Paga al recibir</p>
-                    </div>
-                    <div class="offers-banner-right">
-                        <span class="offers-banner-cta">Ver Oferta <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </section>
+    <!-- Banner Ofertas (desactivado) -->
 
     <!-- Modelos Principales - Los Más Vendidos -->
     <section class="models-main-section" id="modelos-principales">
@@ -990,7 +977,7 @@
                             <h4 class="card-title">54 m²</h4>
                             <p class="card-subtitle">Modelo Mediano</p>
                             <div class="card-features">
-                                <span><i class="fas fa-bed"></i> 2 Dorm.</span>
+                                <span><i class="fas fa-bed"></i> 3 Dorm.</span>
                                 <span><i class="fas fa-bath"></i> 1 Baño</span>
                             </div>
                         </div>
@@ -1010,7 +997,7 @@
                             <h4 class="card-title">72 m²</h4>
                             <p class="card-subtitle">Modelo Familiar</p>
                             <div class="card-features">
-                                <span><i class="fas fa-bed"></i> 3 Dorm.</span>
+                                <span><i class="fas fa-bed"></i> 4 Dorm.</span>
                                 <span><i class="fas fa-bath"></i> 1 Baño</span>
                             </div>
                         </div>
@@ -1037,7 +1024,7 @@
                             <h4 class="card-title">54 m²</h4>
                             <p class="card-subtitle">Siding Exterior</p>
                             <div class="card-features">
-                                <span><i class="fas fa-bed"></i> 2 Dorm.</span>
+                                <span><i class="fas fa-bed"></i> 3 Dorm.</span>
                                 <span><i class="fas fa-bath"></i> 1 Baño</span>
                             </div>
                         </div>
@@ -1057,7 +1044,7 @@
                             <h4 class="card-title">72 m²</h4>
                             <p class="card-subtitle">Modelo Familiar</p>
                             <div class="card-features">
-                                <span><i class="fas fa-bed"></i> 3 Dorm.</span>
+                                <span><i class="fas fa-bed"></i> 4 Dorm.</span>
                                 <span><i class="fas fa-bath"></i> 1 Baño</span>
                             </div>
                         </div>
@@ -1105,7 +1092,7 @@
                             <h4 class="card-title">36 m²</h4>
                             <p class="card-subtitle">Modelo Minimalista</p>
                             <div class="card-features">
-                                <span><i class="fas fa-bed"></i> 1 Dorm.</span>
+                                <span><i class="fas fa-bed"></i> 2 Dorm.</span>
                                 <span><i class="fas fa-bath"></i> 1 Baño</span>
                             </div>
                         </div>
@@ -1127,7 +1114,7 @@
                             <h4 class="card-title">36 m²</h4>
                             <p class="card-subtitle">Modelo Terra</p>
                             <div class="card-features">
-                                <span><i class="fas fa-bed"></i> 1 Dorm.</span>
+                                <span><i class="fas fa-bed"></i> 2 Dorm.</span>
                                 <span><i class="fas fa-bath"></i> 1 Baño</span>
                             </div>
                         </div>
@@ -1149,7 +1136,7 @@
                             <h4 class="card-title">54 m²</h4>
                             <p class="card-subtitle">Modelo Espacioso</p>
                             <div class="card-features">
-                                <span><i class="fas fa-bed"></i> 2 Dorm.</span>
+                                <span><i class="fas fa-bed"></i> 3 Dorm.</span>
                                 <span><i class="fas fa-bath"></i> 1 Baño</span>
                             </div>
                         </div>
@@ -1189,76 +1176,89 @@
             </div>
             <p class="reviews-subtitle">Miles de familias ya confían en Chile Home</p>
 
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+            <div class="reviews-carousel-wrapper">
+                <div class="reviews-track">
+                    <!-- Set 1 -->
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Excelente calidad y cumplieron con los plazos. Nuestra casa quedó hermosa y el proceso fue muy transparente. 100% recomendados."</p>
+                        <div class="review-author"><div class="review-avatar">MR</div><div class="review-info"><strong>María Rodríguez</strong><span>Santiago, Chile</span></div></div>
                     </div>
-                    <p class="review-text">"Excelente calidad y cumplieron con los plazos. Nuestra casa quedó hermosa y el proceso fue muy transparente. 100% recomendados."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">MR</div>
-                        <div class="review-info">
-                            <strong>María Rodríguez</strong>
-                            <span>Santiago, Chile</span>
-                        </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Los mejores precios del mercado sin duda. Comparé con varias empresas y Chile Home ofreció la mejor relación calidad-precio."</p>
+                        <div class="review-author"><div class="review-avatar">CP</div><div class="review-info"><strong>Carlos Pérez</strong><span>Copiapó, Chile</span></div></div>
                     </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Desde la cotización hasta la entrega todo fue impecable. El equipo nos asesoró en cada paso. Muy profesionales."</p>
+                        <div class="review-author"><div class="review-avatar">LM</div><div class="review-info"><strong>Laura Muñoz</strong><span>Paillaco, Chile</span></div></div>
                     </div>
-                    <p class="review-text">"Los mejores precios del mercado sin duda. Comparé con varias empresas y Chile Home ofreció la mejor relación calidad-precio."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">CP</div>
-                        <div class="review-info">
-                            <strong>Carlos Pérez</strong>
-                            <span>Copiapó, Chile</span>
-                        </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Nuestra casa de 72m² llegó en 50 días. Los materiales son de primera calidad y el proceso de compra fue muy sencillo."</p>
+                        <div class="review-author"><div class="review-avatar">JG</div><div class="review-info"><strong>Juan González</strong><span>Valdivia, Chile</span></div></div>
                     </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Compramos el modelo 54m² y superó todas nuestras expectativas. La madera es de primera y el despacho llegó perfectamente embalado."</p>
+                        <div class="review-author"><div class="review-avatar">AT</div><div class="review-info"><strong>Ana Torres</strong><span>Puerto Varas, Chile</span></div></div>
                     </div>
-                    <p class="review-text">"Desde la cotización hasta la entrega todo fue impecable. El equipo nos asesoró en cada paso. Muy profesionales."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">LM</div>
-                        <div class="review-info">
-                            <strong>Laura Muñoz</strong>
-                            <span>Paillaco, Chile</span>
-                        </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Atención rápida y muy honesta. Nos explicaron todo sin letra chica. Ya estamos viviendo en nuestra casa prefabricada y estamos felices."</p>
+                        <div class="review-author"><div class="review-avatar">RV</div><div class="review-info"><strong>Roberto Vega</strong><span>Temuco, Chile</span></div></div>
                     </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"El precio es imbatible. Armamos nuestra casa en 4 días con 3 personas. Las instrucciones son claras y el material llegó completo."</p>
+                        <div class="review-author"><div class="review-avatar">PM</div><div class="review-info"><strong>Pedro Méndez</strong><span>Osorno, Chile</span></div></div>
                     </div>
-                    <p class="review-text">"Nuestra casa de 72m² llegó en 50 días. Los materiales son de primera calidad y el armado fue rápido."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">JG</div>
-                        <div class="review-info">
-                            <strong>Juan González</strong>
-                            <span>Valdivia, Chile</span>
-                        </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Segunda vez que compramos con Chile Home. El primer modelo fue tan bueno que pedimos otro para la parcela de verano. Recomendados totalmente."</p>
+                        <div class="review-author"><div class="review-avatar">SL</div><div class="review-info"><strong>Sofía Lagos</strong><span>La Serena, Chile</span></div></div>
+                    </div>
+                    <!-- Set 2 (copia para loop infinito) -->
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Excelente calidad y cumplieron con los plazos. Nuestra casa quedó hermosa y el proceso fue muy transparente. 100% recomendados."</p>
+                        <div class="review-author"><div class="review-avatar">MR</div><div class="review-info"><strong>María Rodríguez</strong><span>Santiago, Chile</span></div></div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Los mejores precios del mercado sin duda. Comparé con varias empresas y Chile Home ofreció la mejor relación calidad-precio."</p>
+                        <div class="review-author"><div class="review-avatar">CP</div><div class="review-info"><strong>Carlos Pérez</strong><span>Copiapó, Chile</span></div></div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Desde la cotización hasta la entrega todo fue impecable. El equipo nos asesoró en cada paso. Muy profesionales."</p>
+                        <div class="review-author"><div class="review-avatar">LM</div><div class="review-info"><strong>Laura Muñoz</strong><span>Paillaco, Chile</span></div></div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Nuestra casa de 72m² llegó en 50 días. Los materiales son de primera calidad y el proceso de compra fue muy sencillo."</p>
+                        <div class="review-author"><div class="review-avatar">JG</div><div class="review-info"><strong>Juan González</strong><span>Valdivia, Chile</span></div></div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Compramos el modelo 54m² y superó todas nuestras expectativas. La madera es de primera y el despacho llegó perfectamente embalado."</p>
+                        <div class="review-author"><div class="review-avatar">AT</div><div class="review-info"><strong>Ana Torres</strong><span>Puerto Varas, Chile</span></div></div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Atención rápida y muy honesta. Nos explicaron todo sin letra chica. Ya estamos viviendo en nuestra casa prefabricada y estamos felices."</p>
+                        <div class="review-author"><div class="review-avatar">RV</div><div class="review-info"><strong>Roberto Vega</strong><span>Temuco, Chile</span></div></div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"El precio es imbatible. Armamos nuestra casa en 4 días con 3 personas. Las instrucciones son claras y el material llegó completo."</p>
+                        <div class="review-author"><div class="review-avatar">PM</div><div class="review-info"><strong>Pedro Méndez</strong><span>Osorno, Chile</span></div></div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Segunda vez que compramos con Chile Home. El primer modelo fue tan bueno que pedimos otro para la parcela de verano. Recomendados totalmente."</p>
+                        <div class="review-author"><div class="review-avatar">SL</div><div class="review-info"><strong>Sofía Lagos</strong><span>La Serena, Chile</span></div></div>
                     </div>
                 </div>
             </div>
@@ -1424,7 +1424,7 @@
                 <div class="step-num" aria-hidden="true">03</div>
                 <div class="step-content">
                     <h4>Fabricación</h4>
-                    <p>Producción controlada en nuestra planta de Paillaco con los más altos estándares de calidad en pino impregnado.</p>
+                    <p>Producción controlada en nuestra planta de Paillaco con los más altos estándares de calidad en pino natural.</p>
                 </div>
             </li>
 
@@ -1609,7 +1609,7 @@
                             <i class="fas fa-clock"></i> L-V 9:00-16:00 | Sáb 10:00-14:00
                         </div>
                         <div style="margin-top:4px;">
-                            <a href="tel:+56945384428" style="color:inherit;text-decoration:none;font-size:0.9rem;"><i class="fas fa-phone"></i> +56 9 4538 4428</a>
+                            <a href="tel:+56981472140" data-fixed style="color:inherit;text-decoration:none;font-size:0.9rem;"><i class="fas fa-phone"></i> +56 9 8147 2140</a>
                         </div>
                         <div class="location-actions">
                             <a href="https://www.google.com/maps/dir/?api=1&destination=-40.1409625,-72.8860806" target="_blank" class="btn-location-action btn-google-maps" aria-label="Abrir en Google Maps">
@@ -1617,6 +1617,28 @@
                                 <span>Google Maps</span>
                             </a>
                             <a href="https://www.waze.com/ul?ll=-40.1409625,-72.8860806&z=17" target="_blank" class="btn-location-action btn-waze" aria-label="Abrir en Waze">
+                                <i class="fab fa-waze"></i>
+                                <span>Waze</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-item contact-item-location">
+                        <div class="location-header">
+                            <span class="item-label">Sucursal Curicó</span>
+                            <span class="item-value">Ruta 5 Sur km 191, caletera pista oriente — Carla</span>
+                        </div>
+                        <div class="location-schedule" style="font-size:0.85rem;color:#888;margin-top:4px;">
+                            <i class="fas fa-clock"></i> L-V 9:00-18:00 | Sáb-Dom 10:00-17:00
+                        </div>
+                        <div style="margin-top:4px;">
+                            <a href="tel:+56976671498" data-fixed style="color:inherit;text-decoration:none;font-size:0.9rem;"><i class="fas fa-phone"></i> +56 9 7667 1498</a>
+                        </div>
+                        <div class="location-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-34.991394,-71.2271381" target="_blank" class="btn-location-action btn-google-maps" aria-label="Abrir en Google Maps">
+                                <i class="fab fa-google"></i>
+                                <span>Google Maps</span>
+                            </a>
+                            <a href="https://www.waze.com/ul?ll=-34.991394,-71.2271381&z=17" target="_blank" class="btn-location-action btn-waze" aria-label="Abrir en Waze">
                                 <i class="fab fa-waze"></i>
                                 <span>Waze</span>
                             </a>
@@ -1831,7 +1853,7 @@
                         <p style="margin-top:8px;"><strong>Línea 2026</strong> (techo 1 agua, diseño moderno y minimalista):</p>
                         <ul style="margin:4px 0 0 18px;line-height:1.8;">
                             <li><strong>36m² Un Agua</strong> — 1 dormitorio, diseño contemporáneo</li>
-                            <li><strong>36m² Terra</strong> — 1 dormitorio, estilo rústico moderno</li>
+                            <li><strong>36m² Terra</strong> — 2 dormitorios, estilo rústico moderno</li>
                             <li><strong>54m² Un Agua</strong> — 2 dormitorios, líneas limpias</li>
                         </ul>
                         <p style="margin-top:8px;">También fabricamos medidas especiales: 18m² (estudio/bodega), 27m², 90m², 108m² y 120m². Todas construidas en <strong>paneles de pino finger joint impregnado</strong> con despacho a todo Chile.</p>
@@ -1862,6 +1884,7 @@
                         <p>Por supuesto. Chile Home tiene <strong>sucursales con casas modelo armadas</strong> que puedes recorrer en persona. Actualmente puedes visitarnos en:</p>
                         <ul style="margin:8px 0 0 18px;line-height:1.8;">
                             <li><strong>Santiago (Buin-Linderos):</strong> sucursal zona central, fácil acceso desde Ruta 5</li>
+                            <li><strong>Curicó:</strong> Ruta 5 Sur km 191, Región del Maule</li>
                             <li><strong>Puerto Varas:</strong> sucursal zona sur, con vista a modelos instalados</li>
                             <li><strong>Paillaco:</strong> fábrica y showroom, donde se produce todo</li>
                         </ul>
@@ -1947,6 +1970,7 @@
                         <li><a href="https://www.google.com/maps?q=-33.7735668,-70.7442035&z=17&hl=es" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> Santiago (Paine)</a></li>
                         <li><a href="https://www.google.com/maps?q=-41.3507704,-72.9526841&z=17&hl=es" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> Puerto Varas</a></li>
                         <li><a href="https://www.google.com/maps?q=-40.1409625,-72.8860806&z=17&hl=es" target="_blank" rel="noopener"><i class="fas fa-industry"></i> Paillaco (Planta)</a></li>
+                        <li><a href="https://www.google.com/maps?q=-34.991394,-71.2271381&z=17&hl=es" target="_blank" rel="noopener"><i class="fas fa-route"></i> Curicó</a></li>
                     </ul>
                 </div>
 
@@ -2478,7 +2502,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPRTA5cEHWOWe1S56SIkwBXtJK8pZZpWM&libraries=places&language=es&region=CL"></script>
     <!-- Cargador de contenido dinámico desde panel admin -->
     <script src="site-config.js?v=20260110"></script>
-    <script src="script.js?v=20260105b"></script>
+    <script src="script.js?v=20260410c"></script>
 
     <!-- WhatsApp dinámico desde API con soporte para excepciones por ubicación -->
     <script>
@@ -2547,9 +2571,9 @@
                     }
                 });
 
-                // 2. Actualizar enlaces tel: con número global
+                // 2. Actualizar enlaces tel: con número global (excepto números fijos de sucursales)
                 const numeroFormateado = '+' + globalNum.replace(/(\d{2})(\d)(\d{4})(\d{4})/, '$1 $2 $3 $4');
-                document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+                document.querySelectorAll('a[href^="tel:"]:not([data-fixed])').forEach(link => {
                     const hrefNum = link.href.replace(/\D/g, '');
                     if (hrefNum.startsWith('56') && hrefNum.length >= 11) {
                         link.href = 'tel:+' + globalNum;
@@ -2586,136 +2610,61 @@
     })();
     </script>
 
-    <!-- Floating Offer Tab (derecha) + Panel -->
-    <div class="offer-fab visible" id="offerFab">
-        <button class="offer-fab-btn" id="offerFabBtn" aria-label="Ver ofertas">
-            <i class="fas fa-tag"></i>
-            <span class="offer-fab-label">Ofertas</span>
-        </button>
-        <div class="offer-fab-panel" id="offerFabPanel">
-            <div class="offer-fab-panel-header">
-                <span class="ofp-title">Oferta Exclusiva</span>
-                <span class="ofp-stock"><i class="fas fa-fire"></i> 10 unidades</span>
-            </div>
-            <a href="ofertas#oferta-36" class="ofp-card">
-                <img src="Imagenes/Ofertas/casa-36m2.webp" alt="Casa 36m²" class="ofp-img">
-                <div class="ofp-info">
-                    <span class="ofp-area">Casa 36 m²</span>
-                    <span class="ofp-price">$1.990.000</span>
-                </div>
-                <i class="fas fa-chevron-right ofp-arrow"></i>
-            </a>
-            <a href="ofertas#oferta-54" class="ofp-card">
-                <img src="Imagenes/Ofertas/casa-54m2.webp" alt="Casa 54m²" class="ofp-img">
-                <div class="ofp-info">
-                    <span class="ofp-area">Casa 54 m²</span>
-                    <span class="ofp-price">$2.490.000</span>
-                </div>
-                <i class="fas fa-chevron-right ofp-arrow"></i>
-            </a>
-            <a href="ofertas" class="ofp-see-all">
-                Ver todas las ofertas <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-
-    <!-- Popup inteligente de oferta (aparece al ver modelo que coincide) -->
-    <div class="offer-smart-popup" id="offerSmartPopup">
-        <button class="osp-close" id="ospClose"><i class="fas fa-times"></i></button>
-        <div class="osp-content">
-            <img src="" alt="" class="osp-img" id="ospImg">
-            <div class="osp-info">
-                <span class="osp-badge"><i class="fas fa-fire"></i> Oferta disponible</span>
-                <span class="osp-text" id="ospText"></span>
-                <span class="osp-price" id="ospPrice"></span>
-            </div>
-            <a href="" class="osp-btn" id="ospBtn">Ver oferta <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
-
+    <!-- Conversiones GTM / dataLayer -->
     <script>
-    // ============================================
-    // OFERTAS CONFIG - Cambiar aquí para futuras ofertas
-    // ============================================
-    var OFERTAS_CONFIG = {
-        '36': { area: '36', price: '$1.990.000', hash: '#oferta-36', img: 'Imagenes/Ofertas/casa-36m2.webp', label: 'Casa 36 m² desde' },
-        '54': { area: '54', price: '$2.490.000', hash: '#oferta-54', img: 'Imagenes/Ofertas/casa-54m2.webp', label: 'Casa 54 m² desde' }
-    };
+    window.dataLayer = window.dataLayer || [];
 
-    // Floating tab - toggle panel
-    (function() {
-        var btn = document.getElementById('offerFabBtn');
-        var panel = document.getElementById('offerFabPanel');
-        if (!btn || !panel) return;
+    // WhatsApp clicks
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href*="wa.me"]');
+        if (!link) return;
+        const ubicacion = link.dataset.whatsappUbicacion || 'general';
+        dataLayer.push({ event: 'whatsapp_contact', ubicacion: ubicacion });
+    });
 
-        btn.addEventListener('click', function() {
-            panel.classList.toggle('open');
-        });
+    // Click teléfono
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href^="tel:"]');
+        if (!link) return;
+        dataLayer.push({ event: 'telefono_click' });
+    });
 
-        document.addEventListener('click', function(e) {
-            if (!document.getElementById('offerFab').contains(e.target)) {
-                panel.classList.remove('open');
-            }
-        });
-    })();
+    // Click Agendar visita
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('a[href*="agenda"], button');
+        if (!btn) return;
+        const texto = (btn.textContent || '').toLowerCase();
+        if (texto.includes('agendar') || texto.includes('agenda')) {
+            dataLayer.push({ event: 'clic_agendar' });
+        }
+    });
 
-    // Smart popup - se lanza al abrir un modelo que coincide con una oferta
-    (function() {
-        var popup = document.getElementById('offerSmartPopup');
-        var closeBtn = document.getElementById('ospClose');
-        if (!popup || !closeBtn) return;
-
-        var shownForModel = {};
-        var popupTimer = null;
-
-        function showOfferPopup(area) {
-            var oferta = OFERTAS_CONFIG[area];
-            if (!oferta || shownForModel[area]) return;
-
-            shownForModel[area] = true;
-
-            document.getElementById('ospImg').src = oferta.img;
-            document.getElementById('ospImg').alt = oferta.label;
-            document.getElementById('ospText').textContent = oferta.label;
-            document.getElementById('ospPrice').textContent = oferta.price;
-            document.getElementById('ospBtn').href = 'ofertas' + oferta.hash;
-
-            popup.classList.add('active');
-
-            // Auto-cerrar después de 8 segundos
-            clearTimeout(popupTimer);
-            popupTimer = setTimeout(function() {
-                popup.classList.remove('active');
-            }, 8000);
+    // Formulario PDF / catálogo
+    document.addEventListener('DOMContentLoaded', function() {
+        const pdfForm = document.getElementById('pdfForm');
+        if (pdfForm) {
+            pdfForm.addEventListener('submit', function() {
+                dataLayer.push({ event: 'pdf_solicitado' });
+            });
         }
 
-        function hidePopup() {
-            popup.classList.remove('active');
-            clearTimeout(popupTimer);
+        // Formulario email/cotización modal
+        const emailForm = document.getElementById('modalEmailForm');
+        if (emailForm) {
+            emailForm.addEventListener('submit', function() {
+                dataLayer.push({ event: 'cotizacion_enviada' });
+            });
         }
 
-        closeBtn.addEventListener('click', hidePopup);
-
-        // Hook en openModelModal - interceptar cuando se abre un modelo
-        var _originalOpen = window.openModelModal;
-        if (_originalOpen) {
-            window.openModelModal = function(modelId) {
-                _originalOpen(modelId);
-
-                // Verificar si el modelo coincide con una oferta
-                var data = window.modelData && window.modelData[modelId];
-                if (data && OFERTAS_CONFIG[data.area]) {
-                    // Lanzar popup después de 4 segundos viendo el modelo
-                    setTimeout(function() {
-                        var modal = document.getElementById('modelModal');
-                        if (modal && modal.classList.contains('active')) {
-                            showOfferPopup(data.area);
-                        }
-                    }, 4000);
-                }
-            };
+        // Formulario cotizador
+        const quoteForm = document.getElementById('quoteForm');
+        if (quoteForm) {
+            quoteForm.addEventListener('submit', function() {
+                dataLayer.push({ event: 'cotizacion_enviada' });
+            });
         }
-    })();
+    });
     </script>
+
 </body>
 </html>
