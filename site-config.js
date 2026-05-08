@@ -96,7 +96,7 @@ const SiteConfig = {
     // Aplicar configuración al DOM
     applyConfig() {
         // WhatsApp principal (para enlaces genéricos)
-        const whatsapp = this.get('whatsapp_principal', '+56998654665').replace(/\D/g, '');
+        const whatsapp = this.get('whatsapp_principal', '+56944878554').replace(/\D/g, '');
         const whatsappMsg = encodeURIComponent(this.get('texto_whatsapp', 'Hola, me interesa cotizar una casa prefabricada'));
 
         // Actualizar enlaces de WhatsApp genéricos (no de modelos específicos)
@@ -105,9 +105,9 @@ const SiteConfig = {
             if (currentHref.includes('text=')) {
                 const msgMatch = currentHref.match(/text=([^&]*)/);
                 const msg = msgMatch ? msgMatch[1] : whatsappMsg;
-                link.href = `https://wa.me/${whatsapp}?text=${msg}`;
+                link.href = `https://wa.me/${whatsapp}?text=${msg}%20%5Bweb%5D`;
             } else {
-                link.href = `https://wa.me/${whatsapp}?text=${whatsappMsg}`;
+                link.href = `https://wa.me/${whatsapp}?text=${whatsappMsg}%20%5Bweb%5D`;
             }
         });
 
@@ -206,7 +206,7 @@ const SiteConfig = {
             return modelo.whatsapp_link;
         }
         // Fallback al WhatsApp global
-        const whatsapp = this.get('whatsapp_principal', '+56998654665').replace(/\D/g, '');
+        const whatsapp = this.get('whatsapp_principal', '+56944878554').replace(/\D/g, '');
         return `https://wa.me/${whatsapp}`;
     },
 

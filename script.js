@@ -195,7 +195,7 @@ async function loadActiveWhatsApp() {
 
         if (data.success) {
             // Guardar número global
-            currentWhatsApp = data.global?.whatsapp || '56998654665';
+            currentWhatsApp = data.global?.whatsapp || '56944878554';
             currentEjecutivoId = data.global?.id || null;
 
             // Guardar excepciones por ubicación en cache
@@ -220,7 +220,7 @@ async function loadActiveWhatsApp() {
 
     } catch (error) {
         if (DEBUG_MODE) console.error('Error cargando WhatsApp:', error);
-        currentWhatsApp = '56998654665';
+        currentWhatsApp = '56944878554';
         updateWhatsAppLinks(currentWhatsApp);
     }
 }
@@ -234,7 +234,7 @@ async function getWhatsAppForOrigen(origen) {
     }
 
     // Fallback al número global
-    return { numero: currentWhatsApp || '56998654665', ejecutivo_id: currentEjecutivoId, source: 'global' };
+    return { numero: currentWhatsApp || '56944878554', ejecutivo_id: currentEjecutivoId, source: 'global' };
 }
 
 // Determinar etiqueta según ubicación del enlace
@@ -1183,7 +1183,7 @@ function openModelModal(modelId) {
     const whatsappEl = document.getElementById('modalWhatsApp');
     if (whatsappEl) {
         const modelName = encodeURIComponent(`${data.name} ${data.badge}`);
-        whatsappEl.href = `https://wa.me/56998654665?text=Hola%2C%20me%20interesa%20el%20modelo%20${modelName}`;
+        whatsappEl.href = `https://wa.me/56944878554?text=Hola%2C%20me%20interesa%20el%20modelo%20${modelName}%20%5Bweb%5D`;
     }
 
     // Hide/show PDF button based on hasPdf
@@ -1542,7 +1542,7 @@ function goToSlide(index) {
 // =============================================
 
 const EXECUTIVE_EMAIL = 'contacto@chilehome.cl';
-const WHATSAPP_NUMBER = '56998654665';
+const WHATSAPP_NUMBER = '56944878554';
 
 // N8N Webhook Configuration (producción)
 const N8N_AGENT_URL = 'https://agenciados.app.n8n.cloud/webhook/chilehome/lead-agent';
@@ -3840,10 +3840,10 @@ document.addEventListener('DOMContentLoaded', function() {
             button.style.background = '#22c55e';
 
             // Enviar datos por WhatsApp
-            const mensaje = encodeURIComponent(`Hola, soy ${nombre}. Me gustaría recibir una llamada para conocer más sobre sus casas prefabricadas. Mi teléfono es: ${telefono}`);
+            const mensaje = encodeURIComponent(`Hola, soy ${nombre}. Me gustaría recibir una llamada para conocer más sobre sus casas prefabricadas. Mi teléfono es: ${telefono} [web]`);
 
             setTimeout(() => {
-                window.open(`https://wa.me/56998654665?text=${mensaje}`, '_blank');
+                window.open(`https://wa.me/56944878554?text=${mensaje}`, '_blank');
 
                 // Resetear formulario después de un momento
                 setTimeout(() => {
@@ -3989,7 +3989,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Abrir WhatsApp con el número correcto
-            window.open(`https://wa.me/56998654665?text=${mensaje}`, '_blank');
+            window.open(`https://wa.me/56944878554?text=${mensaje}%20%5Bweb%5D`, '_blank');
 
             setTimeout(() => {
                 button.innerHTML = '<i class="fas fa-check"></i> <span>¡Enviado!</span>';

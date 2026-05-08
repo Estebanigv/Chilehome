@@ -550,13 +550,13 @@
                 </p>
 
                 <div class="info-cards">
-                    <a href="https://wa.me/56998654665" target="_blank" class="info-card" id="contactWhatsAppLink">
+                    <a href="https://wa.me/56944878554?text=Hola%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20Chile%20Home.%20%C2%BFMe%20pueden%20asesorar%3F%20%5Bweb%5D" target="_blank" class="info-card" id="contactWhatsAppLink">
                         <div class="info-card-icon whatsapp">
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div>
                             <div class="info-card-label">WhatsApp</div>
-                            <div class="info-card-value" id="contactWhatsAppText">+56 9 9865 4665</div>
+                            <div class="info-card-value" id="contactWhatsAppText">+56 9 4487 8554</div>
                         </div>
                     </a>
 
@@ -580,7 +580,7 @@
                     <div class="location-name"><i class="fas fa-industry"></i> Planta Paillaco</div>
                     <div class="location-address">Ruta T678, entre Pichi Ropulli y Paillaco, Los Ríos</div>
                     <div class="location-address" style="font-size:0.85rem;margin-top:2px;"><i class="fas fa-clock"></i> L-V 9:00-16:00 | Sáb 10:00-14:00</div>
-                    <div class="location-address" style="font-size:0.85rem;margin-top:2px;"><i class="fas fa-user"></i> Camila Perez — <a href="tel:+56981472140" style="color:inherit;">+56 9 8147 2140</a></div>
+                    <div class="location-address" style="font-size:0.85rem;margin-top:2px;"><i class="fas fa-user"></i> Camila Perez</div>
                     <div class="location-btns">
                         <a href="https://www.google.com/maps/dir/?api=1&destination=-40.1409625,-72.8860806" target="_blank" class="location-btn google">
                             <i class="fab fa-google"></i> Maps
@@ -797,7 +797,10 @@
                     // Actualizar enlace WhatsApp
                     const waLink = document.getElementById('contactWhatsAppLink');
                     const waText = document.getElementById('contactWhatsAppText');
-                    if (waLink) waLink.href = 'https://wa.me/' + numero;
+                    if (waLink) {
+                        const existingText = new URL(waLink.href).searchParams.get('text') || '';
+                        waLink.href = 'https://wa.me/' + numero + (existingText ? '?text=' + encodeURIComponent(existingText) : '');
+                    }
                     if (waText) waText.textContent = numeroFormateado;
                 }
             } catch (error) {
@@ -844,7 +847,25 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    window.location.href = '/gracias';
+                    // Disparar conversión ANTES de redirigir (con datos hasheados)
+                    if (window.ChileHomeTracking) {
+                        await window.ChileHomeTracking.pushEvent({
+                            event: 'cotizacion_form_submit',
+                            form_id: 'contactPageForm',
+                            form_type: 'contacto_pagina',
+                            modelo: formData.modelo,
+                            ubicacion: formData.ubicacion,
+                            value: 5000,
+                            currency: 'CLP',
+                            user_data: await window.ChileHomeTracking.buildUserData({
+                                email: formData.email,
+                                telefono: formData.telefono,
+                                nombre: formData.nombre
+                            })
+                        });
+                    }
+                    // Pequeño delay para que GTM dispare antes de navegar
+                    setTimeout(() => { window.location.href = '/gracias?origen=contacto'; }, 350);
                 } else {
                     throw new Error(result.message || 'Error al enviar');
                 }
@@ -855,11 +876,8 @@
             }
         });
 
-        // WhatsApp clicks
-        document.addEventListener('click', function(e) {
-            const link = e.target.closest('a[href*="wa.me"]');
-            if (link) dataLayer.push({ event: 'whatsapp_contact', ubicacion: 'contacto' });
-        });
     </script>
+    <!-- Tracking unificado (carga al final para no bloquear) -->
+    <script src="tracking-conversiones.js" defer></script>
 </body>
 </html>

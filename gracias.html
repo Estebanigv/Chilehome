@@ -11,28 +11,19 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KC6J7N6');</script>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2ZE7K13K"></script>
+    <!--
+        Nota: GA4 ya se carga vía GTM (GTM-KC6J7N6) — no duplicar gtag aquí.
+        El evento de conversión "cotizacion_form_submit" se dispara desde el
+        formulario originario antes de redirigir, no aquí (evita falsos positivos
+        si el usuario llega a /gracias por otro camino).
+        Este pageview en /gracias se usa como "Conversion Page View" en GA4.
+    -->
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KW2ZE7K13K');
         window.dataLayer.push({
-            'event': 'generate_lead',
-            'event_category': 'Conversion',
-            'event_label': 'Lead Completado',
-            'lead_type': 'form_submission',
-            'conversion_page': 'gracias',
-            'value': 1,
-            'currency': 'CLP'
-        });
-        gtag('event', 'conversion', {
-            'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
-            'event_category': 'Lead',
-            'event_label': 'Formulario Completado',
-            'value': 1.0,
-            'currency': 'CLP'
+            event: 'pageview_gracias',
+            page_type: 'thank_you',
+            conversion_origen: new URLSearchParams(window.location.search).get('origen') || 'formulario'
         });
     </script>
 
@@ -532,7 +523,7 @@
             </a>
         </div>
         <div class="ty-header-actions">
-            <a href="https://wa.me/56998654665?text=Hola,%20acabo%20de%20enviar%20un%20formulario" target="_blank" class="ty-btn ty-btn-wa" data-wa-origen="gracias_nav">
+            <a href="https://wa.me/56944878554?text=Hola%2C%20acabo%20de%20enviar%20un%20formulario%20y%20quiero%20cotizar%20una%20casa%20prefabricada%20Chile%20Home.%20%C2%BFMe%20pueden%20contactar%3F%20%5Bweb%5D" target="_blank" class="ty-btn ty-btn-wa" data-wa-origen="gracias_nav">
                 <i class="fab fa-whatsapp"></i>
                 <span class="desktop">WhatsApp</span>
             </a>
@@ -619,7 +610,7 @@
                 <h3>Necesitas respuesta inmediata?</h3>
                 <p>Escribenos por WhatsApp y un asesor te atendera al instante.</p>
             </div>
-            <a href="https://wa.me/56998654665?text=Hola,%20acabo%20de%20enviar%20un%20formulario%20de%20contacto" target="_blank" class="ty-cta-btn" data-wa-origen="gracias_cta">
+            <a href="https://wa.me/56944878554?text=Hola%2C%20acabo%20de%20enviar%20un%20formulario%20y%20quiero%20cotizar%20una%20casa%20prefabricada%20Chile%20Home.%20%C2%BFMe%20pueden%20contactar%3F%20%5Bweb%5D" target="_blank" class="ty-cta-btn" data-wa-origen="gracias_cta">
                 <i class="fab fa-whatsapp"></i>
                 Escribir por WhatsApp
             </a>
