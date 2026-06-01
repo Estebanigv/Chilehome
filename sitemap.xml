@@ -61,37 +61,38 @@
         <priority>0.7</priority>
     </url>
 
-    <!-- Guías / Blog -->
+    <!-- Sucursales -->
     <url>
-        <loc>https://chilehome.cl/guias/cuanto-cuesta-una-casa-prefabricada-en-chile</loc>
-        <lastmod>2026-03-25</lastmod>
+        <loc>https://chilehome.cl/sucursales/santiago-paine</loc>
+        <lastmod>2026-04-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://chilehome.cl/guias/casa-prefabricada-vs-casa-tradicional</loc>
-        <lastmod>2026-03-25</lastmod>
+        <loc>https://chilehome.cl/sucursales/curico</loc>
+        <lastmod>2026-04-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://chilehome.cl/guias/como-instalar-casa-prefabricada</loc>
-        <lastmod>2026-03-25</lastmod>
+        <loc>https://chilehome.cl/sucursales/puerto-varas</loc>
+        <lastmod>2026-04-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://chilehome.cl/guias/casas-prefabricadas-pino-impregnado</loc>
-        <lastmod>2026-03-25</lastmod>
+        <loc>https://chilehome.cl/sucursales/paillaco</loc>
+        <lastmod>2026-04-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://chilehome.cl/guias/permiso-construccion-casa-prefabricada-chile</loc>
-        <lastmod>2026-03-25</lastmod>
+        <loc>https://chilehome.cl/sucursales/copiapo</loc>
+        <lastmod>2026-04-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+
 
     <!-- Política de Privacidad -->
     <url>
