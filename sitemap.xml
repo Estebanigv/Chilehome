@@ -94,6 +94,14 @@
     </url>
 
 
+    <!-- Guías (se agregan cuando la página devuelve 200) -->
+    <url>
+        <loc>https://chilehome.cl/guias/cuanto-cuesta-una-casa-prefabricada-en-chile</loc>
+        <lastmod>2026-05-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- Política de Privacidad -->
     <url>
         <loc>https://chilehome.cl/politica-privacidad</loc>

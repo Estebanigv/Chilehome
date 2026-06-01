@@ -114,13 +114,17 @@ Options -Indexes
 </IfModule>
 
 # ============================================
-# ANTI-CACHE PARA HTML (desarrollo/publicación)
-# Fuerza al navegador a siempre pedir el HTML fresco
+# TC-04: CACHÉ CORRECTA (STAGING)
+# HTML: revalidar cada hora · Assets estáticos: 1 año immutable
+# IMPORTANTE: probar envío de formulario de cotización tras deployar
 # ============================================
-<FilesMatch "\.(html|htm)$">
+<FilesMatch "\.html$">
     <IfModule mod_headers.c>
-        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
-        Header set Pragma "no-cache"
-        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </IfModule>
+</FilesMatch>
+<FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|css|js|woff2)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "public, max-age=31536000, immutable"
     </IfModule>
 </FilesMatch>
