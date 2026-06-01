@@ -89,12 +89,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets with SRI -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="stylesheet" href="styles-improved.css?v=20260410h">
 
-    <!-- GSAP Animation Library with SRI -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+nP6/mUhOZ5jxfuU/F/k5CmViJBiKQElN4Oyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC81cj4oVuZ0WpBx5M0SPYlKHF94Rwv9HLiFvbUmlqjjrlxhbGi8z5qfP3YNZ+VwfMkJ9aAyDDnV6WlNEObQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- TC-13: GSAP con defer (below-the-fold, seguro) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+nP6/mUhOZ5jxfuU/F/k5CmViJBiKQElN4Oyw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC81cj4oVuZ0WpBx5M0SPYlKHF94Rwv9HLiFvbUmlqjjrlxhbGi8z5qfP3YNZ+VwfMkJ9aAyDDnV6WlNEObQg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <!-- TC-06: lite-youtube-embed (facade hero) -->
+    <link rel="stylesheet" href="/vendor/lite-yt-embed.css">
+    <script src="/vendor/lite-yt-embed.js" defer></script>
 
     <!-- Google reCAPTCHA v3 - Anti-spam -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LdLKcosAAAAAJwns4fmYz1GNdzkyPW3QIdsR1dx" async defer></script>
@@ -715,16 +719,15 @@
     <!-- Hero con Video YouTube -->
     <section class="hero" id="inicio">
         <div class="hero-container">
+            <!-- TC-06: facade — iframe carga solo al click, LCP pasa a ser el poster -->
             <div class="hero-video-wrapper">
-                <iframe
-                    id="heroYouTubeVideo"
-                    src="https://www.youtube.com/embed/1nECbWrHI7I?autoplay=1&mute=1&loop=1&playlist=1nECbWrHI7I&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    loading="lazy"
+                <lite-youtube
+                    videoid="1nECbWrHI7I"
+                    style="background-image:url('/Imagenes/hero-poster.webp');aspect-ratio:16/9"
+                    params="rel=0&modestbranding=1&playsinline=1"
+                    playlabel="Reproducir video Chile Home"
                     class="hero-video-iframe">
-                </iframe>
+                </lite-youtube>
             </div>
             <div class="hero-overlay"></div>
             <span class="hero-badge">Más de 20 años de experiencia</span>
@@ -745,7 +748,7 @@
             <div class="hero-preview-wrapper">
                 <div class="hero-preview" onclick="openModelModal('clasica-36')">
                     <div class="preview-image">
-                        <img src="Imagenes/modelos/36m2-2a/36m2-2a-horizontal.png" alt="Casa prefabricada modelo 36m² dos aguas - Chile Home" loading="lazy">
+                        <img src="Imagenes/modelos/36m2-2a/36m2-2a-horizontal-800.webp" srcset="Imagenes/modelos/36m2-2a/36m2-2a-horizontal-480.webp 480w, Imagenes/modelos/36m2-2a/36m2-2a-horizontal-800.webp 800w, Imagenes/modelos/36m2-2a/36m2-2a-horizontal-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="731" alt="Casa prefabricada modelo 36m² dos aguas - Chile Home" loading="lazy">
                     </div>
                     <div class="preview-label">
                         <span class="preview-size">36m²</span>
@@ -839,7 +842,7 @@
                         <span class="size-number">36</span>
                         <span class="size-unit">m²</span>
                     </div>
-                    <img src="Imagenes/modelos/36m2-2a/36m2-2a-horizontal.png" alt="Casa prefabricada 36m² 2 aguas - Chile Home" loading="lazy">
+                    <img src="Imagenes/modelos/36m2-2a/36m2-2a-horizontal-800.webp" srcset="Imagenes/modelos/36m2-2a/36m2-2a-horizontal-480.webp 480w, Imagenes/modelos/36m2-2a/36m2-2a-horizontal-800.webp 800w, Imagenes/modelos/36m2-2a/36m2-2a-horizontal-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="731" alt="Casa prefabricada 36m² 2 aguas - Chile Home" loading="lazy">
                 </div>
                 <div class="model-info-simple">
                     <p class="model-price-simple">$1.590.000</p>
@@ -858,7 +861,7 @@
                         <span class="size-number">54</span>
                         <span class="size-unit">m²</span>
                     </div>
-                    <img src="Imagenes/modelos/54m2-2a/54m2-2a-horizontal.png" alt="Casa prefabricada 54m² 2 aguas - Chile Home" loading="lazy">
+                    <img src="Imagenes/modelos/54m2-2a/54m2-2a-horizontal-800.webp" srcset="Imagenes/modelos/54m2-2a/54m2-2a-horizontal-480.webp 480w, Imagenes/modelos/54m2-2a/54m2-2a-horizontal-800.webp 800w, Imagenes/modelos/54m2-2a/54m2-2a-horizontal-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="714" alt="Casa prefabricada 54m² 2 aguas - Chile Home" loading="lazy">
                 </div>
                 <div class="model-info-simple">
                     <p class="model-price-simple">$1.990.000</p>
@@ -877,7 +880,7 @@
                         <span class="size-number">72</span>
                         <span class="size-unit">m²</span>
                     </div>
-                    <img src="Imagenes/modelos/72m2-2a/72m2-2a-portada.webp" alt="Casa prefabricada 72m² 2 aguas - Chile Home" loading="lazy">
+                    <img src="Imagenes/modelos/72m2-2a/72m2-2a-portada.webp" alt="Casa prefabricada 72m² 2 aguas - Chile Home" width="1200" height="896" loading="lazy">
                 </div>
                 <div class="model-info-simple">
                     <p class="model-price-simple">$2.740.000</p>
@@ -917,7 +920,7 @@
             <div class="custom-design-showcase">
                 <div class="showcase-card active">
                     <div class="showcase-image">
-                        <img src="Imagenes/modelos/54m2-1a/54m2-1a.png" alt="Casa 54m² Un Agua - Línea 2026" loading="lazy">
+                        <img src="Imagenes/modelos/54m2-1a/54m2-1a-800.webp" srcset="Imagenes/modelos/54m2-1a/54m2-1a-480.webp 480w, Imagenes/modelos/54m2-1a/54m2-1a-800.webp 800w, Imagenes/modelos/54m2-1a/54m2-1a-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="1280" alt="Casa 54m² Un Agua - Línea 2026" loading="lazy">
                         <div class="showcase-badge">Línea 2026</div>
                         <div class="showcase-size">54 m²</div>
                         <div class="showcase-roof">UN AGUA</div>
@@ -1001,7 +1004,7 @@
                 <div class="catalog-grid">
                     <article class="catalog-card" onclick="openModelModal('clasica-36')">
                         <div class="catalog-card-image">
-                            <img src="Imagenes/modelos/36m2-2a/36m2-2a-horizontal.png" alt="Casa prefabricada 36m² dos aguas" loading="lazy">
+                            <img src="Imagenes/modelos/36m2-2a/36m2-2a-horizontal-800.webp" srcset="Imagenes/modelos/36m2-2a/36m2-2a-horizontal-480.webp 480w, Imagenes/modelos/36m2-2a/36m2-2a-horizontal-800.webp 800w, Imagenes/modelos/36m2-2a/36m2-2a-horizontal-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="731" alt="Casa prefabricada 36m² dos aguas" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -1021,7 +1024,7 @@
 
                     <article class="catalog-card" onclick="openModelModal('clasica-54')">
                         <div class="catalog-card-image">
-                            <img src="Imagenes/modelos/54m2-2a/54m2-2a-blanca.webp" alt="Casa prefabricada 54m² dos aguas" loading="lazy">
+                            <img src="Imagenes/modelos/54m2-2a/54m2-2a-blanca.webp" alt="Casa prefabricada 54m² dos aguas" width="1856" height="2304" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -1041,7 +1044,7 @@
 
                     <article class="catalog-card" onclick="openModelModal('clasica-72-2a')">
                         <div class="catalog-card-image">
-                            <img src="Imagenes/modelos/72m2-2a/72m2-2a-portada.webp" alt="Casa prefabricada 72m² dos aguas" loading="lazy">
+                            <img src="Imagenes/modelos/72m2-2a/72m2-2a-portada.webp" alt="Casa prefabricada 72m² dos aguas" width="1200" height="896" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -1068,7 +1071,7 @@
                 <div class="catalog-grid">
                     <article class="catalog-card" onclick="openModelModal('clasica-54-6a')">
                         <div class="catalog-card-image">
-                            <img src="Imagenes/modelos/54m2-6a/54m2-siding.webp" alt="Casa prefabricada 54m² 6 aguas siding" loading="lazy">
+                            <img src="Imagenes/modelos/54m2-6a/54m2-siding.webp" alt="Casa prefabricada 54m² 6 aguas siding" width="2688" height="1536" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -1088,7 +1091,7 @@
 
                     <article class="catalog-card" onclick="openModelModal('clasica-72')">
                         <div class="catalog-card-image">
-                            <img src="Imagenes/modelos/72m2-6a/72m2-6a.webp" alt="Casa prefabricada 72m² 6 aguas" loading="lazy">
+                            <img src="Imagenes/modelos/72m2-6a/72m2-6a.webp" alt="Casa prefabricada 72m² 6 aguas" width="2752" height="1536" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -1135,7 +1138,7 @@
                     <article class="catalog-card" onclick="openModelModal('36-1a')">
                         <div class="catalog-card-image">
                             <span class="new-tag">Nuevo</span>
-                            <img src="Imagenes/modelos/36m2-1a/36m2-1a.png" alt="Casa prefabricada 36m² un agua línea 2026" loading="lazy">
+                            <img src="Imagenes/modelos/36m2-1a/36m2-1a-800.webp" srcset="Imagenes/modelos/36m2-1a/36m2-1a-480.webp 480w, Imagenes/modelos/36m2-1a/36m2-1a-800.webp 800w, Imagenes/modelos/36m2-1a/36m2-1a-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="1280" alt="Casa prefabricada 36m² un agua línea 2026" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -1157,7 +1160,7 @@
                     <article class="catalog-card" onclick="openModelModal('terra-36')">
                         <div class="catalog-card-image">
                             <span class="new-tag">Nuevo</span>
-                            <img src="Imagenes/modelos/36m2-terra/36m2-terra.png" alt="Casa prefabricada Terra 36m² dos aguas" loading="lazy">
+                            <img src="Imagenes/modelos/36m2-terra/36m2-terra-800.webp" srcset="Imagenes/modelos/36m2-terra/36m2-terra-480.webp 480w, Imagenes/modelos/36m2-terra/36m2-terra-800.webp 800w, Imagenes/modelos/36m2-terra/36m2-terra-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="1280" alt="Casa prefabricada Terra 36m² dos aguas" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -1179,7 +1182,7 @@
                     <article class="catalog-card" onclick="openModelModal('54-1a')">
                         <div class="catalog-card-image">
                             <span class="new-tag">Nuevo</span>
-                            <img src="Imagenes/modelos/54m2-1a/54m2-1a.png" alt="Casa prefabricada 54m² un agua línea 2026" loading="lazy">
+                            <img src="Imagenes/modelos/54m2-1a/54m2-1a-800.webp" srcset="Imagenes/modelos/54m2-1a/54m2-1a-480.webp 480w, Imagenes/modelos/54m2-1a/54m2-1a-800.webp 800w, Imagenes/modelos/54m2-1a/54m2-1a-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 800px" width="1280" height="1280" alt="Casa prefabricada 54m² un agua línea 2026" loading="lazy">
                             <div class="catalog-card-overlay">
                                 <span class="card-cta">Ver detalles <i class="fas fa-arrow-right"></i></span>
                             </div>
@@ -2540,8 +2543,24 @@
     <!-- DOMPurify for XSS Protection -->
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js" integrity="sha384-FPlVw8eKKvvzZTLJpWvD/YbNeLwGNiM2QmQw+z4kIvz4Aw4aWs2wFPqyLVUmxNCu" crossorigin="anonymous"></script>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPRTA5cEHWOWe1S56SIkwBXtJK8pZZpWM&libraries=places&language=es&region=CL"></script>
+    <script src="https://www.youtube.com/iframe_api" defer></script>
+    <script>
+    (function() {
+        var mapsLoaded = false;
+        function loadMapsAPI() {
+            if (mapsLoaded) return;
+            mapsLoaded = true;
+            var s = document.createElement('script');
+            s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCPRTA5cEHWOWe1S56SIkwBXtJK8pZZpWM&libraries=places&language=es&region=CL';
+            document.head.appendChild(s);
+        }
+        var ids = ['quoteUbicacion','ubicacion','emailFormUbicacion','pdfFormUbicacion','ubicacionInput'];
+        ids.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('focus', loadMapsAPI, { once: true });
+        });
+    })();
+    </script>
     <!-- Cargador de contenido dinámico desde panel admin -->
     <script src="site-config.js?v=20260110"></script>
     <script src="script.js?v=20260410c"></script>
