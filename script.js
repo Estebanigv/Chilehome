@@ -3640,13 +3640,8 @@ if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
 // SHOWCASE CAROUSEL (Línea 2026)
 // =============================================
 
+// Mismo orden que el catálogo: Minimalista 36 (un agua) · Terra 36 (dos aguas) · Espacioso 54 (un agua)
 const showcaseImages = [
-    {
-        src: 'Imagenes/modelos/54m2-1a/54m2-1a-800.webp',
-        alt: 'Casa 54m² Un Agua - Línea 2026',
-        size: '54 m²',
-        roof: 'UN AGUA'
-    },
     {
         src: 'Imagenes/modelos/36m2-1a/36m2-1a-800.webp',
         alt: 'Casa 36m² Un Agua - Línea 2026',
@@ -3658,8 +3653,17 @@ const showcaseImages = [
         alt: 'Casa Terra 36m² Dos Aguas - Línea 2026',
         size: '36 m²',
         roof: 'DOS AGUAS'
+    },
+    {
+        src: 'Imagenes/modelos/54m2-1a/54m2-1a-800.webp',
+        alt: 'Casa 54m² Un Agua - Línea 2026',
+        size: '54 m²',
+        roof: 'UN AGUA'
     }
 ];
+
+// Precargar las imágenes del showcase para que el cambio de slide sea instantáneo
+showcaseImages.forEach(s => { const im = new Image(); im.src = s.src; });
 
 let currentShowcaseIndex = 0;
 
