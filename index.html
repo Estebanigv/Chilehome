@@ -49,7 +49,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://chilehome.cl/">
     <meta property="og:title" content="Chile Home | Casas Prefabricadas en Chile desde $1.590.000">
-    <meta property="og:description" content="Casas prefabricadas de madera desde 18m² a 120m². +25.000 casas vendidas. Despacho Chañaral a Puerto Varas. ¡Cotiza gratis y sin compromiso!">
+    <meta property="og:description" content="Casas prefabricadas de madera desde 18m² a 120m². +25.000 casas vendidas. Despacho Chañaral a Puerto Montt. ¡Cotiza gratis y sin compromiso!">
     <meta property="og:image" content="https://chilehome.cl/Imagenes/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -96,9 +96,6 @@
     <!-- TC-13: GSAP con defer (below-the-fold, seguro) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+nP6/mUhOZ5jxfuU/F/k5CmViJBiKQElN4Oyw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC81cj4oVuZ0WpBx5M0SPYlKHF94Rwv9HLiFvbUmlqjjrlxhbGi8z5qfP3YNZ+VwfMkJ9aAyDDnV6WlNEObQg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-    <!-- TC-06: lite-youtube-embed (facade hero) -->
-    <link rel="stylesheet" href="vendor/lite-yt-embed.css">
-    <script src="vendor/lite-yt-embed.js" defer></script>
 
     <!-- Google reCAPTCHA v3 - Anti-spam -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LdLKcosAAAAAJwns4fmYz1GNdzkyPW3QIdsR1dx" async defer></script>
@@ -195,29 +192,6 @@
                     "@type": "GeoCoordinates",
                     "latitude": -33.7735668,
                     "longitude": -70.7442035
-                },
-                "telephone": "+56 9 9865 4665",
-                "openingHoursSpecification": {
-                    "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                    "opens": "09:00",
-                    "closes": "18:00"
-                }
-            },
-            {
-                "@type": "LocalBusiness",
-                "name": "Chile Home – Puerto Varas",
-                "url": "https://chilehome.cl/sucursales/puerto-varas",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Puerto Varas",
-                    "addressRegion": "Los Lagos",
-                    "addressCountry": "CL"
-                },
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -41.3507704,
-                    "longitude": -72.9526841
                 },
                 "telephone": "+56 9 9865 4665",
                 "openingHoursSpecification": {
@@ -513,7 +487,7 @@
             <span class="stars">★★★★★</span>
             <span class="review-text">5 estrellas en Google Reviews</span>
             <span class="top-bar-divider">|</span>
-            <span class="shipping-text"><i class="fas fa-truck"></i> Despachos de Chañaral a Puerto Varas</span>
+            <span class="shipping-text"><i class="fas fa-truck"></i> Despachos de Chañaral a Puerto Montt</span>
         </div>
     </div>
 
@@ -615,20 +589,13 @@
     <!-- Hero con Video YouTube -->
     <section class="hero" id="inicio">
         <div class="hero-container">
-            <!-- TC-06: facade — iframe carga solo al click, LCP pasa a ser el poster -->
-            <div class="hero-video-wrapper">
-                <lite-youtube
-                    videoid="1nECbWrHI7I"
-                    style="background-image:url('Imagenes/hero-poster.webp');aspect-ratio:16/9"
-                    params="rel=0&modestbranding=1&playsinline=1"
-                    playlabel="Reproducir video Chile Home"
-                    class="hero-video-iframe">
-                </lite-youtube>
+            <!-- TC-06: el póster es el LCP (pinta primero); el iframe autoplay se inyecta tras el load -->
+            <div class="hero-video-wrapper" id="heroVideoWrapper" style="background-image:url('Imagenes/hero-poster.webp');background-size:cover;background-position:center;background-color:#1a1a1a">
             </div>
             <div class="hero-overlay"></div>
             <span class="hero-badge">Más de 20 años de experiencia</span>
             <div class="hero-content">
-                <h1 class="hero-title">Casas Prefabricadas<br><span class="hero-title-accent">en Chile</span></h1>
+                <h1 class="hero-title">Casas Prefabricadas <span class="hero-title-accent">en Chile</span></h1>
                 <p class="hero-subtitle">Desde $1.590.000 &middot; Despacho nacional &middot; +25.000 casas entregadas</p>
                 <div class="hero-buttons">
                     <button type="button" class="btn-hero" id="heroQuoteBtn"><span>Solicitar Cotización</span></button>
@@ -655,6 +622,29 @@
             </div>
         </div>
     </section>
+
+    <!-- TC-06: video hero autoplay diferido — el póster es el LCP, el iframe se inyecta tras el load -->
+    <script>
+    (function(){
+        function loadHeroVideo(){
+            var w = document.getElementById('heroVideoWrapper');
+            if(!w || w.dataset.loaded) return;
+            w.dataset.loaded = '1';
+            var ifr = document.createElement('iframe');
+            ifr.src = 'https://www.youtube.com/embed/1nECbWrHI7I?autoplay=1&mute=1&loop=1&playlist=1nECbWrHI7I&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1';
+            ifr.title = 'Casas prefabricadas Chile Home';
+            ifr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            ifr.setAttribute('frameborder','0');
+            ifr.setAttribute('allowfullscreen','');
+            ifr.className = 'hero-video-iframe';
+            w.appendChild(ifr);
+        }
+        if(document.readyState === 'complete'){ loadHeroVideo(); }
+        else { window.addEventListener('load', function(){
+            ('requestIdleCallback' in window) ? requestIdleCallback(loadHeroVideo, {timeout:1500}) : setTimeout(loadHeroVideo, 300);
+        }); }
+    })();
+    </script>
 
     <!-- Texto Introductorio Breve -->
     <section class="intro-brief">
@@ -1541,22 +1531,6 @@
                     </div>
                     <div class="contact-item contact-item-location">
                         <div class="location-header">
-                            <span class="item-label">Sucursal Puerto Varas</span>
-                            <span class="item-value">Camino al Complejo Deportivo El Mirador</span>
-                        </div>
-                        <div class="location-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=-41.3507704,-72.9526841" target="_blank" class="btn-location-action btn-google-maps" aria-label="Abrir en Google Maps">
-                                <i class="fab fa-google"></i>
-                                <span>Google Maps</span>
-                            </a>
-                            <a href="https://www.waze.com/ul?ll=-41.3507704,-72.9526841&z=17" target="_blank" class="btn-location-action btn-waze" aria-label="Abrir en Waze">
-                                <i class="fab fa-waze"></i>
-                                <span>Waze</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="contact-item contact-item-location">
-                        <div class="location-header">
                             <span class="item-label">Planta Paillaco</span>
                             <span class="item-value">Ruta T678, Paillaco — Camila Perez</span>
                         </div>
@@ -1768,122 +1742,6 @@
             <h2 class="faq-title" style="margin-bottom:12px">¿Tienes dudas sobre nuestras casas?</h2>
             <p class="faq-subtitle" style="margin-bottom:28px">Respondemos todas tus preguntas en nuestra sección de ayuda</p>
             <a href="preguntas-frecuentes" class="btn-primary" style="display:inline-block;padding:14px 32px;background:#1B6CB1;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;font-size:1rem">Ver Preguntas Frecuentes</a>
-            <div class="faq-grid" style="display:none">
-                <details class="faq-item">
-                    <summary><span>¿Cuánto cuesta una casa prefabricada en Chile?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>El precio de una casa prefabricada en Chile Home parte desde <strong>$1.590.000</strong> (modelo 36m²) hasta <strong>$2.740.000</strong> (modelo 72m² con 3 dormitorios). Este valor incluye la estructura completa de pino impregnado, techumbre, puertas y ventanas de aluminio.</p>
-                        <p style="margin-top:8px;"><strong>Chile Home solo fabrica y entrega los paneles</strong> — no realiza armado, instalación ni obras en terreno. Los costos de armado, fundaciones (radier o pilotes), instalación eléctrica y sanitaria los gestiona el cliente de forma independiente con los profesionales que elija. Chile Home ofrece la mejor relación precio-calidad del mercado con más de 25.000 casas entregadas desde 2006.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Cuánto demora la entrega de una casa prefabricada?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>La entrega de una casa prefabricada Chile Home toma entre <strong>30 y 45 días hábiles</strong> desde la confirmación del pedido. Contamos con stock disponible en nuestros modelos más populares (36m², 54m² y 72m² dos aguas), lo que permite entregas más rápidas según disponibilidad.</p>
-                        <p style="margin-top:8px;">El despacho se realiza en camión directamente a tu terreno, con cobertura desde la <strong>Región de Atacama hasta la Región de Los Lagos</strong>. <strong>Chile Home solo entrega los paneles</strong> — no realiza armado, instalación ni obras en terreno. El cliente se encarga del armado y toda la obra con sus propios profesionales.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Las casas prefabricadas resisten terremotos en Chile?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Sí, las casas prefabricadas de madera tienen <strong>excelente comportamiento antisísmico</strong>. La madera es un material naturalmente flexible que absorbe y disipa la energía sísmica mejor que materiales rígidos como el hormigón o el ladrillo.</p>
-                        <p style="margin-top:8px;">Nuestras estructuras de pino impregnado están diseñadas cumpliendo la <strong>normativa chilena de construcción NCh 433</strong> (diseño sísmico de edificios). Chile es uno de los países con mayor actividad sísmica del mundo, y las construcciones de madera han demostrado históricamente un rendimiento superior durante terremotos. Tras el terremoto de 2010 (8.8° Richter), las viviendas de madera presentaron significativamente menos daños que las de albañilería.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Qué modelos de casas prefabricadas tienen disponibles?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Fabricamos casas prefabricadas <strong>desde 18m² hasta 120m²</strong>. Nuestro catálogo incluye dos líneas:</p>
-                        <p style="margin-top:8px;"><strong>Línea Clásica</strong> (techo 2 y 6 aguas, diseño tradicional chileno):</p>
-                        <ul style="margin:4px 0 0 18px;line-height:1.8;">
-                            <li><strong>36m²</strong> (6×6 m) — 1 a 2 dormitorios, 1 baño — desde $1.590.000</li>
-                            <li><strong>54m²</strong> (6×9 m) — 2 dormitorios, 1 baño — desde $1.990.000</li>
-                            <li><strong>72m²</strong> (6×12 m) — 3 dormitorios, 1 baño — desde $2.740.000</li>
-                        </ul>
-                        <p style="margin-top:8px;"><strong>Línea 2026</strong> (techo 1 agua, diseño moderno y minimalista):</p>
-                        <ul style="margin:4px 0 0 18px;line-height:1.8;">
-                            <li><strong>36m² Un Agua</strong> — 1 dormitorio, diseño contemporáneo</li>
-                            <li><strong>36m² Terra</strong> — 2 dormitorios, estilo rústico moderno</li>
-                            <li><strong>54m² Un Agua</strong> — 2 dormitorios, líneas limpias</li>
-                        </ul>
-                        <p style="margin-top:8px;">También fabricamos medidas especiales: 18m² (estudio/bodega), 27m², 90m², 108m² y 120m². Todas construidas en <strong>paneles de pino finger joint impregnado</strong> con despacho a todo Chile.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Se puede instalar una casa prefabricada en cualquier terreno?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Sí, nuestras casas prefabricadas se adaptan a <strong>la mayoría de terrenos en Chile</strong>, incluyendo parcelas de agrado, zonas rurales, terrenos urbanos y zonas costeras. El tipo de fundación se elige según las condiciones del suelo:</p>
-                        <ul style="margin:8px 0 0 18px;line-height:1.8;">
-                            <li><strong>Radier de hormigón:</strong> ideal para terrenos planos y estables</li>
-                            <li><strong>Pilotes de madera:</strong> recomendado para terrenos con pendiente o suelo blando</li>
-                            <li><strong>Fundaciones de vigas:</strong> solución versátil para distintas condiciones</li>
-                        </ul>
-                        <p style="margin-top:8px;">En terrenos con pendiente se pueden usar pilotes de distinta altura para nivelar la estructura. La preparación del terreno y las fundaciones las gestiona el cliente con su propio maestro o contratista.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Hacen despacho de casas prefabricadas a regiones?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Sí, realizamos <strong>despacho a todo Chile continental</strong>, cubriendo desde la Región de Atacama hasta la Región de Los Lagos. Las regiones que cubrimos incluyen: Atacama, Coquimbo, Valparaíso, Región Metropolitana, O'Higgins, Maule, Ñuble, Biobío, La Araucanía, Los Ríos y Los Lagos.</p>
-                        <p style="margin-top:8px;">El costo de flete varía según la distancia desde nuestra planta en <strong>Paillaco (Región de Los Ríos)</strong>. El transporte se realiza en camión especializado y la casa llega en paneles modulares protegidos para el viaje. También contamos con puntos de venta en <strong>Santiago (Buin-Linderos)</strong>, <strong>Puerto Varas</strong> y <strong>Copiapó</strong> para atención presencial.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Puedo visitar una casa modelo antes de comprar?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Por supuesto. Chile Home tiene <strong>sucursales con casas modelo armadas</strong> que puedes recorrer en persona. Actualmente puedes visitarnos en:</p>
-                        <ul style="margin:8px 0 0 18px;line-height:1.8;">
-                            <li><strong>Santiago (Buin-Linderos):</strong> sucursal zona central, fácil acceso desde Ruta 5</li>
-                            <li><strong>Curicó:</strong> Ruta 5 Sur km 191, Región del Maule</li>
-                            <li><strong>Puerto Varas:</strong> sucursal zona sur, con vista a modelos instalados</li>
-                            <li><strong>Paillaco:</strong> fábrica y showroom, donde se produce todo</li>
-                        </ul>
-                        <p style="margin-top:8px;">Puedes <a href="agenda"><strong>agendar tu visita en línea</strong></a> para recibir atención personalizada de nuestros ejecutivos. La asesoría es completamente gratuita y sin compromiso. Te recomendamos agendar para asegurar disponibilidad de un ejecutivo dedicado.</p>
-                    </div>
-                </details>
-                <!-- FAQs informacionales adicionales (AEO) -->
-                <details class="faq-item">
-                    <summary><span>¿Cuánto dura una casa prefabricada de pino impregnado?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Una casa de pino impregnado tiene una <strong>vida útil estimada de 50 a 80 años</strong> con mantenimiento adecuado. El proceso de impregnación a presión (según norma <strong>NCh 819</strong>) protege la madera contra hongos, termitas y pudrición, extendiendo significativamente su durabilidad.</p>
-                        <p style="margin-top:8px;">El mantenimiento recomendado incluye aplicar un sellante o barniz protector cada 3 a 5 años en las superficies exteriores expuestas a la intemperie, y verificar el estado de las canaletas y techumbre anualmente. Con estos cuidados básicos, una casa prefabricada de madera ofrece las mismas décadas de servicio que una construcción tradicional.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Qué normativa rige las casas prefabricadas en Chile?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Las casas prefabricadas en Chile están reguladas por la <strong>Ordenanza General de Urbanismo y Construcciones (OGUC)</strong> y deben cumplir las normas chilenas aplicables. Las principales son:</p>
-                        <ul style="margin:8px 0 0 18px;line-height:1.8;">
-                            <li><strong>NCh 433:</strong> Diseño sísmico de edificios</li>
-                            <li><strong>NCh 819:</strong> Madera preservada mediante impregnación a presión</li>
-                            <li><strong>NCh 1198:</strong> Madera — Construcciones en madera — Cálculo</li>
-                            <li><strong>Artículo 5.1.2 OGUC:</strong> Requisitos para viviendas industrializadas</li>
-                        </ul>
-                        <p style="margin-top:8px;">Para instalar una casa prefabricada como vivienda permanente se requiere permiso de edificación municipal. En zonas rurales (parcelas de agrado), los requisitos pueden ser más flexibles dependiendo de la superficie y el uso. Nuestros ejecutivos te orientan sobre los trámites necesarios para tu caso particular.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Se puede hipotecar una casa prefabricada en Chile?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Sí, una casa prefabricada <strong>puede ser hipotecada si cuenta con recepción municipal</strong> y está inscrita en el Conservador de Bienes Raíces. Para esto, la vivienda debe haberse construido con permiso de edificación y recibir la recepción definitiva de la Dirección de Obras Municipales.</p>
-                        <p style="margin-top:8px;">Algunos bancos y cooperativas en Chile ofrecen créditos hipotecarios para viviendas prefabricadas que cumplan con la normativa. <strong>Chile Home no otorga crédito ni financiamiento directo</strong> — el cliente gestiona su financiamiento de forma independiente con la entidad bancaria de su preferencia. Existen también subsidios habitacionales del MINVU que pueden aplicarse a casas prefabricadas con recepción municipal.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Qué diferencia hay entre casa prefabricada y casa modular?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>La principal diferencia es el <strong>formato de entrega</strong>. Una casa prefabricada como las de Chile Home se entrega en paneles planos (paredes, pisos, techumbre) que el cliente arma en terreno con sus propios profesionales. Una casa modular viene en módulos volumétricos (habitaciones completas) que se ensamblan.</p>
-                        <p style="margin-top:8px;">Las casas en paneles tienen ventajas: son más económicas de transportar (ocupan menos espacio en camión), permiten acceder a terrenos difíciles donde un módulo completo no entraría, y ofrecen más flexibilidad en el diseño. Chile Home fabrica y entrega los paneles; el cliente gestiona todo el trabajo en terreno.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary><span>¿Las casas prefabricadas pagan contribuciones en Chile?</span><i class="fas fa-chevron-down faq-icon"></i></summary>
-                    <div class="faq-answer">
-                        <p>Depende del avalúo fiscal de la propiedad. En Chile, las viviendas con avalúo fiscal inferior a <strong>aproximadamente $46 millones (2026)</strong> están exentas del pago de contribuciones. Como las casas prefabricadas suelen tener avalúos más bajos que las construcciones tradicionales, muchos propietarios quedan exentos.</p>
-                        <p style="margin-top:8px;">Si la casa cuenta con recepción municipal, el Servicio de Impuestos Internos (SII) realizará el reavalúo incluyendo la construcción. En parcelas de agrado con casas de menor superficie, es común que el avalúo total se mantenga bajo el umbral de exención. Consulta con tu municipalidad o un asesor tributario para tu caso específico.</p>
-                    </div>
-                </details>
-            </div>
         </div>
     </section>
 
@@ -1919,7 +1777,6 @@
                         <li><a href="/sucursales/copiapo"><i class="fas fa-map-marker-alt"></i> Copiapó</a></li>
                         <li><a href="/sucursales/santiago-paine"><i class="fas fa-map-marker-alt"></i> Santiago (Paine)</a></li>
                         <li><a href="/sucursales/curico"><i class="fas fa-route"></i> Curicó</a></li>
-                        <li><a href="/sucursales/puerto-varas"><i class="fas fa-map-marker-alt"></i> Puerto Varas</a></li>
                         <li><a href="/sucursales/paillaco"><i class="fas fa-industry"></i> Paillaco (Planta)</a></li>
                     </ul>
                 </div>

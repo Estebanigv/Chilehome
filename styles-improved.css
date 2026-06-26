@@ -4267,13 +4267,53 @@ section#reviews.reviews-section .stat-label {
 .whatsapp-label {
     background: white;
     color: #1a1a1a;
-    padding: 0.75rem 1.25rem;
+    padding: 0.55rem 1rem 0.55rem 0.6rem;
     border-radius: 25px;
-    font-size: 0.85rem;
-    font-weight: 500;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     white-space: nowrap;
     animation: labelPulse 2s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.wa-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.wa-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding-right: 4px;
+}
+.wa-status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: #888;
+    font-weight: 400;
+}
+.wa-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #25d366;
+    flex-shrink: 0;
+}
+.wa-nombre {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
 }
 
 @keyframes labelPulse {
@@ -7981,10 +8021,14 @@ section#reviews.reviews-section .stat-label {
 /* WhatsApp Label - Fondo BLANCO, texto VERDE */
 [data-theme="dark"] .whatsapp-label {
     background: #ffffff !important;
-    color: #25d366 !important;
     border: none !important;
-    font-weight: 600 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+[data-theme="dark"] .wa-nombre {
+    color: #1a1a1a !important;
+}
+[data-theme="dark"] .wa-status {
+    color: #666 !important;
 }
 
 /* WhatsApp Float Button */
@@ -15169,6 +15213,7 @@ section[id] {
 .hero-title-accent {
     color: var(--gold, #d4a574);
     font-weight: inherit;
+    display: block; /* salto de línea visual sin <br> — el H1 conserva el espacio "Prefabricadas en Chile" */
 }
 
 /* =============================================
@@ -15785,7 +15830,9 @@ section[id] {
     }
 }
 
-/* reCAPTCHA badge — mover encima del botón flotante de WhatsApp */
+/* reCAPTCHA v3 — badge oculto (invisible por diseño, solo aplica en formularios) */
 .grecaptcha-badge {
-    bottom: 112px !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
