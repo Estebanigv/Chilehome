@@ -3686,21 +3686,21 @@ function updateShowcase(index) {
         // Actualizar contenido después de fade out
         setTimeout(() => {
             const fadeIn = () => { if (imageContainer) imageContainer.style.opacity = '1'; };
-            // La etiqueta sólo cambia cuando la imagen nueva ya cargó → nunca hay desfase
-            // (p.ej. la casa roja de 54 m² mostrándose con "36 m²")
-            image.onload = () => {
+            // A prueba de desfase: precargo la imagen nueva en un objeto aparte y
+            // recién cuando está lista cambio imagen + etiqueta JUNTAS. Así es
+            // imposible ver una casa con el metraje de otra (p.ej. roja con "36").
+            const swap = () => {
+                image.src = showcase.src;
+                image.alt = showcase.alt;
                 sizeEl.textContent = showcase.size;
                 roofEl.textContent = showcase.roof;
                 fadeIn();
             };
-            image.alt = showcase.alt;
-            image.src = showcase.src;
-            // Si la imagen ya está en caché, onload puede no dispararse
-            if (image.complete) {
-                sizeEl.textContent = showcase.size;
-                roofEl.textContent = showcase.roof;
-                fadeIn();
-            }
+            const pre = new Image();
+            pre.onload = swap;
+            pre.onerror = swap; // si falla la carga, igual sincronizo
+            pre.src = showcase.src;
+            if (pre.complete) swap(); // ya estaba en caché (preload)
         }, 300);
 
         // Update dots

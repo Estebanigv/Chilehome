@@ -123,7 +123,7 @@ Options -Indexes
 # ============================================
 <FilesMatch "\.html$">
     <IfModule mod_headers.c>
-        Header set Cache-Control "public, max-age=3600, must-revalidate"
+        Header set Cache-Control "no-cache, must-revalidate"
     </IfModule>
 </FilesMatch>
 <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|css|js|woff2)$">
