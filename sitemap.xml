@@ -102,6 +102,14 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- Preguntas Frecuentes -->
+    <url>
+        <loc>https://chilehome.cl/preguntas-frecuentes</loc>
+        <lastmod>2026-06-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
     <!-- Política de Privacidad -->
     <url>
         <loc>https://chilehome.cl/politica-privacidad</loc>
