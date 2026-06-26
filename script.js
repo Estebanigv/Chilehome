@@ -3642,19 +3642,19 @@ if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
 
 const showcaseImages = [
     {
-        src: 'Imagenes/modelos/54m2-1a/54m2-1a.png',
+        src: 'Imagenes/modelos/54m2-1a/54m2-1a-800.webp',
         alt: 'Casa 54m² Un Agua - Línea 2026',
         size: '54 m²',
         roof: 'UN AGUA'
     },
     {
-        src: 'Imagenes/modelos/36m2-1a/36m2-1a.png',
+        src: 'Imagenes/modelos/36m2-1a/36m2-1a-800.webp',
         alt: 'Casa 36m² Un Agua - Línea 2026',
         size: '36 m²',
         roof: 'UN AGUA'
     },
     {
-        src: 'Imagenes/modelos/36m2-terra/36m2-terra.png',
+        src: 'Imagenes/modelos/36m2-terra/36m2-terra-800.webp',
         alt: 'Casa Terra 36m² Dos Aguas - Línea 2026',
         size: '36 m²',
         roof: 'DOS AGUAS'
@@ -3681,14 +3681,21 @@ function updateShowcase(index) {
 
         // Actualizar contenido después de fade out
         setTimeout(() => {
-            image.src = showcase.src;
+            const fadeIn = () => { if (imageContainer) imageContainer.style.opacity = '1'; };
+            // La etiqueta sólo cambia cuando la imagen nueva ya cargó → nunca hay desfase
+            // (p.ej. la casa roja de 54 m² mostrándose con "36 m²")
+            image.onload = () => {
+                sizeEl.textContent = showcase.size;
+                roofEl.textContent = showcase.roof;
+                fadeIn();
+            };
             image.alt = showcase.alt;
-            sizeEl.textContent = showcase.size;
-            roofEl.textContent = showcase.roof;
-
-            // Fade in
-            if (imageContainer) {
-                imageContainer.style.opacity = '1';
+            image.src = showcase.src;
+            // Si la imagen ya está en caché, onload puede no dispararse
+            if (image.complete) {
+                sizeEl.textContent = showcase.size;
+                roofEl.textContent = showcase.roof;
+                fadeIn();
             }
         }, 300);
 
