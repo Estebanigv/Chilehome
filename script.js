@@ -3690,6 +3690,11 @@ function updateShowcase(index) {
             // recién cuando está lista cambio imagen + etiqueta JUNTAS. Así es
             // imposible ver una casa con el metraje de otra (p.ej. roja con "36").
             const swap = () => {
+                // El <img> inicial trae un srcset de UN modelo; si no lo limpio, el
+                // navegador prioriza el srcset viejo y la imagen NO cambia (sólo la
+                // etiqueta). Limpiar srcset garantiza que se vea la foto de cada slide.
+                image.removeAttribute('srcset');
+                image.removeAttribute('sizes');
                 image.src = showcase.src;
                 image.alt = showcase.alt;
                 sizeEl.textContent = showcase.size;
