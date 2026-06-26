@@ -19,6 +19,9 @@ RewriteRule ^(.*)$ https://chilehome.cl/$1 [R=301,L]
 # Feed de productos Meta — sirve feed-meta.php como feed-meta.csv
 RewriteRule ^feed-meta\.csv$ feed-meta.php [L,QSA]
 
+# Sucursal Puerto Varas retirada — 301 a /nosotros (evita 404 de la URL antigua)
+RewriteRule ^sucursales/puerto-varas/?$ /nosotros [R=301,L]
+
 # Detectar si estamos en localhost/chilehome o en produccion
 RewriteCond %{REQUEST_URI} ^/chilehome/ [NC]
 RewriteRule ^ - [E=BASE:/chilehome/]

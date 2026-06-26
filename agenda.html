@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendar Visita a Sucursal | Chile Home - Casas Prefabricadas en Chile</title>
-    <meta name="description" content="Agenda tu visita a nuestras sucursales en Santiago, Puerto Varas, Paillaco o Curicó. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita y sin compromiso.">
+    <meta name="description" content="Agenda tu visita a nuestras sucursales en Santiago, Curicó o Paillaco. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita y sin compromiso.">
     <link rel="canonical" href="https://chilehome.cl/agenda">
     <meta name="robots" content="index, follow">
     <meta name="color-scheme" content="light only">
@@ -20,7 +20,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://chilehome.cl/agenda">
     <meta property="og:title" content="Agendar Visita a Sucursal | Chile Home">
-    <meta property="og:description" content="Agenda tu visita a nuestras sucursales en Santiago, Puerto Varas, Paillaco o Curicó. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita.">
+    <meta property="og:description" content="Agenda tu visita a nuestras sucursales en Santiago, Curicó o Paillaco. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita.">
     <meta property="og:image" content="https://chilehome.cl/Imagenes/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Agendar Visita a Sucursal | Chile Home">
-    <meta name="twitter:description" content="Visita nuestras casas modelo en Santiago, Puerto Varas, Paillaco o Curicó. Asesoría gratuita y sin compromiso.">
+    <meta name="twitter:description" content="Visita nuestras casas modelo en Santiago, Curicó o Paillaco. Asesoría gratuita y sin compromiso.">
     <meta name="twitter:image" content="https://chilehome.cl/Imagenes/og-image.jpg">
 
     <!-- Google tag (gtag.js) -->
@@ -1069,25 +1069,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                         </div>
 
-                        <!-- Puerto Varas -->
-                        <div class="branch-card" onclick="selectBranch('puerto_varas', this)">
-                            <div class="branch-header">
-                                <div class="branch-icon"><i class="fas fa-mountain"></i></div>
-                                <div>
-                                    <div class="branch-name">Puerto Varas</div>
-                                    <div class="branch-region">Región de Los Lagos</div>
-                                </div>
-                            </div>
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=-41.3507704,-72.9526841" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Ver ubicación en el mapa
-                            </a>
-                            <div class="branch-info">
-                                <i class="fas fa-clock"></i>
-                                <span>Lun-Sáb: 10:00 - 18:00 (turnos mañana y tarde)</span>
-                            </div>
-                        </div>
-
                         <!-- Paillaco -->
                         <div class="branch-card" onclick="selectBranch('paillaco', this)">
                             <div class="branch-header">
@@ -1243,8 +1224,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        const BRANCH_NAMES = { 'santiago': 'Santiago', 'puerto_varas': 'Puerto Varas', 'paillaco': 'Paillaco', 'curico': 'Curicó' };
-        const BRANCH_ICONS = { 'santiago': 'fa-city', 'puerto_varas': 'fa-mountain', 'paillaco': 'fa-industry', 'curico': 'fa-route' };
+        const BRANCH_NAMES = { 'santiago': 'Santiago', 'paillaco': 'Paillaco', 'curico': 'Curicó' };
+        const BRANCH_ICONS = { 'santiago': 'fa-city', 'paillaco': 'fa-industry', 'curico': 'fa-route' };
 
         let currentMonth = new Date().getMonth() + 1;
         let currentYear = new Date().getFullYear();
@@ -1511,16 +1492,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             document.getElementById('conf-exec').textContent = ejecutivo || selectedEjecutivo || '';
             document.getElementById('conf-name').textContent = data.nombre;
 
-            // Conversión: agenda completada
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                event: 'agenda_completada',
-                sucursal: BRANCH_NAMES[data.sucursal] || data.sucursal,
-                fecha_visita: data.fecha,
-                hora_visita: data.hora
-            });
+            // Conversión: agenda completada (usa tracking unificado si está disponible)
+            if (window.ChileHomeTracking) {
+                window.ChileHomeTracking.trackAgendaCompletada({
+                    sucursal: BRANCH_NAMES[data.sucursal] || data.sucursal,
+                    fecha: data.fecha,
+                    hora: data.hora,
+                    modelo: data.modelo || null
+                });
+                // user_data hasheado para Enhanced Conversions
+                if (data.email || data.telefono || data.nombre) {
+                    window.ChileHomeTracking.buildUserData({
+                        email: data.email,
+                        telefono: data.telefono,
+                        nombre: data.nombre
+                    }).then(userData => {
+                        window.dataLayer.push({
+                            event: 'agenda_user_data',
+                            user_data: userData,
+                            value: 15000,
+                            currency: 'CLP'
+                        });
+                    });
+                }
+            } else {
+                // Fallback si tracking-conversiones.js no cargó
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'agenda_completada',
+                    sucursal: BRANCH_NAMES[data.sucursal] || data.sucursal,
+                    fecha_visita: data.fecha,
+                    hora_visita: data.hora,
+                    value: 15000,
+                    currency: 'CLP'
+                });
+            }
         }
 
     </script>
+    <!-- Tracking unificado de conversiones -->
+    <script src="tracking-conversiones.js" defer></script>
 </body>
 </html>
