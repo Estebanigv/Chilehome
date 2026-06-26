@@ -1722,7 +1722,7 @@ function initAssistant() {
         if (action === 'local_modelos') {
             addBotMessage('<b>Nuestros modelos:</b><br>• 36 m² - 1 dorm, 1 baño<br>• 54 m² - 2 dorm, 1 baño<br>• 72 m² - 3 dorm, 2 baños<br>• 108 m² - 4 dorm, 2 baños');
         } else if (action === 'local_contacto') {
-            addBotMessage('Puedes contactarnos directamente:<br>• WhatsApp: +56 9 9865 4665<br>• Email: contacto@chilehome.cl');
+            addBotMessage('Puedes contactarnos directamente:<br>• WhatsApp: +56 9 4487 8554<br>• Email: contacto@chilehome.cl');
         }
     }
 

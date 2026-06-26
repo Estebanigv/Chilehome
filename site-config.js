@@ -100,19 +100,21 @@ const SiteConfig = {
         const whatsappMsg = encodeURIComponent(this.get('texto_whatsapp', 'Hola, me interesa cotizar una casa prefabricada'));
 
         // Actualizar enlaces de WhatsApp genéricos (no de modelos específicos)
+        // Quita cualquier etiqueta [web] previa (evita duplicados como "[web] [web]")
+        const stripWeb = (s) => s.replace(/(%20|\s)*%5Bweb%5D/gi, '');
         document.querySelectorAll('a[href*="wa.me"]:not([data-model-whatsapp])').forEach(link => {
             const currentHref = link.getAttribute('href');
             if (currentHref.includes('text=')) {
                 const msgMatch = currentHref.match(/text=([^&]*)/);
-                const msg = msgMatch ? msgMatch[1] : whatsappMsg;
+                const msg = stripWeb(msgMatch ? msgMatch[1] : whatsappMsg);
                 link.href = `https://wa.me/${whatsapp}?text=${msg}%20%5Bweb%5D`;
             } else {
-                link.href = `https://wa.me/${whatsapp}?text=${whatsappMsg}%20%5Bweb%5D`;
+                link.href = `https://wa.me/${whatsapp}?text=${stripWeb(whatsappMsg)}%20%5Bweb%5D`;
             }
         });
 
         // Actualizar teléfonos
-        const telefono = this.get('telefono_oficina', '+56 9 9865 4665');
+        const telefono = this.get('telefono_oficina', '+56 9 4487 8554');
         const telClean = telefono.replace(/\D/g, '');
         document.querySelectorAll('a[href^="tel:"]').forEach(link => {
             link.href = `tel:+${telClean}`;

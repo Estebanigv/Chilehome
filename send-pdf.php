@@ -252,7 +252,7 @@ if (!empty($email) && $pdfExists) {
         $bodyClient .= '<div style="text-align:center;margin:25px 0;">';
         $bodyClient .= '<a href="https://wa.me/56944878554?text=Hola%2C%20acabo%20de%20recibir%20la%20ficha%20del%20modelo%20' . urlencode($modelo) . '%20y%20me%20gustaria%20cotizar" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:14px 30px;border-radius:8px;font-size:15px;font-weight:600;">Cotizar por WhatsApp</a>';
         $bodyClient .= '</div>';
-        $bodyClient .= '<p style="color:#555;line-height:1.7;font-size:15px;">También puedes llamarnos al <a href="tel:+56998654665" style="color:#c9a86c;text-decoration:none;font-weight:600;">+56 9 9865 4665</a> o escribirnos a <a href="mailto:contacto@chilehome.cl" style="color:#c9a86c;text-decoration:none;font-weight:600;">contacto@chilehome.cl</a></p>';
+        $bodyClient .= '<p style="color:#555;line-height:1.7;font-size:15px;">También puedes llamarnos al <a href="tel:+56944878554" style="color:#c9a86c;text-decoration:none;font-weight:600;">+56 9 4487 8554</a> o escribirnos a <a href="mailto:contacto@chilehome.cl" style="color:#c9a86c;text-decoration:none;font-weight:600;">contacto@chilehome.cl</a></p>';
         $bodyClient .= '</div>';
         $bodyClient .= '<div style="background:#1a1a1a;padding:25px 30px;text-align:center;">';
         $bodyClient .= '<p style="color:#999;font-size:12px;margin:0;">Chile Home SPA | Casas Prefabricadas de Madera</p>';
