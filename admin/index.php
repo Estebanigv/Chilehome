@@ -94,7 +94,6 @@ try {
                 ['Claudia',     'meta',   14000, 'lunes_domingo', 4000],
                 ['Gloria',      'meta',   6000,  'lunes_sabado',  0],
                 ['Rodolfo',     'meta',   7000,  'lunes_sabado',  0],
-                ['Milene',      'meta',   3000,  'lunes_viernes', 0],
                 ['Nataly',      'meta',   10000, 'lunes_viernes', 4000],
                 ['Mauricio',    'meta',   14000, 'lunes_domingo', 4000],
                 ['Yoel',        'meta',   14000, 'lunes_domingo', 0],
