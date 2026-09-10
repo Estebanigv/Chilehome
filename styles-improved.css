@@ -7677,6 +7677,10 @@ section#reviews.reviews-section .stat-label {
 }
 
 /* CTA WhatsApp en dark mode */
+[data-theme="dark"] .price-conditions li {
+    color: #d4d4d4 !important;
+}
+
 [data-theme="dark"] .models-cta-quick {
     background: linear-gradient(145deg, #1e1e1e 0%, #181818 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -7880,6 +7884,12 @@ section#reviews.reviews-section .stat-label {
     background: rgba(212, 165, 116, 0.2) !important;
     color: #d4a574 !important;
     border: 1px solid rgba(212, 165, 116, 0.3) !important;
+}
+
+[data-theme="dark"] .spec-badge.accesible {
+    background: rgba(201, 168, 108, 0.22) !important;
+    color: #d4a574 !important;
+    border: 1px solid rgba(201, 168, 108, 0.35) !important;
 }
 
 /* Line Intro Modern/New (Línea 2026) */
@@ -11429,6 +11439,39 @@ section#reviews.reviews-section .stat-label {
 }
 
 /* CTA Rápida */
+/* Condiciones vigentes bajo las tarjetas de precio */
+.price-conditions {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 1.75rem;
+}
+
+.price-conditions li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #3f3f46;
+}
+
+.price-conditions i {
+    color: var(--brand-gold, #c9a86c);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .price-conditions {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
 .models-cta-quick {
     text-align: center;
     margin-top: var(--space-xl);
@@ -11971,6 +12014,17 @@ section#reviews.reviews-section .stat-label {
     color: var(--brand-blue);
     font-weight: 700;
     border: 1px solid rgba(0, 54, 96, 0.15);
+}
+
+/* Badge de accesibilidad — Hogar sin Barreras */
+.spec-badge.accesible {
+    background: linear-gradient(135deg, rgba(201, 168, 108, 0.22) 0%, rgba(201, 168, 108, 0.10) 100%);
+    color: #8b7355;
+    font-weight: 700;
+    border: 1px solid rgba(201, 168, 108, 0.35);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .spec-badge.modern,

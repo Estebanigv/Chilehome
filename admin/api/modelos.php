@@ -174,6 +174,18 @@ function processModelo($modelo, $configGlobal, $ejecutivosMap = []) {
         $modelo['tiene_descuento'] = false;
     }
 
+    // Sin precio confirmado (NULL, vacio o 0) => "Consultar".
+    // Nunca dejar el campo vacio ni interpretarlo como gratis.
+    $sinPrecio = $modelo['precio_mostrar'] === null
+        || trim((string)$modelo['precio_mostrar']) === ''
+        || preg_replace('/\D/', '', (string)$modelo['precio_mostrar']) === ''
+        || (int)preg_replace('/\D/', '', (string)$modelo['precio_mostrar']) === 0;
+    if ($sinPrecio) {
+        $modelo['precio_mostrar'] = 'Consultar';
+        $modelo['precio_original'] = null;
+        $modelo['tiene_descuento'] = false;
+    }
+
     // Convertir flags a boolean
     $modelo['activo'] = (bool)$modelo['activo'];
     $modelo['destacado'] = (bool)$modelo['destacado'];

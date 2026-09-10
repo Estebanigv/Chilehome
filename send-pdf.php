@@ -256,7 +256,7 @@ if (!empty($email) && $pdfExists) {
         $bodyClient .= '</div>';
         $bodyClient .= '<div style="background:#1a1a1a;padding:25px 30px;text-align:center;">';
         $bodyClient .= '<p style="color:#999;font-size:12px;margin:0;">Chile Home SPA | Casas Prefabricadas de Madera</p>';
-        $bodyClient .= '<p style="color:#666;font-size:11px;margin:8px 0 0;">Copiapo - Santiago (Paine) - Curico - Paillaco</p>';
+        $bodyClient .= '<p style="color:#666;font-size:11px;margin:8px 0 0;">Copiapo - Santiago (Paine) - Paillaco - Puerto Montt</p>';
         $bodyClient .= '<p style="margin:12px 0 0;"><a href="https://chilehome.cl" style="color:#c9a86c;text-decoration:none;font-size:12px;">chilehome.cl</a></p>';
         $bodyClient .= '</div>';
         $bodyClient .= '</div></body></html>';

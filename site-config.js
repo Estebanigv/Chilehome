@@ -150,7 +150,8 @@ const SiteConfig = {
                                 <span style="color:#DC2626;font-weight:700">${modelo.precio_mostrar}</span>
                             `;
                         } else {
-                            priceEl.textContent = modelo.precio_mostrar || modelo.precio_texto;
+                            // Sin precio confirmado => "Consultar" (nunca vacio ni "gratis")
+                            priceEl.textContent = modelo.precio_mostrar || modelo.precio_texto || 'Consultar';
                         }
                     }
 

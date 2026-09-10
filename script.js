@@ -1128,6 +1128,32 @@ const modelData = {
             'Costaneras de tapas pino 1x4',
             'Acabados de primera calidad'
         ]
+    },
+    'hogar-sin-barreras': {
+        name: 'Hogar sin Barreras | 36 m2 | 2 Aguas',
+        style: 'Accesible',
+        roofType: '2 Aguas',
+        badge: 'Accesibilidad',
+        image: 'Imagenes/modelos/hogar-sin-barreras/hogar-sin-barreras-1280.webp',
+        // Toma frontal recortada en vertical: la rampa entra directo a la puerta y
+        // llena el panel del modal sin que el recorte se coma el acceso
+        imageDetail: 'Imagenes/modelos/hogar-sin-barreras/hogar-sin-barreras-detalle.webp',
+        bedrooms: '2',
+        bathrooms: '1',
+        area: '36',
+        material: 'Paneles Pino',
+        pdf: 'Imagenes/Fichas Tecnicas/36 2a-20260104T102238Z-3-001/36 2a/Ficha tecnica - 36mt 2a Kit basico.pdf',
+        features: [
+            'Rampa de acceso (incluida desde la terminacion Semi Full)',
+            'Puertas mas anchas para el paso de silla de ruedas',
+            'Ventanas mas bajas, de alcance comodo',
+            'Pasillos mas amplios y sin obstaculos',
+            'Paneles exteriores e interiores',
+            'Forro exterior en media luna de pino (natural en bruto)',
+            'Tabiqueria 2x3',
+            'Cubiertas de zinc',
+            'Cerchas de pino tradicionales'
+        ]
     }
 };
 
@@ -1948,6 +1974,13 @@ function initSearch() {
             category: 'Línea Clásica',
             image: 'Imagenes/Modelos/72m2.png',
             keywords: ['72', '72m2', 'clásica', 'grande', 'familia', 'espaciosa']
+        },
+        {
+            id: 'hogar-sin-barreras',
+            title: 'Hogar sin Barreras — Casa 36 m² Accesible',
+            category: 'Línea Clásica',
+            image: 'Imagenes/modelos/hogar-sin-barreras/hogar-sin-barreras-800.webp',
+            keywords: ['accesible', 'accesibilidad', 'discapacidad', 'silla de ruedas', 'rampa', 'inclusivo', 'sin barreras', 'movilidad reducida', '36', '36m2']
         },
         {
             type: 'page',

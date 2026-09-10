@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendar Visita a Sucursal | Chile Home - Casas Prefabricadas en Chile</title>
-    <meta name="description" content="Agenda tu visita a nuestras sucursales en Santiago, Curicó o Paillaco. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita y sin compromiso.">
+    <meta name="description" content="Agenda tu visita a nuestras sucursales en Santiago, Paillaco o Puerto Montt. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita.">
     <link rel="canonical" href="https://chilehome.cl/agenda">
     <meta name="robots" content="index, follow">
     <meta name="color-scheme" content="light only">
@@ -20,7 +20,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://chilehome.cl/agenda">
     <meta property="og:title" content="Agendar Visita a Sucursal | Chile Home">
-    <meta property="og:description" content="Agenda tu visita a nuestras sucursales en Santiago, Curicó o Paillaco. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita.">
+    <meta property="og:description" content="Agenda tu visita a nuestras sucursales en Santiago, Paillaco o Puerto Montt. Conoce nuestras casas prefabricadas en persona. Asesoría gratuita.">
     <meta property="og:image" content="https://chilehome.cl/Imagenes/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Agendar Visita a Sucursal | Chile Home">
-    <meta name="twitter:description" content="Visita nuestras casas modelo en Santiago, Curicó o Paillaco. Asesoría gratuita y sin compromiso.">
+    <meta name="twitter:description" content="Visita nuestras casas modelo en Santiago, Paillaco o Puerto Montt. Asesoría gratuita y sin compromiso.">
     <meta name="twitter:image" content="https://chilehome.cl/Imagenes/og-image.jpg">
 
     <!-- Google tag (gtag.js) -->
@@ -927,6 +927,14 @@
 
         .inline-calendar { display: none; margin-top: 20px; }
         .inline-calendar.visible { display: block; animation: fadeSlideIn 0.3s ease; }
+
+        .calendar-note { display: none; margin-top: 16px; padding: 12px 14px; border-radius: 10px;
+            background: #f8fafc; border: 1px solid #e2e8f0; font-size: 0.85rem; color: #64748b;
+            line-height: 1.5; gap: 10px; align-items: flex-start; }
+        .calendar-note.visible { display: flex; }
+        .calendar-note i { color: #c9a86c; margin-top: 2px; flex-shrink: 0; }
+        .calendar-note a { color: #0f2942; font-weight: 600; text-decoration: none; }
+        .calendar-note a:hover { text-decoration: underline; }
         .inline-time { display: none; margin-top: 20px; }
         .inline-time.visible { display: block; animation: fadeSlideIn 0.3s ease; }
         .inline-form { display: none; margin-top: 20px; }
@@ -1087,22 +1095,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span>Lun-Vie: 9:00 - 16:00 | Sáb: 10:00 - 14:00</span>
                             </div>
                         </div>
-                        <!-- Curicó -->
-                        <div class="branch-card" onclick="selectBranch('curico', this)">
+                        <!-- Puerto Montt -->
+                        <div class="branch-card" onclick="selectBranch('puerto_montt', this)">
                             <div class="branch-header">
-                                <div class="branch-icon"><i class="fas fa-route"></i></div>
+                                <div class="branch-icon"><i class="fas fa-water"></i></div>
                                 <div>
-                                    <div class="branch-name">Curicó</div>
-                                    <div class="branch-region">Región del Maule</div>
+                                    <div class="branch-name">Puerto Montt</div>
+                                    <div class="branch-region">Región de Los Lagos</div>
                                 </div>
                             </div>
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=-34.991394,-71.2271381" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-41.427495,-72.8863433" target="_blank" class="branch-location-btn" onclick="event.stopPropagation()">
                                 <i class="fas fa-map-marker-alt"></i>
                                 Ver ubicación en el mapa
                             </a>
                             <div class="branch-info">
                                 <i class="fas fa-clock"></i>
-                                <span>Lun-Vie: 9:00 - 18:00 | Sáb-Dom: 10:00 - 17:00</span>
+                                <span>Lun-Jue: 10:00 - 18:00 | Vie: 9:30 - 12:00 y 14:30 - 18:00 | Sáb: 10:00 - 18:00</span>
+                            </div>
+                            <div class="branch-info">
+                                <i class="fas fa-circle-info"></i>
+                                <span>Domingos y feriados: solo con cita previa por WhatsApp</span>
                             </div>
                         </div>
                     </div>
@@ -1135,6 +1147,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="calendar-grid" id="calendar-grid">
                             <div class="loading"><div class="spinner"></div></div>
                         </div>
+                        <!-- Aviso por sucursal: explica los dias que aparecen bloqueados -->
+                        <div class="calendar-note" id="calendar-note"></div>
                     </div>
 
                     <!-- Inline Time Slots (appears after selecting date) -->
@@ -1224,8 +1238,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        const BRANCH_NAMES = { 'santiago': 'Santiago', 'paillaco': 'Paillaco', 'curico': 'Curicó' };
-        const BRANCH_ICONS = { 'santiago': 'fa-city', 'paillaco': 'fa-industry', 'curico': 'fa-route' };
+        const BRANCH_NAMES = { 'santiago': 'Santiago', 'paillaco': 'Paillaco', 'puerto_montt': 'Puerto Montt' };
+        const BRANCH_ICONS = { 'santiago': 'fa-city', 'paillaco': 'fa-industry', 'puerto_montt': 'fa-water' };
+        // Aclaracion de los dias/horas que aparecen bloqueados en el calendario de cada sucursal
+        const BRANCH_NOTES = {
+            'puerto_montt': 'Los <strong>domingos y feriados</strong> atendemos solo con cita previamente coordinada, por eso no aparecen en el calendario. Escríbenos por <a href="https://wa.me/56957002147?text=Hola%2C%20quiero%20coordinar%20una%20visita%20un%20domingo%20en%20Puerto%20Montt.%20%5Bweb%5D" target="_blank" rel="noopener">WhatsApp</a> y lo agendamos. Los <strong>viernes</strong> cerramos entre 12:00 y 14:30.',
+            'santiago': 'Los <strong>domingos</strong> la sucursal permanece cerrada.',
+            'paillaco': 'Los <strong>domingos</strong> la planta permanece cerrada.'
+        };
 
         let currentMonth = new Date().getMonth() + 1;
         let currentYear = new Date().getFullYear();
@@ -1275,6 +1295,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             // Show branch label in calendar header
             document.getElementById('selected-branch-label').innerHTML =
                 `<i class="fas ${BRANCH_ICONS[branch]}"></i> ${BRANCH_NAMES[branch]}`;
+
+            // Aviso de la sucursal: la tarjeta se compacta y oculta .branch-info,
+            // asi que el motivo de los dias bloqueados se repite aqui bajo el calendario
+            const noteEl = document.getElementById('calendar-note');
+            const note = BRANCH_NOTES[branch];
+            if (note) {
+                noteEl.innerHTML = `<i class="fas fa-circle-info"></i><span>${note}</span>`;
+                noteEl.classList.add('visible');
+            } else {
+                noteEl.innerHTML = '';
+                noteEl.classList.remove('visible');
+            }
 
             // Show calendar, hide time/form
             document.getElementById('inline-calendar').classList.add('visible');

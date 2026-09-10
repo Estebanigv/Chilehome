@@ -19,14 +19,18 @@ RewriteRule ^(.*)$ https://chilehome.cl/$1 [R=301,L]
 # Feed de productos Meta — sirve feed-meta.php como feed-meta.csv
 RewriteRule ^feed-meta\.csv$ feed-meta.php [L,QSA]
 
-# Sucursal Puerto Varas retirada — 301 a /nosotros (evita 404 de la URL antigua)
-RewriteRule ^sucursales/puerto-varas/?$ /nosotros [R=301,L]
-
 # Detectar si estamos en localhost/chilehome o en produccion
 RewriteCond %{REQUEST_URI} ^/chilehome/ [NC]
 RewriteRule ^ - [E=BASE:/chilehome/]
 RewriteCond %{REQUEST_URI} !^/chilehome/ [NC]
 RewriteRule ^ - [E=BASE:/]
+
+# Sucursal Puerto Varas cerrada — 301 a Puerto Montt, que la reemplaza (Ago 2026)
+# Va despues del bloque BASE para que el destino tambien funcione en localhost
+RewriteRule ^sucursales/puerto-varas/?$ %{ENV:BASE}sucursales/puerto-montt [R=301,L]
+
+# Sucursal Curico cerrada (Ago 2026) — 301 a /nosotros, que lista las sucursales vigentes
+RewriteRule ^sucursales/curico/?$ %{ENV:BASE}nosotros [R=301,L]
 
 # ============================================
 # HTTPS (descomentar en produccion)
@@ -75,6 +79,10 @@ RewriteRule ^(.*)$ $1.html [L]
     Order Allow,Deny
     Deny from all
 </FilesMatch>
+
+# Carpetas internas que nunca deben servirse aunque se suban por error
+# (_dev = entregables y borradores; Contenido = masters de diseño sin optimizar)
+RewriteRule ^(_dev|Contenido)(/|$) - [F,L]
 
 # Deshabilitar listado de directorios
 Options -Indexes
