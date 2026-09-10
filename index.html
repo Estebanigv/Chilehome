@@ -1529,7 +1529,7 @@
                     </a>
                     <a href="https://wa.me/56944878554?text=Hola%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20Chile%20Home.%20%C2%BFMe%20pueden%20asesorar%3F%20%5Bweb%5D" class="contact-item" target="_blank">
                         <span class="item-label">WhatsApp</span>
-                        <span class="item-value">+56 9 4487 8554</span>
+                        <span class="item-value">Conversemos por WhatsApp</span>
                     </a>
                     <div class="contact-item contact-item-location">
                         <div class="location-header">
@@ -2239,7 +2239,7 @@
                     </div>
                     <div class="quote-form-group">
                         <label>Teléfono</label>
-                        <input type="tel" name="telefono" placeholder="+56 9 4487 8554" required autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-()]*">
+                        <input type="tel" name="telefono" placeholder="+56 9 1234 5678" required autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-()]*">
                     </div>
                 </div>
                 <div class="quote-form-row">
@@ -2427,12 +2427,12 @@
                     footerWA.href = 'https://wa.me/' + footerNum;
                 }
 
-                // Personalizar label con nombre del ejecutivo activo
-                const primerNombre = globalNombre.split(' ')[0];
+                // El boton no expone el nombre del ejecutivo ni el numero:
+                // el contacto se presenta como el asistente de Chile Home.
                 const nombreEl = document.getElementById('waNombre');
                 const avatarEl = document.getElementById('waAvatar');
-                if (nombreEl) nombreEl.textContent = 'Conversemos con ' + primerNombre;
-                if (avatarEl) avatarEl.textContent = primerNombre.charAt(0).toUpperCase();
+                if (nombreEl) nombreEl.textContent = 'Conversemos por WhatsApp';
+                if (avatarEl) avatarEl.textContent = 'CH';
 
                 console.log('WhatsApp configurado correctamente');
             } catch (error) {
